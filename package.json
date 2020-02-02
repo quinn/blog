@@ -6,7 +6,7 @@
   "homepage": "https://github.com/quinn/blog#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/quinn/blog.git"
+    "url": "git+https://github.com/quinn/blog.git"
   },
   "dependencies": {
     "gatsby": "^2.19.7",
@@ -40,6 +40,8 @@
     "react-dom": "^16.12.0",
     "react-helmet": "^5.2.1",
     "react-typography": "^0.16.19",
+    "typeface-merriweather": "0.0.72",
+    "typeface-montserrat": "0.0.75",
     "typography": "^0.16.19",
     "typography-theme-wordpress-2016": "^0.16.19"
   },
@@ -51,6 +53,7 @@
     "gatsby"
   ],
   "license": "MIT",
+  "main": "n/a",
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
@@ -59,8 +62,5 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
   }
 }
