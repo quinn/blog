@@ -21,10 +21,6 @@ jobs:
 
     - name: Set CNAME
       run: |
-        ls -lah public
-        cat public/CNAME || true
-        touch public/index.html || true
-        sudo touch public/index.html || true
         sudo tee -a public/CNAME > /dev/null << EOF
         quinnshanahan.com
         EOF
