@@ -7,8 +7,8 @@ jobs:
     steps:
     - name: Set CNAME
       run: |
-        buildcommand
-        echo quinnshanahan.com > ./public/CNAME
+        mkdir public
+        echo quinnshanahan.com > public/CNAME
 
     - name: Checkout
       uses: actions/checkout@v1
