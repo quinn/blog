@@ -11,4 +11,9 @@ jobs:
         cmd: install
     - uses: borales/actions-yarn@v2.0.0
       with:
-        cmd: deploy
+        cmd: publish
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: gh-pages
