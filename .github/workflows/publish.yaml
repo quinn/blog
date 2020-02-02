@@ -23,6 +23,8 @@ jobs:
       run: |
         ls -lah public
         cat public/CNAME || true
+        touch public/index.html || true
+        sudo touch public/index.html || true
         echo quinnshanahan.com > public/CNAME
 
     - name: Deploy
