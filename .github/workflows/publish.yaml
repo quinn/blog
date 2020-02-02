@@ -28,7 +28,6 @@ jobs:
         sudo tee -a public/CNAME > /dev/null << EOF
         quinnshanahan.com
         EOF
-        echo quinnshanahan.com > public/CNAME
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v2
