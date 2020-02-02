@@ -22,7 +22,7 @@ jobs:
     - name: Set CNAME
       run: |
         ls -lah public
-        cat public/CNAME
+        cat public/CNAME || true
         echo quinnshanahan.com > public/CNAME
 
     - name: Deploy
