@@ -57,9 +57,17 @@ const Bio = () => {
       />
       <p>
         Written by <strong>{author}</strong> who lives and works in NYC
-        {` `}
+        <br />
         <a href={`https://twitter.com/${social.twitter}`}>
-          You should follow him on Twitter
+          Twitter
+        </a>
+        &nbsp;|&nbsp;
+        <a href={`https://github.com/${social.github}`}>
+          Github
+        </a>
+        &nbsp;|&nbsp;
+        <a href={`https://instagram.com/${social.instagram}`}>
+          Instagram
         </a>
       </p>
     </div>

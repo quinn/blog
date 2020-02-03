@@ -1,15 +1,24 @@
 import Typography from 'typography'
-import Theme from 'typography-theme-grand-view'
+import Theme from 'typography-theme-de-young'
 
 Theme.overrideThemeStyles = () => {
   return {
     'a.gatsby-resp-image-link': {
       boxShadow: `none`,
     },
+    'code[class*="language-"], pre[class*="language-"]': {
+      fontSize: '0.75rem !important',
+    },
+    '.gatsby-highlight': {
+      marginBottom: '1.45rem',
+    }
   }
 }
 
-delete Theme.googleFonts
+// For now, commenting this out.
+// Not all fonts in default theme are supported by
+// typefaces project
+// delete Theme.googleFonts
 
 const typography = new Typography(Theme)
 

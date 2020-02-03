@@ -12911,16 +12911,6 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typeface-merriweather@0.0.72:
-  version "0.0.72"
-  resolved "https://registry.yarnpkg.com/typeface-merriweather/-/typeface-merriweather-0.0.72.tgz#2b990f5293252052d51d170c82d3892319ff0555"
-  integrity sha512-gO0+fcZ1fTyKUsYY1ltYOOTI6FmBGeEdyIfeQg9NL8aInndk0feiJJVJsKHm/DiyYrnQEezraAQhz/KQoqMGtw==
-
-typeface-montserrat@0.0.75:
-  version "0.0.75"
-  resolved "https://registry.yarnpkg.com/typeface-montserrat/-/typeface-montserrat-0.0.75.tgz#b796d9c767ab8ed1343271985beb1e44b382b7b3"
-  integrity sha512-8ski20t3hdwu2T85pVfjK4jsDbwW8yWzd+LAKxYEmu+JVLVlB7G2yfmdKZz06pUwYCLVFvHvup+NYYulHDpE+w==
-
 typography-breakpoint-constants@^0.16.19:
   version "0.16.19"
   resolved "https://registry.yarnpkg.com/typography-breakpoint-constants/-/typography-breakpoint-constants-0.16.19.tgz#e0e89147749562cbb46ce76c47ff0f73372765e7"
@@ -12931,6 +12921,15 @@ typography-normalize@^0.16.19:
   resolved "https://registry.yarnpkg.com/typography-normalize/-/typography-normalize-0.16.19.tgz#58e0cf12466870c5b27006daa051fe7307780660"
   integrity sha512-vtnSv/uGBZVbd4e/ZhZB9HKBgKKlWQUXw74+ADIHHxzKp27CEf8PSR8TX1zF2qSyQ9/qMdqLwXYz8yRQFq9JLQ==
 
+typography-theme-de-young@^0.16.19:
+  version "0.16.19"
+  resolved "https://registry.yarnpkg.com/typography-theme-de-young/-/typography-theme-de-young-0.16.19.tgz#8d5c5bbf8947a2df4b20b2b70d67fc42334272bd"
+  integrity sha512-Zof0CScyOx771JRtWAbhWFJsZ24k71Y9mEE47n4AuX+c+LvDZ/ApPQ5q3hAfS/iG2m3cWyCowHLC9NbfSfWTYQ==
+  dependencies:
+    compass-vertical-rhythm "^1.2.1"
+    gray-percentage "^2.0.0"
+    typography-breakpoint-constants "^0.16.19"
+
 typography-theme-grand-view@^0.16.19:
   version "0.16.19"
   resolved "https://registry.yarnpkg.com/typography-theme-grand-view/-/typography-theme-grand-view-0.16.19.tgz#696b1c42f755d0f559b7b671e1705f76e69c658d"
@@ -12939,6 +12938,19 @@ typography-theme-grand-view@^0.16.19:
     compass-vertical-rhythm "^1.2.1"
     gray-percentage "^2.0.0"
     typography-breakpoint-constants "^0.16.19"
+
+typography-theme-lincoln@^0.16.19:
+  version "0.16.19"
+  resolved "https://registry.yarnpkg.com/typography-theme-lincoln/-/typography-theme-lincoln-0.16.19.tgz#912367859a864e59672276c0e23644125c200400"
+  integrity sha512-cZo/5JIHOBnycN5FRaZaKkWtDWyI69GQq2D7BdZLk67P+QDd0EJ6Y69P0dbpCeHXwPsaW++s8NW2xzcIoRSsxQ==
+  dependencies:
+    gray-percentage "^2.0.0"
+    typography-breakpoint-constants "^0.16.19"
+
+typography-theme-wikipedia@^0.16.19:
+  version "0.16.19"
+  resolved "https://registry.yarnpkg.com/typography-theme-wikipedia/-/typography-theme-wikipedia-0.16.19.tgz#efd5bd592a2c7fc6175d8bab69ad52987adec804"
+  integrity sha512-h7WMbu72+qPdyUSsd4uvzW2eqCLSkBTQMmGuD4/p/gLxSIvFBz+nc54kcugtH7epxrrxz3lVz9v08zTidHiW/g==
 
 typography-theme-wordpress-2016@^0.16.19:
   version "0.16.19"
