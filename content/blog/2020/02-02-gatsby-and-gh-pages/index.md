@@ -59,6 +59,8 @@ Since we are creating the build on github's CI, it'll need all of the (productio
         cmd: install --production
 ```
 
+Next we create the build. To enable Google Analytics, I've added the `GA_TRACKING_ID` env var and secret, and updated the `gatsby-config.js` to read from this env var. This doesn't _really_ need to be secret, but seemed cleaner this way.
+
 ```yaml
     - name: Static Build
       uses: borales/actions-yarn@v2.0.0
@@ -69,6 +71,8 @@ Since we are creating the build on github's CI, it'll need all of the (productio
         NODE_ENV: production
 ```
 
+I'm using a custom hostname, so I needed to ensure that the `CNAME` file is present. Since the gh-pages uploader tool replaces everything in the `gh-pages` branch, this file needs to be created. And it needs to be created with `sudo` for some reason. I was getting a Permission Denied without it. Shrug.
+
 ```yaml
     - name: Set CNAME
       run: |
@@ -76,6 +80,8 @@ Since we are creating the build on github's CI, it'll need all of the (productio
         quinnshanahan.com
         EOF
 ```
+
+The last step is to actually upload the contents of the `public` folder to the root of the `gh-pages` branch. I tried a different ways to do this on Github CI and this one was definitely the easiest. To work, you need to have a deploy key pair added to your repo with write access. The [README](https://github.com/peaceiris/actions-gh-pages#getting-started) for the action has all the information you'll need on how to set this up.
 
 ```yaml
     - name: Deploy
@@ -85,3 +91,5 @@ Since we are creating the build on github's CI, it'll need all of the (productio
         PUBLISH_BRANCH: gh-pages
         PUBLISH_DIR: ./public
 ```
+
+And that should do it! You can see this _in action_ (lol) for my blog here: https://github.com/quinn/blog/actions. Neat!
