@@ -57,7 +57,7 @@
   "scripts": {
     "build": "gatsby build",
     "publish": "gatsby build && gh-pages -d public -n",
-    "develop": "gatsby develop",
+    "develop": "rm -rf .cache develop ; gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
