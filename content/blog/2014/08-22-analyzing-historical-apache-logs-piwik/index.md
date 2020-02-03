@@ -4,7 +4,7 @@ layout: post
 title: Analyzing historical apache log data using piwik
 date: "2014-08-22"
 description: |
-Sometimes tools like google analytics don't provide the insight you need and it can be helpful to go directly to the source: the log files.
+  Sometimes tools like google analytics don't provide the insight you need and it can be helpful to go directly to the source: the log files.
 
 topic: application-development
 ---

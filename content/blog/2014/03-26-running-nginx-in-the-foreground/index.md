@@ -3,7 +3,7 @@ layout: post
 title: Running NGINX in the Foreground
 date: "2014-03-26"
 description: |
- If you're planning on using nginx as a frontend to one or more app processes, it can be helpful to setup and test things locally. An easy way to do this is to run nginx in the foreground so you can quickly iterate your config options to see what works.
+  If you're planning on using nginx as a frontend to one or more app processes, it can be helpful to setup and test things locally. An easy way to do this is to run nginx in the foreground so you can quickly iterate your config options to see what works.
 topic: devops
 ---
 

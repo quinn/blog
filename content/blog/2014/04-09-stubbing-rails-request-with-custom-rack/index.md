@@ -3,7 +3,7 @@ layout: post
 title: Stubbing Rails request with custom Rack env
 date: "2014-04-09"
 description: |
- There are plenty of tools that provide easy ways to do controller testing in rails, but sometimes in can be nice to test against a specifically built rack env when testing a controller or middleware. Here I dig through some Rails internals to figure out some different ways of doing this.
+  There are plenty of tools that provide easy ways to do controller testing in rails, but sometimes in can be nice to test against a specifically built rack env when testing a controller or middleware. Here I dig through some Rails internals to figure out some different ways of doing this.
 
 topic: application-development
 ---

@@ -4,7 +4,7 @@ layout: post
 title: Installing Metasploit on OS X with rbenv
 date: "2014-08-17"
 description: |
-Setting up metasploit from scratch can be a bit convoluted, here are steps I took to get it set up on OS X.
+  Setting up metasploit from scratch can be a bit convoluted, here are steps I took to get it set up on OS X.
 
 topic: information-security
 ---

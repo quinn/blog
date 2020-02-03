@@ -4,7 +4,7 @@ layout: post
 title: Facilitating Bidirectional Cross-Domain Communication with an Iframe
 date: "2014-08-12"
 description: |
-Using iframes in your app can be excruciating, especially when the iframe and the parent window are on two different domains. I'm going to go over the process of facilitating bi-directional communication between the iframe and it's parent window.
+  Using iframes in your app can be excruciating, especially when the iframe and the parent window are on two different domains. I'm going to go over the process of facilitating bi-directional communication between the iframe and it's parent window.
 
 topic: application-development
 ---

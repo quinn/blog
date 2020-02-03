@@ -3,7 +3,6 @@ layout: post
 title: Specify a local path for a gem in your Gemfile
 date: "2014-03-21"
 description: |
-
   Sometimes it can be nice to develop against a local gem without modifying
   your Gemfile. Bundler provides a convenient mechanism for this, but it is
   limited in the scenarios that it will work under. Here I describe a simple

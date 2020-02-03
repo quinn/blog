@@ -3,7 +3,7 @@ layout: post
 title: Experiments with Docker
 date: "2014-04-04"
 description: |
- Docker is a wonderfully fun tool that makes building things like a PaaS almost trivial. I've documented a brief intro to some of Docker's common cli functions
+  Docker is a wonderfully fun tool that makes building things like a PaaS almost trivial. I've documented a brief intro to some of Docker's common cli functions
 
 topic: devops
 ---

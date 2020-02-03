@@ -3,7 +3,7 @@ layout: post
 title: Custom error pages in Rails
 date: "2014-03-30"
 description: |
- I know this has been documented many times, but I felt this was necessary because I am still seeing many more descriptions of the "wrong" way to do this rather than the right way. Hopefully I can help tip the scales a bit on the subject.
+  I know this has been documented many times, but I felt this was necessary because I am still seeing many more descriptions of the "wrong" way to do this rather than the right way. Hopefully I can help tip the scales a bit on the subject.
 
 topic: application-development
 ---

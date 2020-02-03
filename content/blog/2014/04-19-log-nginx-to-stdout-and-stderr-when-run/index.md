@@ -3,7 +3,7 @@ layout: post
 title: Log to STDOUT and STDERR when Running NGINX in the Foreground
 date: "2014-04-19"
 description: |
-I'm wrapping NGINX in a small go script to capture the output of the log files and pass them to STDOUT and STDERR. This is somewhat of a follow-up on my original post about running NGINX in the foreground.
+  I'm wrapping NGINX in a small go script to capture the output of the log files and pass them to STDOUT and STDERR. This is somewhat of a follow-up on my original post about running NGINX in the foreground.
 
 topic: devops
 ---
