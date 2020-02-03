@@ -1,7 +1,7 @@
 ---
 title: Create a Blog With Github Pages and Gatsby
 date: "2020-02-02T22:49:51Z"
-description: "I just setup a blog using Gatsby.js that publishes on push using github actions to github pages."
+description: "Setup a blog using Gatsby.js that publishes on push using github actions to github pages"
 ---
 
 I'm putting down the steps I took to set this thing up before I forget.
