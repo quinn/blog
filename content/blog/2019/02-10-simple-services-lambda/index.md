@@ -1,7 +1,6 @@
 ---
 title: Create simple services for web clients using API Gateway, CloudFormation, and Lambda
 date: "2019-02-10T22:49:51Z"
-description: "General project structure:"
 ---
 
 _Functional demo can be found here: [GitHub — quinn/lambda-nodejs-example](https://github.com/quinn/lambda-nodejs-example)_
