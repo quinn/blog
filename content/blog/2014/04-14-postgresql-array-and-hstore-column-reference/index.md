@@ -3,7 +3,7 @@ layout: post
 title: Postgresql Array and Hstore Column Reference
 date: "2014-04-14"
 description: |
-I've had trouble finding a good reference for hstore and arrays in postgres that includes examples and use-cases so I decided to put together my own here. Hopefully others can get some use out of it. I've also included some examples of how to use with ActiveRecord.
+  I've had trouble finding a good reference for hstore and arrays in postgres that includes examples and use-cases so I decided to put together my own here. Hopefully others can get some use out of it. I've also included some examples of how to use with ActiveRecord.
 
 topic: data-management
 ---
