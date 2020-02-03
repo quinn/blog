@@ -14,6 +14,10 @@ jobs:
       with:
         cmd: install
 
+    - name: WTF
+      run: |
+        ls -lah /github/workspace/content/assets
+
     - name: Static Build
       uses: borales/actions-yarn@v2.0.0
       with:
