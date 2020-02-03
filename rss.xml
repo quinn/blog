@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Quinn's Blog]]></title><description><![CDATA[It's probably gonna mostly be about code]]></description><link>https://quinnshanahan.com</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 03 Feb 2020 03:19:59 GMT</lastBuildDate><item><title><![CDATA[Create a Blog With Github Pages and Gatsby]]></title><description><![CDATA[I’m putting down the steps I took to set this thing up before I forget. Install and run Gatsby init Recently, I decided to give this whole…]]></description><link>https://quinnshanahan.com/2020/02-02-gatsby-and-gh-pages/</link><guid isPermaLink="false">https://quinnshanahan.com/2020/02-02-gatsby-and-gh-pages/</guid><pubDate>Sun, 02 Feb 2020 22:49:51 GMT</pubDate><content:encoded>&lt;p&gt;I’m putting down the steps I took to set this thing up before I forget.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Quinn's Blog]]></title><description><![CDATA[It's probably gonna mostly be about code]]></description><link>https://quinnshanahan.com</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 03 Feb 2020 05:11:14 GMT</lastBuildDate><item><title><![CDATA[Create a Blog With Github Pages and Gatsby]]></title><description><![CDATA[I’m putting down the steps I took to set this thing up before I forget. Install and run Gatsby init Recently, I decided to give this whole…]]></description><link>https://quinnshanahan.com/2020/02-02-gatsby-and-gh-pages/</link><guid isPermaLink="false">https://quinnshanahan.com/2020/02-02-gatsby-and-gh-pages/</guid><pubDate>Sun, 02 Feb 2020 22:49:51 GMT</pubDate><content:encoded>&lt;p&gt;I’m putting down the steps I took to set this thing up before I forget.&lt;/p&gt;
 &lt;h2&gt;Install and run Gatsby init&lt;/h2&gt;
 &lt;p&gt;Recently, I decided to give this whole go directory structure a try, so I made a dir for my personal stuff:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; -p github.com/quinn
@@ -47,116 +47,129 @@
         &lt;span class=&quot;token key atrule&quot;&gt;ACTIONS_DEPLOY_KEY&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; secrets.ACTIONS_DEPLOY_KEY &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
         &lt;span class=&quot;token key atrule&quot;&gt;PUBLISH_BRANCH&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; gh&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;pages
         &lt;span class=&quot;token key atrule&quot;&gt;PUBLISH_DIR&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ./public&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;And that should do it! You can see this &lt;em&gt;in action&lt;/em&gt; (lol) for my blog here: &lt;a href=&quot;https://github.com/quinn/blog/actions&quot;&gt;https://github.com/quinn/blog/actions&lt;/a&gt;. Neat!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[New Beginnings]]></title><description><![CDATA[Far far away, behind the word mountains, far from the countries Vokalia and
-Consonantia, there live the blind texts. Separated they live in…]]></description><link>https://quinnshanahan.com/new-beginnings/</link><guid isPermaLink="false">https://quinnshanahan.com/new-beginnings/</guid><pubDate>Thu, 28 May 2015 22:40:32 GMT</pubDate><content:encoded>&lt;p&gt;Far far away, behind the word mountains, far from the countries Vokalia and
-Consonantia, there live the blind texts. Separated they live in Bookmarksgrove
-right at the coast of the Semantics, a large language ocean. A small river named
-Duden flows by their place and supplies it with the necessary regelialia.&lt;/p&gt;
-&lt;h2&gt;On deer horse aboard tritely yikes and much&lt;/h2&gt;
-&lt;p&gt;The Big Oxmox advised her not to do so, because there were thousands of bad
-Commas, wild Question Marks and devious Semikoli, but the Little Blind Text
-didn’t listen. She packed her seven versalia, put her initial into the belt and
-made herself on the way.&lt;/p&gt;
+&lt;p&gt;And that should do it! You can see this &lt;em&gt;in action&lt;/em&gt; (lol) for my blog here: &lt;a href=&quot;https://github.com/quinn/blog/actions&quot;&gt;https://github.com/quinn/blog/actions&lt;/a&gt;. Neat!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Create simple services for web clients using API Gateway, CloudFormation, and Lambda]]></title><description><![CDATA[Functional demo can be found here: GitHub — quinn/lambda-nodejs-example Here’s a process for creating simple backends for a web client app…]]></description><link>https://quinnshanahan.com/2019/02-10-simple-services-lambda/</link><guid isPermaLink="false">https://quinnshanahan.com/2019/02-10-simple-services-lambda/</guid><pubDate>Sun, 10 Feb 2019 22:49:51 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;Functional demo can be found here: &lt;a href=&quot;https://github.com/quinn/lambda-nodejs-example&quot;&gt;GitHub — quinn/lambda-nodejs-example&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;Here’s a process for creating simple backends for a web client app. Use cases would be when you would like to add a small piece of functionality that doesn’t have much interaction with the rest of the app, but don’t want the overhead that comes with standing up a server.&lt;/p&gt;
+&lt;h2&gt;API Gateway Models&lt;/h2&gt;
+&lt;p&gt;A lot of articles on this topic using &lt;a href=&quot;https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-model.html&quot;&gt;AWS API Gateway Models&lt;/a&gt;. This is probably helpful if you are building a full-sized REST API around well defined resources, which wasn’t really my use case (small, independent/unrelated behavior). I’m interested in learning more about this but (for now) I’ll probably continue using ruby / node / python app server on VPS (e.g. EC2) for this type of thing.&lt;/p&gt;
+&lt;h2&gt;CloudFormation&lt;/h2&gt;
+&lt;p&gt;Since using Lambda was new to me I wanted to make sure I could easily replicate the process so I decided to use CloudFormation to preserve the configuration and make it easy to replicate. It sucks figuring out something in the AWS console and then not really remembering the exact steps to recreate it. CloudFormation isn’t the only way to get this working, but it helped me a lot while learning the ins-and-outs of Lambda + API Gateway.&lt;/p&gt;
+&lt;h2&gt;Application Structure&lt;/h2&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/724dd7f7c52a1ebf4b0ea1f75c1602fd/c6e28/diagram.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 72.14406302757456%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAIAAACgpqunAAAACXBIWXMAAAsSAAALEgHS3X78AAABiUlEQVQoz42ROXPcMAyF9f/bFG7yC9ylzSRNXGfijOONd3L6kLXiHiRFkQAJHiElSyt77HHevIKS8IECXqVFzX6fO/AxUAz+GceYUnLect5CB+QpTapsf5DtH77bBwfBYiSM3gWHkyEO1SF6g5q1TPUqP44dqxTIKAIlHWAK2EvU8pDPM597zdWzJjjG9nZ9/vEEeorWbf7++vLhDfT2yc1j9dziAQ6ONjVbX6wMN8HY5oatLy/7rY7+P24OhB6t40gaAqA1uhMikk/epoxlR58eKw4qcCRLoIFzZ7CcUe9YI/lW7EczyQ/dIKWUFKKX6rjt3Gd7P81M5T+9BQd6ck8WvfdEBPk9BiWUIxfIeqQqOceu765W31DDCJc5yR49zLwX7N2nk6bebe5ZfXtdv3+rm21VSp31lpbxPM65wILtv69XQigpRdM0Nz+vjNFlYWPRc+Rx21mqM5zn2eUcW4btS9gy53K5OCC4ZWZlYa87Jeh4e3aqFS3jrtKrGmDVyR9fP6PWyy//ADDGK9BwOr0DAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Diagram&quot;
+        title=&quot;Diagram&quot;
+        src=&quot;/static/724dd7f7c52a1ebf4b0ea1f75c1602fd/fcda8/diagram.png&quot;
+        srcset=&quot;/static/724dd7f7c52a1ebf4b0ea1f75c1602fd/12f09/diagram.png 148w,
+/static/724dd7f7c52a1ebf4b0ea1f75c1602fd/e4a3f/diagram.png 295w,
+/static/724dd7f7c52a1ebf4b0ea1f75c1602fd/fcda8/diagram.png 590w,
+/static/724dd7f7c52a1ebf4b0ea1f75c1602fd/efc66/diagram.png 885w,
+/static/724dd7f7c52a1ebf4b0ea1f75c1602fd/c83ae/diagram.png 1180w,
+/static/724dd7f7c52a1ebf4b0ea1f75c1602fd/c6e28/diagram.png 1777w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;
+&lt;small&gt;&lt;center&gt;
+&lt;em&gt;Diagram of CloudFormation Template generated by &lt;a href=&quot;https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/working-with-templates-cfn-designer.html&quot;&gt;Designer&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;/center&gt;&lt;/small&gt;
+&lt;p&gt;This configuration creates the simplest possible setup that I could figure out for a web client. There are two routes:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;This however showed weasel&lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Well uncritical so misled&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;this is very interesting&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;POST /&lt;/code&gt;: This is connected to the lambda function. API Gateway passes information about
+the request as arguments to the lambda function. The function returns an object which
+contains information on how the http response should be structured, e.g:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;{
+   body: &amp;quot;Content for the HTTP Body&amp;quot;,
+   statusCode: 200, // or any other status code
+   headers: {
+       &amp;quot;Content-Type&amp;quot;: &amp;quot;text/plain&amp;quot;,
+       // etc, more headers
+   },
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/li&gt;
-&lt;li&gt;Goodness much until that fluid owl&lt;/li&gt;
+&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;OPTIONS /&lt;/code&gt;: The second route is on the same path but receives on an OPTIONS request. It
+simply responds with the most permissive CORS possible. In a larger app, you could
+configure your own CORS API handler to do something more sophisticated, e.g. returning the
+appropriate headers to enforce a whitelist of allowed domains.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;When she reached the first hills of the &lt;strong&gt;Italic Mountains&lt;/strong&gt;, she had a last
-view back on the skyline of her hometown &lt;em&gt;Bookmarksgrove&lt;/em&gt;, the headline of
-&lt;a href=&quot;http://google.com&quot;&gt;Alphabet Village&lt;/a&gt; and the subline of her own road, the Line
-Lane. Pityful a rhetoric question ran over her cheek, then she continued her
-way. On her way she met a copy.&lt;/p&gt;
-&lt;h3&gt;Overlaid the jeepers uselessly much excluding&lt;/h3&gt;
-&lt;p&gt;But nothing the copy said could convince her and so it didn’t take long until a
-few insidious Copy Writers ambushed her, made her drunk with
-&lt;a href=&quot;http://google.com&quot;&gt;Longe and Parole&lt;/a&gt; and dragged her into their agency, where
-they abused her for their projects again and again. And if she hasn’t been
-rewritten, then they are still using her.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Far far away, behind the word mountains, far from the countries Vokalia and
-Consonantia, there live the blind texts. Separated they live in Bookmarksgrove
-right at the coast of the Semantics, a large language ocean.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;It is a paradisematic country, in which roasted parts of sentences fly into your
-mouth. Even the all-powerful Pointing has no control about the blind texts it is
-an almost unorthographic life One day however a small line of blind text by the
-name of Lorem Ipsum decided to leave for the far World of Grammar.&lt;/p&gt;
-&lt;h3&gt;According a funnily until pre-set or arrogant well cheerful&lt;/h3&gt;
-&lt;p&gt;The Big Oxmox advised her not to do so, because there were thousands of bad
-Commas, wild Question Marks and devious Semikoli, but the Little Blind Text
-didn’t listen. She packed her seven versalia, put her initial into the belt and
-made herself on the way.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;So baboon this&lt;/li&gt;
-&lt;li&gt;Mounted militant weasel gregariously admonishingly straightly hey&lt;/li&gt;
-&lt;li&gt;Dear foresaw hungry and much some overhung&lt;/li&gt;
-&lt;li&gt;Rash opossum less because less some amid besides yikes jeepers frenetic
-impassive fruitlessly shut&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;When she reached the first hills of the Italic Mountains, she had a last view
-back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet
-Village and the subline of her own road, the Line Lane. Pityful a rhetoric
-question ran over her cheek, then she continued her way. On her way she met a
-copy.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;The copy warned the Little Blind Text, that where it came from it would have
-been rewritten a thousand times and everything that was left from its origin
-would be the word “and” and the Little Blind Text should turn around and
-return to its own, safe country.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;But nothing the copy said could convince her and so it didn’t take long until a
-few insidious Copy Writers ambushed her, made her drunk with Longe and Parole
-and dragged her into their agency, where they abused her for their projects
-again and again. And if she hasn’t been rewritten, then they are still using
-her. Far far away, behind the word mountains, far from the countries Vokalia and
-Consonantia, there live the blind texts.&lt;/p&gt;
-&lt;h4&gt;Silent delightfully including because before one up barring chameleon&lt;/h4&gt;
-&lt;p&gt;Separated they live in Bookmarksgrove right at the coast of the Semantics, a
-large language ocean. A small river named Duden flows by their place and
-supplies it with the necessary regelialia. It is a paradisematic country, in
-which roasted parts of sentences fly into your mouth.&lt;/p&gt;
-&lt;p&gt;Even the all-powerful Pointing has no control about the blind texts it is an
-almost unorthographic life One day however a small line of blind text by the
-name of Lorem Ipsum decided to leave for the far World of Grammar. The Big Oxmox
-advised her not to do so, because there were thousands of bad Commas, wild
-Question Marks and devious Semikoli, but the Little Blind Text didn’t listen.&lt;/p&gt;
-&lt;h5&gt;Wherever far wow thus a squirrel raccoon jeez jaguar this from along&lt;/h5&gt;
-&lt;p&gt;She packed her seven versalia, put her initial into the belt and made herself on
-the way. When she reached the first hills of the Italic Mountains, she had a
-last view back on the skyline of her hometown Bookmarksgrove, the headline of
-Alphabet Village and the subline of her own road, the Line Lane. Pityful a
-rhetoric question ran over her cheek, then she continued her way. On her way she
-met a copy.&lt;/p&gt;
-&lt;h6&gt;Slapped cozy a that lightheartedly and far&lt;/h6&gt;
-&lt;p&gt;The copy warned the Little Blind Text, that where it came from it would have
-been rewritten a thousand times and everything that was left from its origin
-would be the word “and” and the Little Blind Text should turn around and return
-to its own, safe country. But nothing the copy said could convince her and so it
-didn’t take long until a few insidious Copy Writers ambushed her, made her drunk
-with Longe and Parole and dragged her into their agency, where they abused her
-for their projects again and again.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[My Second Post!]]></title><description><![CDATA[Wow! I love blogging so much already. Did you know that “despite its name, salted duck eggs can also be made from
-chicken eggs, though the…]]></description><link>https://quinnshanahan.com/my-second-post/</link><guid isPermaLink="false">https://quinnshanahan.com/my-second-post/</guid><pubDate>Wed, 06 May 2015 23:46:37 GMT</pubDate><content:encoded>&lt;p&gt;Wow! I love blogging so much already.&lt;/p&gt;
-&lt;p&gt;Did you know that “despite its name, salted duck eggs can also be made from
-chicken eggs, though the taste and texture will be somewhat different, and the
-egg yolk will be less rich.”?
-(&lt;a href=&quot;http://en.wikipedia.org/wiki/Salted_duck_egg&quot;&gt;Wikipedia Link&lt;/a&gt;)&lt;/p&gt;
-&lt;p&gt;Yeah, I didn’t either.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Hello World]]></title><description><![CDATA[This is my first post on my new fake blog! How exciting! I’m sure I’ll write a lot more interesting things in the future. Oh, and here’s a…]]></description><link>https://quinnshanahan.com/hello-world/</link><guid isPermaLink="false">https://quinnshanahan.com/hello-world/</guid><pubDate>Fri, 01 May 2015 22:12:03 GMT</pubDate><content:encoded>&lt;p&gt;This is my first post on my new fake blog! How exciting!&lt;/p&gt;
-&lt;p&gt;I’m sure I’ll write a lot more interesting things in the future.&lt;/p&gt;
-&lt;p&gt;Oh, and here’s a great quote from this Wikipedia on
-&lt;a href=&quot;http://en.wikipedia.org/wiki/Salted_duck_egg&quot;&gt;salted duck eggs&lt;/a&gt;.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;A salted duck egg is a Chinese preserved food product made by soaking duck
-eggs in brine, or packing each egg in damp, salted charcoal. In Asian
-supermarkets, these eggs are sometimes sold covered in a thick layer of salted
-charcoal paste. The eggs may also be sold with the salted paste removed,
-wrapped in plastic, and vacuum packed. From the salt curing process, the
-salted duck eggs have a briny aroma, a gelatin-like egg white and a
-firm-textured, round yolk that is bright orange-red in color.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;img src=&quot;./salty_egg.jpg&quot; alt=&quot;Chinese Salty Egg&quot;&gt;&lt;/p&gt;</content:encoded></item></channel></rss>
+&lt;p&gt;Here is the resource definition that attaches API Gateway to Lambda:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;&quot;apiGatewayRootMethod&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; AWS&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;ApiGateway&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;Method
+  &lt;span class=&quot;token key atrule&quot;&gt;Properties&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;AuthorizationType&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; NONE
+    &lt;span class=&quot;token key atrule&quot;&gt;HttpMethod&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; POST
+    &lt;span class=&quot;token key atrule&quot;&gt;ResourceId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token tag&quot;&gt;!GetAtt&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;restApi.RootResourceId&quot;&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;RestApiId&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token tag&quot;&gt;!Ref&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;restApi&quot;&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;Integration&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;IntegrationHttpMethod&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;POST&quot;&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;AWS_PROXY&quot;&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;Uri&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token tag&quot;&gt;!Sub&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;arn:aws:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${lambdaArn}/invocations&quot;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;lambdaArn&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token tag&quot;&gt;!GetAtt&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;lambdaFunction.Arn&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In the above resource it is referencing a Lambda function resource named lambdaFunction. See the last line where this reference is created. And the other major piece, the resource definition for the Lambda function:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;&quot;lambdaFunction&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;Type&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;AWS::Lambda::Function&quot;&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;Properties&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;Code&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+      &lt;span class=&quot;token key atrule&quot;&gt;S3Bucket&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token tag&quot;&gt;!Ref&lt;/span&gt; bucketName
+      &lt;span class=&quot;token key atrule&quot;&gt;S3Key&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token tag&quot;&gt;!Ref&lt;/span&gt; bucketKey
+    &lt;span class=&quot;token key atrule&quot;&gt;FunctionName&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token tag&quot;&gt;!Ref&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;lambdaFunctionName&quot;&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;Handler&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; index.handler
+    &lt;span class=&quot;token key atrule&quot;&gt;MemorySize&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;128&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;Role&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token tag&quot;&gt;!GetAtt&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;lambdaIAMRole.Arn&quot;&lt;/span&gt;
+    &lt;span class=&quot;token key atrule&quot;&gt;Runtime&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; nodejs8.10
+    &lt;span class=&quot;token key atrule&quot;&gt;Timeout&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;10&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This simply takes as parameters the bucket name and bucket key and loads the zip file located there. Nodejs package managers load all dependencies relative to the project (in &lt;code class=&quot;language-text&quot;&gt;node_modules&lt;/code&gt;) it is very straightforward to create a standalone bundle. See the repo for an example of how to do this.&lt;/p&gt;
+&lt;h2&gt;Caveats&lt;/h2&gt;
+&lt;p&gt;The main caveat that I found was that CloudFormation only &lt;em&gt;updates configuration&lt;/em&gt;. So, certain things may require manual intervention after the stack has been deployed. Updates to the lambda function code seem to be available immediately. However, API Gateway has it’s own “deploy” process which must be ran for any changes to the API Gateway. Typically, changes will probably be with the function code rather than the API structure, so this doesn’t seem like a huge inconvenience. Ideally I’d like to figure out a way to automate this as well.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;This is a “beginner” post, so let me know if what you think and if I missed anything!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Setting up Docker Compose for Development]]></title><description><![CDATA[General project structure: From here, you can setup how the images should be built and how the containers should be run. Sharing files for…]]></description><link>https://quinnshanahan.com/2017/12-06-setting-up-docker-compose-for-development/</link><guid isPermaLink="false">https://quinnshanahan.com/2017/12-06-setting-up-docker-compose-for-development/</guid><pubDate>Wed, 06 Dec 2017 22:49:51 GMT</pubDate><content:encoded>&lt;p&gt;General project structure:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;.
+├─ (app code)
+├─ containers
+|  └─ some.image.name
+|     └─ Dockerfile
+├─ docker-compose.yml
+└─ Dockerfile&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;From here, you can setup how the images should be built and how the containers should be run.&lt;/p&gt;
+&lt;h2&gt;Sharing files for development&lt;/h2&gt;
+&lt;p&gt;The most important thing for development is that the files to be edited are on the host and then mounted into the image. This way the usual development flow is not interrupted. Here is an example of how this is done:&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;./Dockerfile&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;COPY . /app&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;./docker-compose.yml&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;app-service&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;volumes&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; bind
+      &lt;span class=&quot;token key atrule&quot;&gt;source&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; .
+      &lt;span class=&quot;token key atrule&quot;&gt;target&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; /app&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The important thing here is that the source and target match in the Dockerfile as well as the docker-compose.yml. This way you can fully build the image and still have the code available for development.&lt;/p&gt;
+&lt;h2&gt;Building images specific to project&lt;/h2&gt;
+&lt;p&gt;Another thing I like about docker-compose is reuse images and reference images that are part of your compose setup. For example, you could give an image a name in your &lt;code class=&quot;language-text&quot;&gt;docker-compose.yml&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;image&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; com.your&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;app.base
+  &lt;span class=&quot;token key atrule&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ./containers/com.your&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;app.base
+&lt;span class=&quot;token key atrule&quot;&gt;app-service&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
+  &lt;span class=&quot;token key atrule&quot;&gt;build&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; .
+  &lt;span class=&quot;token key atrule&quot;&gt;depends_on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; base&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;When the images are built Compose will label the images so they can be used in your &lt;code class=&quot;language-text&quot;&gt;Dockerfile&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;FROM com.your-app.base&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This allows you to create generalized configurations that are still local to the project.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;If you have any suggestions on how this could be improved or found any of this helpful please let me know, thank you!&lt;/p&gt;</content:encoded></item></channel></rss>
