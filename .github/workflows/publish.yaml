@@ -14,18 +14,6 @@ jobs:
       with:
         cmd: install
 
-    - name: WTF
-      run: |
-        ls -lah / || true
-        echo "*****************************************************************************"
-        ls -lah /github || true
-        echo "*****************************************************************************"
-        ls -lah /github/workspace || true
-        echo "*****************************************************************************"
-        ls -lah /github/workspace/content || true
-        echo "*****************************************************************************"
-        ls -lah /github/workspace/content/assets || true
-
     - name: Static Build
       uses: borales/actions-yarn@v2.0.0
       with:
