@@ -4,7 +4,6 @@ layout: post
 title: Docker Tips and Tricks
 date: "2014-09-07"
 description: |
-
   Here are a few little things I use on a daily basis while working with docker.
 
 topic: devops

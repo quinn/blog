@@ -4,7 +4,7 @@ layout: post
 title: Preventing brute-force attacks on Wordpress's wp-login.php
 date: "2014-08-30"
 description: |
-Even if you use a non-standard username and strong password it can still be a burden on your server getting hit with the occasional brute-force attack to Wordpress's login page. Here you can use ModSecurity to limit the number requests and save resources.
+  Even if you use a non-standard username and strong password it can still be a burden on your server getting hit with the occasional brute-force attack to Wordpress's login page. Here you can use ModSecurity to limit the number requests and save resources.
 
 topic: information-security
 ---

@@ -4,7 +4,6 @@ layout: post
 title: Change the default port that rails uses
 date: "2014-09-15"
 description: |
-
   Just a quick tip to save you from writing "-p 1234" on the command line.
 
 topic: application-development
