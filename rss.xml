@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Quinn's Blog]]></title><description><![CDATA[It's probably gonna mostly be about code]]></description><link>https://quinnshanahan.com</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 03 Feb 2020 05:11:14 GMT</lastBuildDate><item><title><![CDATA[Create a Blog With Github Pages and Gatsby]]></title><description><![CDATA[I’m putting down the steps I took to set this thing up before I forget. Install and run Gatsby init Recently, I decided to give this whole…]]></description><link>https://quinnshanahan.com/2020/02-02-gatsby-and-gh-pages/</link><guid isPermaLink="false">https://quinnshanahan.com/2020/02-02-gatsby-and-gh-pages/</guid><pubDate>Sun, 02 Feb 2020 22:49:51 GMT</pubDate><content:encoded>&lt;p&gt;I’m putting down the steps I took to set this thing up before I forget.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Quinn's Blog]]></title><description><![CDATA[It's probably gonna mostly be about code]]></description><link>https://quinnshanahan.com</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 03 Feb 2020 12:49:43 GMT</lastBuildDate><item><title><![CDATA[Create a Blog With Github Pages and Gatsby]]></title><description><![CDATA[I’m putting down the steps I took to set this thing up before I forget. Install and run Gatsby init Recently, I decided to give this whole…]]></description><link>https://quinnshanahan.com/2020/02-02-gatsby-and-gh-pages/</link><guid isPermaLink="false">https://quinnshanahan.com/2020/02-02-gatsby-and-gh-pages/</guid><pubDate>Sun, 02 Feb 2020 22:49:51 GMT</pubDate><content:encoded>&lt;p&gt;I’m putting down the steps I took to set this thing up before I forget.&lt;/p&gt;
 &lt;h2&gt;Install and run Gatsby init&lt;/h2&gt;
 &lt;p&gt;Recently, I decided to give this whole go directory structure a try, so I made a dir for my personal stuff:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; -p github.com/quinn
@@ -172,4 +172,1037 @@ appropriate headers to enforce a whitelist of allowed domains.&lt;/li&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;FROM com.your-app.base&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This allows you to create generalized configurations that are still local to the project.&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;If you have any suggestions on how this could be improved or found any of this helpful please let me know, thank you!&lt;/p&gt;</content:encoded></item></channel></rss>
+&lt;p&gt;If you have any suggestions on how this could be improved or found any of this helpful please let me know, thank you!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Change the default port that rails uses]]></title><description><![CDATA[This is a bit hackish, I’d love to know if there is a more “official” solution
+out there. This works on versions 3.2 and 4.0 from what I can…]]></description><link>https://quinnshanahan.com/2014/09-15-change-rails-server-default-port/</link><guid isPermaLink="false">https://quinnshanahan.com/2014/09-15-change-rails-server-default-port/</guid><pubDate>Mon, 15 Sep 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;This is a bit hackish, I’d love to know if there is a more “official” solution
+out there. This works on versions 3.2 and 4.0 from what I can tell.&lt;/p&gt;
+&lt;p&gt;The way I’ve found to do this is to add the following lines to &lt;code class=&quot;language-text&quot;&gt;config/boot.rb&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;rails/commands/server&apos;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Rails&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Server&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token method-definition&quot;&gt;&lt;span class=&quot;token function&quot;&gt;default_options&lt;/span&gt;&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;merge&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token symbol&quot;&gt;:Port&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1234&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;just change &lt;code class=&quot;language-text&quot;&gt;:Port =&amp;gt; XXXX&lt;/code&gt; to whatever you want it to be. From now on you can
+simple start rails with &lt;code class=&quot;language-text&quot;&gt;rails s&lt;/code&gt; and it will use the port you specified. If
+you are looking for a more robust solution consider checking out Pow:
+&lt;a href=&quot;http://pow.cx/&quot;&gt;http://pow.cx/&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Docker Tips and Tricks]]></title><description><![CDATA[Enter a container To do this you’ll need a tool called . The easiest way to get it is
+to use the docker based installer: https://github.com…]]></description><link>https://quinnshanahan.com/2014/09-07-docker-tips-and-tricks/</link><guid isPermaLink="false">https://quinnshanahan.com/2014/09-07-docker-tips-and-tricks/</guid><pubDate>Sun, 07 Sep 2014 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;Enter a container&lt;/h3&gt;
+&lt;p&gt;To do this you’ll need a tool called &lt;code class=&quot;language-text&quot;&gt;nsenter&lt;/code&gt;. The easiest way to get it is
+to use the docker based installer: &lt;a href=&quot;https://github.com/jpetazzo/nsenter&quot;&gt;https://github.com/jpetazzo/nsenter&lt;/a&gt; One you
+have this you can enter a running instance or run a command on a running
+instance:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; nsenter &lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;
+  --target &lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;`&lt;/span&gt;docker inspect --format &lt;span class=&quot;token string&quot;&gt;&apos;{{.State.Pid}}&apos;&lt;/span&gt; postgres&lt;span class=&quot;token variable&quot;&gt;`&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;
+  --mount --uts --ipc --net --pid /bin/bash&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If you used the above installer you’ll also have a shortcut for this:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;docker-enter postgres&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Inspect API traffic&lt;/h3&gt;
+&lt;p&gt;you can use &lt;code class=&quot;language-text&quot;&gt;socat&lt;/code&gt; to monitor traffic to the docker socket to introspect on
+API usage:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; socat -t100 -v &lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;
+  UNIX-LISTEN:/tmp/proxysocket.sock,mode&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;777&lt;/span&gt;,reuseaddr,fork &lt;span class=&quot;token punctuation&quot;&gt;\&lt;/span&gt;
+  UNIX-CONNECT:/var/run/docker.sock&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Leave this open and open a new terminal. Specify the socket created by socat
+as the docker host:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token assign-left variable&quot;&gt;DOCKER_HOST&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;unix:///tmp/proxysocket.sock docker &lt;span class=&quot;token function&quot;&gt;ps&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;As the command runs observe the output from the previous terminal. This can be
+very helpful when developing against the docker API to see how the terminal
+commands operate.&lt;/p&gt;
+&lt;h3&gt;Batch commands&lt;/h3&gt;
+&lt;p&gt;Sometimes it can be quicker to operate on multiple docker containers at once,
+especially while testing a new container to get the parameters correct.&lt;/p&gt;
+&lt;p&gt;Remove all containers of a given image:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;docker &lt;span class=&quot;token function&quot;&gt;rm&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;`&lt;/span&gt;docker &lt;span class=&quot;token function&quot;&gt;ps&lt;/span&gt; -a &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;grep&lt;/span&gt; 0fa4de &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;cut&lt;/span&gt; -f1 -d&lt;span class=&quot;token string&quot;&gt;&quot; &quot;&lt;/span&gt;&lt;span class=&quot;token variable&quot;&gt;`&lt;/span&gt;&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# also this format uses xargs instead of backticks&lt;/span&gt;
+docker &lt;span class=&quot;token function&quot;&gt;ps&lt;/span&gt; -a &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;grep&lt;/span&gt; 0fa4de &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;cut&lt;/span&gt; -d &lt;span class=&quot;token string&quot;&gt;&apos; &apos;&lt;/span&gt; -f &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;xargs&lt;/span&gt; docker &lt;span class=&quot;token function&quot;&gt;rm&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# or if you need to stop them before removing replace rm with kill:&lt;/span&gt;
+docker &lt;span class=&quot;token function&quot;&gt;ps&lt;/span&gt; -a &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;grep&lt;/span&gt; 0fa4de &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;cut&lt;/span&gt; -d &lt;span class=&quot;token string&quot;&gt;&apos; &apos;&lt;/span&gt; -f &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;xargs&lt;/span&gt; docker &lt;span class=&quot;token function&quot;&gt;kill&lt;/span&gt;
+docker &lt;span class=&quot;token function&quot;&gt;ps&lt;/span&gt; -a &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;grep&lt;/span&gt; 0fa4de &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;cut&lt;/span&gt; -d &lt;span class=&quot;token string&quot;&gt;&apos; &apos;&lt;/span&gt; -f &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;xargs&lt;/span&gt; docker &lt;span class=&quot;token function&quot;&gt;rm&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Remove stopped containers:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;docker &lt;span class=&quot;token function&quot;&gt;ps&lt;/span&gt; -a &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;grep&lt;/span&gt; Exit &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;cut&lt;/span&gt; -d &lt;span class=&quot;token string&quot;&gt;&apos; &apos;&lt;/span&gt; -f &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;xargs&lt;/span&gt; docker &lt;span class=&quot;token function&quot;&gt;rm&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You can use similar techniques for deleting images (though removing multiple
+images is less common):&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;docker &lt;span class=&quot;token function&quot;&gt;ps&lt;/span&gt; -a &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;grep&lt;/span&gt; string-of-text &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;cut&lt;/span&gt; -d &lt;span class=&quot;token string&quot;&gt;&apos; &apos;&lt;/span&gt; -f &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;xargs&lt;/span&gt; docker rmi&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Hopefully this helps! Let me know if you have any other common techniques
+while using docker.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Preventing brute-force attacks on Wordpress's wp-login.php]]></title><description><![CDATA[The solution here uses ModSecurity and is based mostly on this
+article by Todd Garrison. There are many ways that one could handle
+this…]]></description><link>https://quinnshanahan.com/2014/08-30-prevent-brute-force-login-on-wordpress/</link><guid isPermaLink="false">https://quinnshanahan.com/2014/08-30-prevent-brute-force-login-on-wordpress/</guid><pubDate>Sat, 30 Aug 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;The solution here uses &lt;a href=&quot;https://www.modsecurity.org/&quot;&gt;ModSecurity&lt;/a&gt; and is based mostly on &lt;a href=&quot;http://www.frameloss.org/2011/07/29/stopping-brute-force-logins-against-wordpress/&quot;&gt;this
+article by Todd Garrison&lt;/a&gt;. There are many ways that one could handle
+this issue, for example a plugin in wordpress, an upstream proxy server that
+handles security, or a modifacation to the web server (in this case apache). I
+chose to handle this on the webserver in part because there were many well
+documented solutions for this and that it seemed like the best way to conserve
+system resources (by not adding bloat to wordpress) without adding too much
+infrastructure.&lt;/p&gt;
+&lt;h3&gt;Installation&lt;/h3&gt;
+&lt;p&gt;The first thing you’ll need to do is install ModSecurity which will probably
+be available in your package manager (I’m using yum / RHEL in this example):&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; yum &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; mod_security&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This will most likely create some config files for you within your apache root
+directory (e.g. &lt;code class=&quot;language-text&quot;&gt;/etc/httpd&lt;/code&gt;). These settings will enable ModSecurity as well
+as setup logging and some sensible defaults. These are in &lt;code class=&quot;language-text&quot;&gt;mod_security.conf&lt;/code&gt;.
+You may want to check the default settings for uploads in case they will
+affect your users.&lt;/p&gt;
+&lt;h3&gt;Configure for /wp-login.php&lt;/h3&gt;
+&lt;p&gt;Borrowing (heavily) from the config provided &lt;a href=&quot;http://www.frameloss.org/2011/07/29/stopping-brute-force-logins-against-wordpress/&quot;&gt;here&lt;/a&gt;, create a config
+for wordpress and place in the ModSecurity config directory:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# /etc/httpd/modsecurity.d/wordpress.conf&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# This has to be global, cannot exist within a directory or location clause . . .&lt;/span&gt;
+SecAction phase:1,log,pass,initcol:ip&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;%&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;REMOTE_ADDR&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;,initcol:user&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;%&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;REMOTE_ADDR&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;,id:1
+
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;Location /wp-login.php&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;
+    &lt;span class=&quot;token comment&quot;&gt;# Setup brute force detection.&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;# React if block flag has been set.&lt;/span&gt;
+    SecRule user:bf_block &lt;span class=&quot;token string&quot;&gt;&quot;@gt 0&quot;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;deny,status:401,log,msg:&apos;ip address blocked for 5 minutes, more than 15 login attempts in 3 minutes.&apos;,id:2&quot;&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;# Setup Tracking.  On a successful login, a 302 redirect is performed, a 200 indicates login failed.&lt;/span&gt;
+    SecRule RESPONSE_STATUS &lt;span class=&quot;token string&quot;&gt;&quot;^302&quot;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;phase:5,t:none,log,pass,setvar:ip.bf_counter=0,id:3&quot;&lt;/span&gt;
+    SecRule RESPONSE_STATUS &lt;span class=&quot;token string&quot;&gt;&quot;^200&quot;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;phase:5,chain,t:none,log,pass,setvar:ip.bf_counter=+1,deprecatevar:ip.bf_counter=1/180,id:4&quot;&lt;/span&gt;
+    SecRule ip:bf_counter &lt;span class=&quot;token string&quot;&gt;&quot;@gt 15&quot;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;t:none,setvar:user.bf_block=1,expirevar:user.bf_block=300,setvar:ip.bf_counter=0&quot;&lt;/span&gt;
+&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;/location&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It is almost identical to the example provided in the link save a few changes
+possibly due to version differences. For example, the id parameter has been
+added to all of the rules except the last one.&lt;/p&gt;
+&lt;p&gt;Once you’re ready, reload the apache config:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; /etc/init.d/httpd reload&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Explanation&lt;/h3&gt;
+&lt;p&gt;The ModSecurity syntax can be a bit cryptic, so I’ll try to break it down as
+best I can. The first assumption is that a 302 response on wp-login.php means
+a successful login and a 200 means a failed one. Each time a request is made
+(that returns with a 200 status code) it increments a counter for the ip
+address by one &lt;code class=&quot;language-text&quot;&gt;setvar:ip.bf_counter=+1&lt;/code&gt; and then checks to see if the counter
+is over 15 &lt;code class=&quot;language-text&quot;&gt;SecRule ip:bf_counter &amp;quot;@gt 15&amp;quot;&lt;/code&gt;. If it is, it says a variable to
+block the user that expires in 300 seconds (5 minutes)
+&lt;code class=&quot;language-text&quot;&gt;setvar:user.bf_block=1,expirevar:user.bf_block=300&lt;/code&gt; and resets the counter on
+the IP address &lt;code class=&quot;language-text&quot;&gt;setvar:ip.bf_counter=0&lt;/code&gt;. As long as the blocking variable is
+set the user will be denied access &lt;code class=&quot;language-text&quot;&gt;SecRule user:bf_block &amp;quot;@gt 0&amp;quot;
+&amp;quot;deny,status:401&amp;quot;&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;While all of this is happening the ip address counter is being decremented by
+1 every 180 seconds (3 minutes) &lt;code class=&quot;language-text&quot;&gt;deprecatevar:ip.bf_counter=1/180&lt;/code&gt;. This means
+that as long as the user waits at least 3 minutes in between each request they
+will never get denied access for 5 minutes.&lt;/p&gt;
+&lt;h3&gt;Testing&lt;/h3&gt;
+&lt;p&gt;The easiest way to test this is to just hit the login screen a bunch with
+incorrect credentials. You should see a screen telling you that you are denied
+access pretty quickly.&lt;/p&gt;
+&lt;p&gt;I hope this helps with how to deal with this common brute-force attack and
+also how ModSecurity works.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Analyzing historical apache log data using piwik]]></title><description><![CDATA[There are various tools that provide log anaslysis for apache. Of the ones I was able to find piwik seemed like the best. it seems well…]]></description><link>https://quinnshanahan.com/2014/08-22-analyzing-historical-apache-logs-piwik/</link><guid isPermaLink="false">https://quinnshanahan.com/2014/08-22-analyzing-historical-apache-logs-piwik/</guid><pubDate>Fri, 22 Aug 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;There are various tools that provide log anaslysis for apache. Of the ones I was able to find piwik seemed like the best. it seems well maintaned and seemed to support themy specific use case well.&lt;/p&gt;
+&lt;h3&gt;Installation&lt;/h3&gt;
+&lt;p&gt;The easiest way I found to install piwik was using Docker:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;docker run --name piwik -p=10000:80 -v=/mnt/piwik:/data quinn/piwik&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Import logs&lt;/h3&gt;
+&lt;p&gt;Get your apache log file from where it is stored. Usually, it is in a
+directory such as &lt;code class=&quot;language-text&quot;&gt;/var/log/httpd/access.log&lt;/code&gt; or something similar. Given a
+file named access.log, run this:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;docker-enter piwik
+./import_logs.py --url=http://docker-002.tastehoneyco.com/ access.log --idsite=1 --recorders=2 --enable-http-errors --enable-http-redirects --enable-static --enable-bots&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now reindex the data:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;./console core:archive --force-all-websites --force-all-periods=315576000 --force-date-last-n=1000 --url=http://docker-002.tastehoneyco.com:10000/&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now navigate to the visits tab within the piwik interface and you should see
+all of the apache request logs.  Piwik provides great filtering and sorting
+functionality to help you find any unusual traffic. Next, you may want to
+emulate some nefarious traffic of your own. &lt;a href=&quot;/blog/installing-metasploit-on-osx-with-rbenv&quot;&gt;Read our install guide for
+metasploit&lt;/a&gt;, a tool for finding
+and testing vulnurabilities in your infrastructure.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Installing Metasploit on OS X with rbenv]]></title><description><![CDATA[For some recent work I’ve had to identify and fix some Denial of Service /
+brute force attacks for one of our clients. A great open-source…]]></description><link>https://quinnshanahan.com/2014/08-17-installing-metasploit-on-osx-with-rbenv/</link><guid isPermaLink="false">https://quinnshanahan.com/2014/08-17-installing-metasploit-on-osx-with-rbenv/</guid><pubDate>Sun, 17 Aug 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;For some recent work I’ve had to identify and fix some Denial of Service /
+brute force attacks for one of our clients. A great open-source tool for this
+is called &lt;a href=&quot;https://github.com/rapid7/metasploit-framework&quot;&gt;Metasploit&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;They provide an installer (sign-up required), but for this type of thing I
+prefer to just install it myself.&lt;/p&gt;
+&lt;p&gt;First things first, you need to have ruby and homebrew installed.&lt;/p&gt;
+&lt;p&gt;The first step is to clone the repository:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;mkdir -p /usr/local/src
+cd /usr/local/src
+git clone https://github.com/rapid7/metasploit-framework.git&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Next, you have to have ruby 1.9.3 installed. For this you will need
+&lt;a href=&quot;https://github.com/sstephenson/rbenv&quot;&gt;rbenv&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;rbenv install 1.9.3-p547&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If rbenv tells you this version is not available make sure ruby-build is up-
+to-date.&lt;/p&gt;
+&lt;p&gt;You’ll now need to create your &lt;code class=&quot;language-text&quot;&gt;database.yml&lt;/code&gt;. To do this, copy the example
+file and modify it to fit your needs:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;cp config/database.yml.example config/database.yml
+subl config/database.yml&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In this example I have &lt;code class=&quot;language-text&quot;&gt;subl&lt;/code&gt; to edit in Sublime Text, use whatever text
+editor you are comfortable with.&lt;/p&gt;
+&lt;p&gt;Now we have to install metasploit’s dependencies and database:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;gem install bundler
+bundle install
+rake db:create&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Create the &lt;code class=&quot;language-text&quot;&gt;msf&lt;/code&gt; command:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;cat &amp;lt;&amp;lt; EOF &amp;gt; /usr/local/bin/msf
+#!/usr/bin/env bash
+exec /usr/local/src/metasploit-framework/msfconsole \
+  -y /usr/local/src/metasploit-framework/config/database.yml \
+  -e development \$*
+EOF
+chmod +x /usr/local/bin/msf&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The first time you run &lt;code class=&quot;language-text&quot;&gt;msf&lt;/code&gt; you may want to rebuild the cache for faster searching:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;msf -x db_rebuild_cache&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Try to search for an exploit to test it out:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;msf &amp;gt; search wordpress
+
+Matching Modules
+================
+
+   Name                                                      Disclosure Date  Rank       Description
+   ----                                                      ---------------  ----       -----------
+   auxiliary/gather/wp_w3_total_cache_hash_extract                            normal     W3-Total-Cache Wordpress-plugin 0.9.2.4 (or before) Username and Hash Extract
+   auxiliary/scanner/http/wordpress_login_enum                                normal     Wordpress Brute Force and User Enumeration Utility
+   auxiliary/scanner/http/wordpress_pingback_access                           normal     Wordpress Pingback Locator
+   auxiliary/scanner/http/wordpress_scanner                                   normal     Wordpress Scanner
+   exploit/unix/webapp/php_wordpress_foxypress               2012-06-05       excellent  WordPress Plugin Foxypress uploadify.php Arbitrary Code Execution
+   exploit/unix/webapp/php_wordpress_lastpost                2005-08-09       excellent  WordPress cache_lastpostdate Arbitrary Code Execution
+   exploit/unix/webapp/php_wordpress_optimizepress           2013-11-29       normal     WordPress OptimizePress Theme File Upload Vulnerability
+   exploit/unix/webapp/php_wordpress_total_cache             2013-04-17       excellent  Wordpress W3 Total Cache PHP Code Execution
+   exploit/unix/webapp/php_xmlrpc_eval                       2005-06-29       excellent  PHP XML-RPC Arbitrary Code Execution
+   exploit/unix/webapp/wp_advanced_custom_fields_exec        2012-11-14       excellent  WordPress Plugin Advanced Custom Fields Remote File Inclusion
+   exploit/unix/webapp/wp_asset_manager_upload_exec          2012-05-26       excellent  WordPress Asset-Manager PHP File Upload Vulnerability
+   exploit/unix/webapp/wp_google_document_embedder_exec      2013-01-03       normal     WordPress Plugin Google Document Embedder Arbitrary File Disclosure
+   exploit/unix/webapp/wp_property_upload_exec               2012-03-26       excellent  WordPress WP-Property PHP File Upload Vulnerability
+   exploit/unix/webapp/wp_wptouch_file_upload                2014-07-14       excellent  Wordpress WPTouch Authenticated File Upload
+   exploit/unix/webapp/wp_wysija_newsletters_upload          2014-07-01       excellent  Wordpress MailPoet Newsletters (wysija-newsletters) Unauthenticated File Upload
+   exploit/windows/browser/adobe_flashplayer_newfunction     2010-06-04       normal     Adobe Flash Player &amp;quot;newfunction&amp;quot; Invalid Pointer Use
+   exploit/windows/fileformat/adobe_flashplayer_button       2010-10-28       normal     Adobe Flash Player &amp;quot;Button&amp;quot; Remote Code Execution
+   exploit/windows/fileformat/adobe_flashplayer_newfunction  2010-06-04       normal     Adobe Flash Player &amp;quot;newfunction&amp;quot; Invalid Pointer Use
+   exploit/windows/fileformat/ms12_005                       2012-01-10       excellent  MS12-005 Microsoft Office ClickOnce Unsafe Object Package Handling Vulnerability
+   exploit/windows/fileformat/winrar_name_spoofing           2009-09-28       excellent  WinRAR Filename Spoofing
+   exploit/windows/ftp/easyftp_cwd_fixret                    2010-02-16       great      EasyFTP Server CWD Command Stack Buffer Overflow
+   exploit/windows/http/sws_connection_bof                   2012-07-20       normal     Simple Web Server Connection Header Buffer Overflow
+   post/windows/gather/credentials/razer_synapse                              normal     Windows Gather Razer Synapse Password Extraction
+
+msf &amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If you see this you should be good to go. Metasploit is a great tool for
+testing your site for vulnerabilities and for testing your fixes.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Facilitating Bidirectional Cross-Domain Communication with an Iframe]]></title><description><![CDATA[I recently was working on a project where iframes seemed to be the most
+logical solution. Actually, iframes I think are a perfectly…]]></description><link>https://quinnshanahan.com/2014/08-12-iframe-communication/</link><guid isPermaLink="false">https://quinnshanahan.com/2014/08-12-iframe-communication/</guid><pubDate>Tue, 12 Aug 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;I recently was working on a project where iframes seemed to be the most
+logical solution. Actually, iframes I think are a perfectly reasonable tool
+for some problems, but unfortunately the get a bad name because of their many
+edge cases. I originally set out to create bi-directional event-based
+communination between the iframe and it’s parent, cross-browser, and
+regardless of same or different origin (domain). Here I’m going to describe
+the javascript I’m using as well as some of the backend code required to work
+around certain browsers.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: The below examples use jQuery.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3&gt;Window Message Events&lt;/h3&gt;
+&lt;p&gt;The key to all of this is the &lt;code class=&quot;language-text&quot;&gt;window.postMessage&lt;/code&gt; call and the &lt;code class=&quot;language-text&quot;&gt;message&lt;/code&gt; event. Here are some snippets:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;window&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;top&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;postMessage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;message text&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;http://tastehoneyco.com&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token function&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;window&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;message&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; message &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;originalEvent&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;data&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;// do something with the message.&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This is a pretty minimal and easy to understand API. In my case, it seemed helpful to be able to send more complex messages, so I created a shared javascript file across the two domains that knows how to serialize and deserialize JSON messages containing named events. This allows for a more automated workflow:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// IframeMessages.prototype.iframe is an object that contains&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// all of the events for the iframe. This code is used by the iframe.&lt;/span&gt;
+&lt;span class=&quot;token class-name&quot;&gt;IframeMessages&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;prototype&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;wrapper&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function-variable function&quot;&gt;activityFinished&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;// this code is ran by the parent window.&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; iframe &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;IframeMessages&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+iframe&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;sendMessage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;activityFinished&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; activity&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;id&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Common use-case: Make my iframe the height of the iframe content!&lt;/h3&gt;
+&lt;p&gt;This is probably the most common use-case for something like this. I’ve looked
+into this quite a bit, and I am fairly confident there is no way to handle
+this without polling the dimensions. Also, the child iframe &lt;strong&gt;must&lt;/strong&gt; send the
+dimensions because the parent is unable to introspect on the iframe (on a
+different domain). See the following snippet:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// turn on resize detection. Begins polling quill.org with content dimensions&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// of module.&lt;/span&gt;
+&lt;span class=&quot;token class-name&quot;&gt;IframeMessages&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;prototype&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function-variable function&quot;&gt;autoResize&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;// no wrapper, we are not in an iframe. Early exit.&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;window&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;self &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; window&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;top&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;token comment&quot;&gt;// modified from: http://stackoverflow.com/a/14901150/1397097&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;checkDocumentHeight&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; lastHeight &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;document&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; newHeight&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token comment&quot;&gt;// there doesn&apos;t seem to be a reliable way to detected wh&lt;/span&gt;
+    &lt;span class=&quot;token function&quot;&gt;setInterval&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      newHeight &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; document&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;body&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;offsetHeight&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;lastHeight &lt;span class=&quot;token operator&quot;&gt;!=&lt;/span&gt; newHeight&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;callback&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+      lastHeight &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; newHeight&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;token comment&quot;&gt;// send the dimensions to quill.org.&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;postWindowSize&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;first&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;var&lt;/span&gt; data &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;first &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;first&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      data&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;height &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;document&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+      data&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;height &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; document&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;body&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;offsetHeight&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;sendMessage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;resize&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; data&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;token function&quot;&gt;checkDocumentHeight&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;postWindowSize&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token function&quot;&gt;postWindowSize&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;bind&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;first&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;and the resize event triggered on the parent:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// this is the handler for the resize event coming from the iframe.&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;// it contains the new dimensions of the content contained from within the iframe.&lt;/span&gt;
+&lt;span class=&quot;token function-variable function&quot;&gt;resize&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;dimensions&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;this&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;$iframe&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;height&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;dimensions&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;height&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Getting cookies to work&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Note (2014-08-13)&lt;/strong&gt;: Newer versions of Chrome and other browsers seem to
+block 3rd party cookies by default. I am still working on a workaround for
+this.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If you’ve done this before on a different domain, you’ve probably noticed that
+there are some issues cookies. Safari (and possibly other browsers) blocks
+iframes on domains that the user hasn’t visited from storing cookies. This
+actually makes sense from a security / privacy perspective in most scenarios
+(you wouldn’t want an advertisement on a domain you’ve never visited to be
+able to store cookies) but in our case it is very inconvenient. There is no
+“hack” per se to get around this other than to actually navigate to the page
+and then navigate back.&lt;/p&gt;
+&lt;h3&gt;Using postMessage with different domains&lt;/h3&gt;
+&lt;p&gt;First, it is important that all frames are ready before attempting to use
+&lt;code class=&quot;language-text&quot;&gt;postMessage&lt;/code&gt;. To get postMessage to work you must match the frame’s host
+&lt;em&gt;exactly&lt;/em&gt; to get it work:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;targetWindow&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;postMessage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;message&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;       &lt;span class=&quot;token string&quot;&gt;&apos;http://locahost:3000&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+targetWindow&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;postMessage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;other message&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;https://example.com&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That’s it for now! I’ll post more tips and tricks later on when I’ve come up
+with more.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Log to STDOUT and STDERR when Running NGINX in the Foreground]]></title><description><![CDATA[This is somewhat of a follow-up to this post: http://tastehoneyco.com/blog/running-nginx-in-the-foreground/ The instructions there are…]]></description><link>https://quinnshanahan.com/2014/04-19-log-nginx-to-stdout-and-stderr-when-run/</link><guid isPermaLink="false">https://quinnshanahan.com/2014/04-19-log-nginx-to-stdout-and-stderr-when-run/</guid><pubDate>Sat, 19 Apr 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;This is somewhat of a follow-up to this post:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://tastehoneyco.com/blog/running-nginx-in-the-foreground/&quot;&gt;http://tastehoneyco.com/blog/running-nginx-in-the-foreground/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The instructions there are simple enough and it works great, but no output is
+logged while NGINX is running. This can be annoying if you like treating logs
+as streams rather than as something that ends up in a file on a (probably
+transient) filesystem. Unfortunately there doesn’t seem to be a way to do this
+through the NGINX config, probably because it doesn’t fit with the typical
+NGINX paradigm (a service running in the background with master / worker
+processes). However, I want to do it anyway. I created a simple go script to
+handle this:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;go&quot;&gt;&lt;pre class=&quot;language-go&quot;&gt;&lt;code class=&quot;language-go&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;package&lt;/span&gt; main
+
+&lt;span class=&quot;token keyword&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;token string&quot;&gt;&quot;fmt&quot;&lt;/span&gt;
+    &lt;span class=&quot;token string&quot;&gt;&quot;os/exec&quot;&lt;/span&gt;
+    &lt;span class=&quot;token string&quot;&gt;&quot;os&quot;&lt;/span&gt;
+    &lt;span class=&quot;token string&quot;&gt;&quot;github.com/ActiveState/tail&quot;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;Nginx&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;c &lt;span class=&quot;token keyword&quot;&gt;chan&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  pwd&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; os&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Getwd&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  conf   &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; pwd &lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;/nginx.conf&quot;&lt;/span&gt;
+  cmd &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; exec&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Command&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;nginx&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;-c&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; conf&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  cmd&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Stdout &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; os&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Stdout
+  cmd&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Stderr &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; os&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Stderr
+  cmd&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Run&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;AcessLog&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;c &lt;span class=&quot;token keyword&quot;&gt;chan&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  t&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; tail&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;TailFile&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;/path/to/nginx/logs/nginx-access.log&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; tail&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Config&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;Follow&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+  &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; line &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;range&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Lines &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    fmt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Println&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;line&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Text&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ErrorLog&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;c &lt;span class=&quot;token keyword&quot;&gt;chan&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  t&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;_&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; tail&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;TailFile&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;/path/to/nginx/logs/nginx-error.log&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; tail&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Config&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;Follow&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+  &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; line &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;range&lt;/span&gt; t&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Lines &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    fmt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Fprintln&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;os&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Stderr&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; line&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;Text&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;func&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    c &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;make&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;chan&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;go&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;Nginx&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;c&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;go&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;AcessLog&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;c&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;go&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ErrorLog&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;c&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+    nginx  &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;-&lt;/span&gt; c
+    access &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;-&lt;/span&gt; c
+    &lt;span class=&quot;token builtin&quot;&gt;error&lt;/span&gt;  &lt;span class=&quot;token operator&quot;&gt;:=&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;-&lt;/span&gt; c
+
+    fmt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Println&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;nginx&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    fmt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Println&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;access&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    fmt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Println&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    fmt&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;Println&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;done.&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;All this is doing is setting up 3 goroutines, 1 for the nginx master process,
+1 for a tail of the error log which gets printed to STDERR, and 1 for the
+access log which gets printed to STDOUT. This requires some additional config
+in the NGINX config:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;nginx&quot;&gt;&lt;pre class=&quot;language-nginx&quot;&gt;&lt;code class=&quot;language-nginx&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;worker_processes&lt;/span&gt;  &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;daemon&lt;/span&gt; off&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;events&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;worker_connections&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1024&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;http&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;access_log&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;path&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;to&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;nginx&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;logs&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;nginx&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;access&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;log&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;error_log&lt;/span&gt;  &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;path&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;to&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;nginx&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;logs&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;nginx&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;error&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;log debug&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;token keyword&quot;&gt;server&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;listen&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;8080&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;As you can see I’ve increased the log level to &lt;code class=&quot;language-text&quot;&gt;debug&lt;/code&gt; to get the maximum
+amount of information from NGINX. That’s it! Try running the go script, and
+you should see requests and errors showing up in the terminal as they are
+made.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Postgresql Array and Hstore Column Reference]]></title><description><![CDATA[First of all, let’s start with links to the relevant postgres docs: http://www.postgresql.org/docs/9.3/static/hstore.html
+
+http://www…]]></description><link>https://quinnshanahan.com/2014/04-14-postgresql-array-and-hstore-column-reference/</link><guid isPermaLink="false">https://quinnshanahan.com/2014/04-14-postgresql-array-and-hstore-column-reference/</guid><pubDate>Mon, 14 Apr 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;First of all, let’s start with links to the relevant postgres docs:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://www.postgresql.org/docs/9.3/static/hstore.html&quot;&gt;http://www.postgresql.org/docs/9.3/static/hstore.html&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=&quot;http://www.postgresql.org/docs/9.3/static/arrays.html&quot;&gt;http://www.postgresql.org/docs/9.3/static/arrays.html&lt;/a&gt;
+&lt;br&gt;
+&lt;a href=&quot;http://www.postgresql.org/docs/9.3/static/functions-array.html&quot;&gt;http://www.postgresql.org/docs/9.3/static/functions-array.html&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The postgres project has excellent documentation, and these links do covere
+everything you would need to work with hstore and arrays with postgres.
+Sometimes though it can be difficult to translate their examples into real
+world examples, and it can also be difficult to translate this into
+ActiveRecord.&lt;/p&gt;
+&lt;h3&gt;Postgresql Arrays&lt;/h3&gt;
+&lt;p&gt;Arrays in postgres in that they aren’t their own type per se, rather than it’s
+own separate type. Rather, the existing column types can be declared as an
+array (e.g. an array of ints, array of texts, etc).&lt;/p&gt;
+&lt;h3&gt;Declaring array fields&lt;/h3&gt;
+&lt;p&gt;Arrays can be declared in the following ways:&lt;/p&gt;
+&lt;h4&gt;SQL&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;TABLE&lt;/span&gt; articles &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;body &lt;span class=&quot;token keyword&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; tags &lt;span class=&quot;token keyword&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;ActiveRecord&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;create_table &lt;span class=&quot;token symbol&quot;&gt;:articles&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;t&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;
+  t&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;text &lt;span class=&quot;token symbol&quot;&gt;:body&lt;/span&gt;
+  t&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;text &lt;span class=&quot;token symbol&quot;&gt;:tags&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; array&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That’s pretty straightforward. I’m going to go through some common operations.&lt;/p&gt;
+&lt;h3&gt;Array inclusion&lt;/h3&gt;
+&lt;p&gt;Sometimes you want to find out if an array includes, or does not include a
+given value, and return the records where it is true. Given the above table,
+this is what that could look like:&lt;/p&gt;
+&lt;h4&gt;SQL&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;--- which articles are tagged with &apos;programming&apos;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; articles &lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;programming&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;ANY&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;tags&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;--- which articles are not tagged with &apos;programming&apos;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; articles &lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;programming&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;ALL&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;tags&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;--- or&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; articles &lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;NOT&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;programming&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;ANY&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;tags&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;ActiveRecord&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# which articles are tagged with &apos;programming&apos;&lt;/span&gt;
+&lt;span class=&quot;token constant&quot;&gt;Article&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;where&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;? = ANY (tags)&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;programming&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# which articles are not tagged with &apos;programming&apos;&lt;/span&gt;
+&lt;span class=&quot;token constant&quot;&gt;Article&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;where&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;? != ALL (tags)&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;programming&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# or&lt;/span&gt;
+&lt;span class=&quot;token constant&quot;&gt;Article&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;where&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;NOT (? = ANY (tags))&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;programming&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Updating arrays&lt;/h3&gt;
+&lt;p&gt;How do you append to an array? You could use your ORM in a predictable way:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;article &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Article&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;find&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+article&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;tags &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;programming&apos;&lt;/span&gt;
+article&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;save&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Note (2014-04-16)&lt;/strong&gt;: There may be currently a bug in rails that can cause
+issues with the above syntax. If so, try running &lt;code class=&quot;language-text&quot;&gt;article.tags_will_change!&lt;/code&gt;.
+More info on the bug &lt;a href=&quot;https://github.com/rails/rails/issues/6127&quot;&gt;here&lt;/a&gt;. Thanks, &lt;a href=&quot;http://www.komendera.com/&quot;&gt;Dieter Komendera&lt;/a&gt; for
+pointing this out.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;But what if you wanted to perform this in a single operation, or what if you
+wanted to perform this on multiple records at once in a single query? This is
+possible, using the &lt;code class=&quot;language-text&quot;&gt;append_array&lt;/code&gt; function:&lt;/p&gt;
+&lt;h4&gt;SQL&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;UPDATE&lt;/span&gt; articles &lt;span class=&quot;token keyword&quot;&gt;SET&lt;/span&gt; tags &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; array_append&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;tags&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;programming&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;ActiveRecord&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;&lt;span class=&quot;token constant&quot;&gt;Article&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;update_all &lt;span class=&quot;token constant&quot;&gt;Article&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;send&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token symbol&quot;&gt;:sanitize_sql&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;tags = array_append(tags, ?)&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;programming&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This unfortunately isn’t as clean as one might like it to be in ActiveRecord.
+I’d love to know if there is a better way to do this.&lt;/p&gt;
+&lt;h3&gt;Find empty arrays&lt;/h3&gt;
+&lt;p&gt;Generally when creating an array column I think it is advisable to to make it
+non-null and default to an empty array:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;t&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;text &lt;span class=&quot;token symbol&quot;&gt;:tags&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; array&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; null&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; default&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This prevents a small “gotcha” when an array column is null (not an empty
+array). For example, in the example above that tests for a value not being in
+the array field, the query would have returned a misleading empty set if all
+of the array columns were null. You can get around this by setting a column
+default, or by testing to see if the array column is null:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; articles &lt;span class=&quot;token keyword&quot;&gt;where&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;programming&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;ALL&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;tags&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; tags &lt;span class=&quot;token operator&quot;&gt;IS&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If you wanted to find all records with empty tags &lt;em&gt;and&lt;/em&gt; null tags, you could do:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; articles &lt;span class=&quot;token keyword&quot;&gt;where&lt;/span&gt; tags &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;{}&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;OR&lt;/span&gt; tags &lt;span class=&quot;token operator&quot;&gt;IS&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Array intersection&lt;/h3&gt;
+&lt;p&gt;It’s a common scenario to want to find records with an array field that has at
+least one member from a given list. You can use the &lt;code class=&quot;language-text&quot;&gt;&amp;amp;&amp;amp;&lt;/code&gt; operator to find
+these:&lt;/p&gt;
+&lt;h4&gt;SQL&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; articles &lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; tags &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; ARRAY&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;devops&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;design&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;--- or, if your array column is of something other than text (possibly varchar)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; articles &lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; CAST &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;tags &lt;span class=&quot;token keyword&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; ARRAY&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;devops&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;design&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;ActiveRecord&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;&lt;span class=&quot;token constant&quot;&gt;Article&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;where&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;tags &amp;amp;&amp;amp; ARRAY[?]&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;devops&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;design&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Postgresql Hstore&lt;/h3&gt;
+&lt;p&gt;Postgres hstore is column type for storing hierarchical schemaless data
+(sometimes called “documents”) in a Postgres table. This is great if you are
+going to be storing data you’d like to be able to query, but aren’t necessarily
+going to have consistent field names. Hstore is often compared to NoSQL
+document stores such as MongoDB.&lt;/p&gt;
+&lt;h3&gt;Declaring Hstore column type&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;hstore&lt;/code&gt; is just a column type like any other, so declaring it is
+straightforward.&lt;/p&gt;
+&lt;h4&gt;SQL&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;TABLE&lt;/span&gt; web_requests &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+  url &lt;span class=&quot;token keyword&quot;&gt;varchar&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  body &lt;span class=&quot;token keyword&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  headers hstore
+&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;ActiveRecord&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;create_table &lt;span class=&quot;token symbol&quot;&gt;:web_requests&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;t&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;
+  t&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;string &lt;span class=&quot;token symbol&quot;&gt;:url&lt;/span&gt;
+  t&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;text &lt;span class=&quot;token symbol&quot;&gt;:body&lt;/span&gt;
+  t&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;hstore &lt;span class=&quot;token symbol&quot;&gt;:headers&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Setting a value to a key in hstore&lt;/h3&gt;
+&lt;p&gt;Hstore keys are strings, and one of two types can be assigned to a key in
+hstore: a string, or another hstore value.&lt;/p&gt;
+&lt;h4&gt;SQL&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;INSERT&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;INTO&lt;/span&gt; web_requests &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;url&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; body&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; headers&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;VALUES&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;
+  &lt;span class=&quot;token string&quot;&gt;&apos;/articles.json&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token string&quot;&gt;&apos;&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token string&quot;&gt;&apos;Accept        =&gt; application/json,
+   Cache-Control =&gt; no-cache&apos;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;ActiveRecord&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;web_request &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;WebRequest&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;create&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  url&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;/articles.json&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  headers&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token string&quot;&gt;&apos;Accept&apos;&lt;/span&gt;        &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;application/json&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;token string&quot;&gt;&apos;Cache-Control&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;no-cache&apos;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Finding a record with an hstore with a given value&lt;/h3&gt;
+&lt;p&gt;These are examples of how to find records that have a key with a given value
+for an hstore column.&lt;/p&gt;
+&lt;h4&gt;SQL&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; web_requests &lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; headers&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;Accept&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;application/json&apos;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;ActiveRecord&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;&lt;span class=&quot;token constant&quot;&gt;WebRequest&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;where&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;headers-&gt;&apos;Accept&apos; = ?&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;application/json&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Finding a record with an hstore with a non-null value for a given key&lt;/h3&gt;
+&lt;p&gt;Sometimes you want to find all records that have any value set for a given
+key. Using our &lt;code class=&quot;language-text&quot;&gt;WebRequest&lt;/code&gt; example this could be useful for finding all
+requests that set caching headers. Postgresql provides a &lt;code class=&quot;language-text&quot;&gt;defined&lt;/code&gt; function
+for this.&lt;/p&gt;
+&lt;h4&gt;SQL&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; web_requests &lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; defined&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;headers&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Cache-Control&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;ActiveRecord&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;&lt;span class=&quot;token constant&quot;&gt;WebRequest&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;where&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;defined(headers, ?)&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Cache-Control&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Removing a key from an hstore&lt;/h3&gt;
+&lt;p&gt;Rather than setting a key to an empty string or &lt;code class=&quot;language-text&quot;&gt;NULL&lt;/code&gt;, sometimes it can be
+nice to completely remove the value and key from hstore. Postgresql provides a
+&lt;code class=&quot;language-text&quot;&gt;delete&lt;/code&gt; function to this. Again, I am not aware of a clean interface for
+running functions in an &lt;code class=&quot;language-text&quot;&gt;UPDATE&lt;/code&gt; while using ActiveRecord, so I’m using the
+same hacky solution described previously for &lt;code class=&quot;language-text&quot;&gt;append_array&lt;/code&gt;.&lt;/p&gt;
+&lt;h4&gt;SQL&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sql&quot;&gt;&lt;pre class=&quot;language-sql&quot;&gt;&lt;code class=&quot;language-sql&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;UPDATE&lt;/span&gt; articles &lt;span class=&quot;token keyword&quot;&gt;SET&lt;/span&gt; headers &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;delete&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;headers&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Cache-Control&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;WHERE&lt;/span&gt; id &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h4&gt;ActiveRecord&lt;/h4&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;&lt;span class=&quot;token constant&quot;&gt;Article&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;where&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;id&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;update_all &lt;span class=&quot;token constant&quot;&gt;Article&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;send&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token symbol&quot;&gt;:sanitize_sql&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;headers = delete(headers, ?)&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Cache-Control&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That’s all for now. Hopefully this helps clarify some ways of using arrays and
+hstore especially in practice, and when using ActiveRecord. Stay tuned for
+more snippets as well as examples of using postgres’s enum functionality in
+ActiveRecord.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Stubbing Rails request with custom Rack env]]></title><description><![CDATA[If you are are using the  gem you should know that there are a
+ton of really good ways to test controllers. But, sometimes it can be nice to…]]></description><link>https://quinnshanahan.com/2014/04-09-stubbing-rails-request-with-custom-rack/</link><guid isPermaLink="false">https://quinnshanahan.com/2014/04-09-stubbing-rails-request-with-custom-rack/</guid><pubDate>Wed, 09 Apr 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;If you are are using the &lt;code class=&quot;language-text&quot;&gt;rspec-rails&lt;/code&gt; gem you should know that there are a
+ton of really good ways to test controllers. But, sometimes it can be nice to
+have total control over the input that is going to your controller. I’m going
+to show you how to construct a request as a rack environment as well as a
+request path.&lt;/p&gt;
+&lt;p&gt;To find a good intersection point for us to build a stub rack environment and
+inject it into Rail’s request life-cycle, let’s look at where in the Rails code
+the controller get called from the router:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# action_pack/routing/route_set.rb&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token method-definition&quot;&gt;&lt;span class=&quot;token function&quot;&gt;call&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;env&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  params &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; env&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;PARAMETERS_KEY&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+
+  &lt;span class=&quot;token comment&quot;&gt;# If any of the path parameters has a invalid encoding then&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;# raise since it&apos;s likely to trigger errors further on.&lt;/span&gt;
+  params&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;key&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; value&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;next&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;unless&lt;/span&gt; value&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;respond_to&lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token symbol&quot;&gt;:valid_encoding?&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;unless&lt;/span&gt; value&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;valid_encoding&lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;raise&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;ActionController&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;BadRequest&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Invalid parameter: &lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token delimiter tag&quot;&gt;#{&lt;/span&gt;key&lt;span class=&quot;token delimiter tag&quot;&gt;}&lt;/span&gt;&lt;/span&gt; =&gt; &lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token delimiter tag&quot;&gt;#{&lt;/span&gt;value&lt;span class=&quot;token delimiter tag&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&quot;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+
+  prepare_params&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;params&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+
+  &lt;span class=&quot;token comment&quot;&gt;# Just raise undefined constant errors if a controller was specified as default.&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;unless&lt;/span&gt; controller &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; controller&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;params&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;@defaults&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;key&lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token symbol&quot;&gt;:controller&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;404&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;X-Cascade&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;pass&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+
+  dispatch&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;controller&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; params&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token symbol&quot;&gt;:action&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; env&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Let’s look at the definition of &lt;code class=&quot;language-text&quot;&gt;controller()&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# If this is a default_controller (i.e. a controller specified by the user)&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# we should raise an error in case it&apos;s not found, because it usually means&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# a user error. However, if the controller was retrieved through a dynamic&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# segment, as in :controller(/:action), we should simply return nil and&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# delegate the control back to Rack cascade. Besides, if this is not a default&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# controller, it means we should respect the @scope[:module] parameter.&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token method-definition&quot;&gt;&lt;span class=&quot;token function&quot;&gt;controller&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;params&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; default_controller&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; params &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; params&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;key&lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token symbol&quot;&gt;:controller&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    controller_param &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; params&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token symbol&quot;&gt;:controller&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+    controller_reference&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;controller_param&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;rescue&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;NameError&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; e
+  &lt;span class=&quot;token keyword&quot;&gt;raise&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;ActionController&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;RoutingError&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;message&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;backtrace &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; default_controller
+&lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It’s easy to tell that this the business logic for translating
+&lt;code class=&quot;language-text&quot;&gt;params[:controller] = &amp;#39;articles&amp;#39;&lt;/code&gt; into &lt;code class=&quot;language-text&quot;&gt;ArticlesController&lt;/code&gt;. We can safely
+assume that a controller class is now stored in the &lt;code class=&quot;language-text&quot;&gt;controller&lt;/code&gt; variable. Now
+let’s look at the definition of &lt;code class=&quot;language-text&quot;&gt;dispatch()&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token method-definition&quot;&gt;&lt;span class=&quot;token function&quot;&gt;dispatch&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;controller&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; action&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; env&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+  controller&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;action&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;action&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;call&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;env&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;That’s a pretty clean API. If we want to test a specific controller and
+action, this would be a great place to intersect. Let’s take a look at that:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;&lt;span class=&quot;token constant&quot;&gt;ArticlesController&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;action&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token symbol&quot;&gt;:show&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;call&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This won’t work unfortunately, there is a minimum amount of parameters
+necessary to get a request to actually work. This is what I’ve used with some
+success:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;&lt;span class=&quot;token constant&quot;&gt;ArticlesController&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;action&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token symbol&quot;&gt;:show&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;call&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token string&quot;&gt;&quot;rack.input&quot;&lt;/span&gt;     &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;StringIO&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token string&quot;&gt;&quot;REQUEST_METHOD&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;POST&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token string&quot;&gt;&quot;HTTP_ACCEPT&quot;&lt;/span&gt;    &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;text/html&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token string&quot;&gt;&quot;HTTP_HOST&quot;&lt;/span&gt;      &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; options&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token symbol&quot;&gt;:host&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token string&quot;&gt;&quot;rack.session&quot;&lt;/span&gt;   &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Hashie&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;Mash&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token string&quot;&gt;&apos;action_dispatch.cookies&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Hashie&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;Mash&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;token string&quot;&gt;&quot;action_dispatch.request.parameters&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    id&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;As you can see, this allows you to stub your own rack environment with the
+parameters that work for your scenario. Most of the time this won’t be
+necessary with the testing tools that are available but it can be useful every
+once and awhile.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Experiments with Docker]]></title><description><![CDATA[Docker is a wonderfully fun tool that makes building something like a PaaS
+almost trivial. Docker has great tutorials and documentation on…]]></description><link>https://quinnshanahan.com/2014/04-04-experiments-with-docker/</link><guid isPermaLink="false">https://quinnshanahan.com/2014/04-04-experiments-with-docker/</guid><pubDate>Fri, 04 Apr 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Docker is a wonderfully fun tool that makes building something like a PaaS
+almost trivial. Docker has great tutorials and documentation on their main
+website: &lt;a href=&quot;https://www.docker.io/&quot;&gt;https://www.docker.io/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Docker builds on top of LXC (LinuX Containers) to provide a clean, easy-to-use
+interface for setting up and running containers. Because of this, Docker will
+only run on a linux distribution.&lt;/p&gt;
+&lt;p&gt;The first thing to do is to take a look at the help menu for the &lt;code class=&quot;language-text&quot;&gt;docker&lt;/code&gt;
+command:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;Usage: docker [OPTIONS] COMMAND [arg...]
+ -H=[unix:///var/run/docker.sock]: tcp://host:port to bind/connect to or unix://path/to/socket to use
+
+A self-sufficient runtime for linux containers.
+
+Commands:
+    attach    Attach to a running container
+    build     Build a container from a Dockerfile
+    commit    Create a new image from a container&amp;#39;s changes
+    cp        Copy files/folders from the containers filesystem to the host path
+    diff      Inspect changes on a container&amp;#39;s filesystem
+    events    Get real time events from the server
+    export    Stream the contents of a container as a tar archive
+    history   Show the history of an image
+    images    List images
+    import    Create a new filesystem image from the contents of a tarball
+    info      Display system-wide information
+    insert    Insert a file in an image
+    inspect   Return low-level information on a container
+    kill      Kill a running container
+    load      Load an image from a tar archive
+    login     Register or Login to the docker registry server
+    logs      Fetch the logs of a container
+    port      Lookup the public-facing port which is NAT-ed to PRIVATE_PORT
+    ps        List containers
+    pull      Pull an image or a repository from the docker registry server
+    push      Push an image or a repository to the docker registry server
+    restart   Restart a running container
+    rm        Remove one or more containers
+    rmi       Remove one or more images
+    run       Run a command in a new container
+    save      Save an image to a tar archive
+    search    Search for an image in the docker index
+    start     Start a stopped container
+    stop      Stop a running container
+    tag       Tag an image into a repository
+    top       Lookup the running processes of a container
+    version   Show the docker version information
+    wait      Block until a container stops, then print its exit code&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This has a wealth of information on what you can do right away with docker.
+Try running &lt;code class=&quot;language-text&quot;&gt;docker run ubuntu touch file_in_container&lt;/code&gt; to get an idea about
+how things work. This command will download the ubuntu image and create a new
+container which runs the command &lt;code class=&quot;language-text&quot;&gt;touch file_in_container&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;it is important to remember that docker container are &lt;em&gt;stateless&lt;/em&gt;. A
+container’s contents will always be exactly as they are in the container’s
+image, and it is not possible to run a command on an existing container
+(running &lt;code class=&quot;language-text&quot;&gt;docker run ubuntu touch file_in_container&lt;/code&gt; would create a new
+container to run the command). Try running something more substantial:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;docker run ubuntu &lt;span class=&quot;token function&quot;&gt;apt-get&lt;/span&gt; -y &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; build-essential&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If you decided that having build tools installed was a good starting point,
+you could save this container’s state as an image. Let’s find our container by
+running &lt;code class=&quot;language-text&quot;&gt;docker ps -a&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;CONTAINER ID        IMAGE                   COMMAND                CREATED             STATUS
+305883092cfd        ubuntu:latest           apt-get -y install b   5 minutes ago       Exit 0
+3088358bd9c5        ubuntu:latest           touch file_in_contai   5 minutes ago       Exit 0&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It looks like “305883092cfd” is the one we want. Try saving it:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;docker commit &lt;span class=&quot;token number&quot;&gt;305&lt;/span&gt; buildtools&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now run &lt;code class=&quot;language-text&quot;&gt;docker images&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+buildtools          latest              d036e72d2e40        2 minutes ago       320.5 MB
+ubuntu              latest              9cd978db300e        10 minutes ago      204.4 MB&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;As you can see, you have now prepared for yourself an image with build tools
+preinstalled. Try running:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;docker run buildtools &lt;span class=&quot;token function&quot;&gt;make&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;As you can see, the &lt;code class=&quot;language-text&quot;&gt;docker&lt;/code&gt; command provides some great high-level tools for
+learning about Docker. For anything serious though, you’ll probably want to
+use the API. I’ll be writing a follow-up on that soon. Stay tuned!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Custom error pages in Rails]]></title><description><![CDATA[This has been previously documented, but the predominant way is this: https://gist.github.com/gonzedge/1563416 There are a number of things…]]></description><link>https://quinnshanahan.com/2014/03-30-custom-rails-exception-pages/</link><guid isPermaLink="false">https://quinnshanahan.com/2014/03-30-custom-rails-exception-pages/</guid><pubDate>Sun, 30 Mar 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;This has been previously documented, but the predominant way is this:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://gist.github.com/gonzedge/1563416&quot;&gt;https://gist.github.com/gonzedge/1563416&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;There are a number of things obviously wrong with this, and I always disliked
+this technique because it completely overrode rails’ existing handling of
+exceptions which already intelligently mapped exceptions to status codes. I
+assumed their must be a way to use this functionality and only override the
+part where the exception is actually rendered. I began digging, and found this
+in actionpack:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;action_dispatch/http/request&apos;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;action_dispatch/middleware/exception_wrapper&apos;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;ActionDispatch&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;# This middleware rescues any exception returned by the application&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;# and calls an exceptions app that will wrap it in a format for the end user.&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;#&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;# The exceptions app should be passed as parameter on initialization&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;# of ShowExceptions. Every time there is an exception, ShowExceptions will&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;# store the exception in env[&quot;action_dispatch.exception&quot;], rewrite the&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;# PATH_INFO to the exception status code and call the rack app.&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;#&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;# If the application returns a &quot;X-Cascade&quot; pass response, this middleware&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;# will send an empty response as result with the correct status code.&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;# If any exception happens inside the exceptions app, this middleware&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;# catches the exceptions and returns a FAILSAFE_RESPONSE.&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;ShowExceptions&lt;/span&gt;
+    &lt;span class=&quot;token constant&quot;&gt;FAILSAFE_RESPONSE&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;Content-Type&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;text/plain&apos;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;500 Internal Server Error\n&quot;&lt;/span&gt; \
+       &lt;span class=&quot;token string&quot;&gt;&quot;If you are the administrator of this website, then please read this web &quot;&lt;/span&gt; \
+       &lt;span class=&quot;token string&quot;&gt;&quot;application&apos;s log file and/or the web server&apos;s log file to find out what &quot;&lt;/span&gt; \
+       &lt;span class=&quot;token string&quot;&gt;&quot;went wrong.&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token method-definition&quot;&gt;&lt;span class=&quot;token function&quot;&gt;initialize&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;app&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; exceptions_app&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;token variable&quot;&gt;@app&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; app
+      &lt;span class=&quot;token variable&quot;&gt;@exceptions_app&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; exceptions_app
+    &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token method-definition&quot;&gt;&lt;span class=&quot;token function&quot;&gt;call&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;env&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;token variable&quot;&gt;@app&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;call&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;env&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;rescue&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; exception
+      &lt;span class=&quot;token keyword&quot;&gt;raise&lt;/span&gt; exception &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; env&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;action_dispatch.show_exceptions&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;false&lt;/span&gt;
+      render_exception&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;env&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; exception&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;private&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token method-definition&quot;&gt;&lt;span class=&quot;token function&quot;&gt;render_exception&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;env&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; exception&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+      wrapper &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;ExceptionWrapper&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;env&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; exception&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+      status  &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; wrapper&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;status_code
+      env&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;action_dispatch.exception&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; wrapper&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exception
+      env&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;PATH_INFO&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;/&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token delimiter tag&quot;&gt;#{&lt;/span&gt;status&lt;span class=&quot;token delimiter tag&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&quot;&lt;/span&gt;
+      response &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token variable&quot;&gt;@exceptions_app&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;call&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;env&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+      response&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;X-Cascade&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;pass&apos;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt; pass_response&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;status&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; response
+    &lt;span class=&quot;token keyword&quot;&gt;rescue&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; failsafe_error
+      &lt;span class=&quot;token variable&quot;&gt;$stderr&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;puts &lt;span class=&quot;token string&quot;&gt;&quot;Error during failsafe response: &lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token delimiter tag&quot;&gt;#{&lt;/span&gt;failsafe_error&lt;span class=&quot;token delimiter tag&quot;&gt;}&lt;/span&gt;&lt;/span&gt;\n  &lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token delimiter tag&quot;&gt;#{&lt;/span&gt;failsafe_error&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;backtrace &lt;span class=&quot;token operator&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;\n  &quot;&lt;/span&gt;&lt;span class=&quot;token delimiter tag&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&quot;&lt;/span&gt;
+      &lt;span class=&quot;token constant&quot;&gt;FAILSAFE_RESPONSE&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token method-definition&quot;&gt;&lt;span class=&quot;token function&quot;&gt;pass_response&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;status&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;status&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;Content-Type&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;text/html; charset=&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token delimiter tag&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;Response&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;default_charset&lt;span class=&quot;token delimiter tag&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Content-Length&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;0&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;As you can see, this middleware uses something called &lt;code class=&quot;language-text&quot;&gt;ExceptionWrapper&lt;/code&gt; to
+(presumably) convert the original exception to an HTTP status code. It also
+conveniently assigns it to the path (“/404”, “/500”, etc) and passes it to a
+configurable exceptions_app. Further digging found this in
+&lt;code class=&quot;language-text&quot;&gt;railties/lib/rails/application.rb&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# ~ line 335&lt;/span&gt;
+middleware&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;use &lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;ActionDispatch&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;ShowExceptions&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; show_exceptions_app
+
+&lt;span class=&quot;token comment&quot;&gt;# ~ line 391&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token method-definition&quot;&gt;&lt;span class=&quot;token function&quot;&gt;show_exceptions_app&lt;/span&gt;&lt;/span&gt;
+  config&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exceptions_app &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;ActionDispatch&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;PublicExceptions&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;Rails&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;public_path&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Ok, great. This provides an easy way to hook into the ShowExceptions
+middleware by overriding the config.exceptions_app. In my app I put this:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# config/application.rb&lt;/span&gt;
+config&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exceptions_app &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;Proc&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;env&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;
+  &lt;span class=&quot;token comment&quot;&gt;# all controllers are middleware, remember?&lt;/span&gt;
+  &lt;span class=&quot;token constant&quot;&gt;ApplicationController&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;action&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token symbol&quot;&gt;:show_errors&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;call&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;env&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;token comment&quot;&gt;# application_controller.rb&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token method-definition&quot;&gt;&lt;span class=&quot;token function&quot;&gt;show_errors&lt;/span&gt;&lt;/span&gt;
+  status &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; env&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&quot;PATH_INFO&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1.&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+
+  respond_to &lt;span class=&quot;token keyword&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;format&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;
+    format&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;html &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; render template&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;errors/&lt;span class=&quot;token interpolation&quot;&gt;&lt;span class=&quot;token delimiter tag&quot;&gt;#{&lt;/span&gt;status&lt;span class=&quot;token delimiter tag&quot;&gt;}&lt;/span&gt;&lt;/span&gt;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; layout&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;layouts/application&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; status&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; status &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+    format&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;all &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; render nothing&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; status&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; status &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This is pretty straightforward I think, but after looking around a bit more I
+found a solution by &lt;a href=&quot;http://blog.plataformatec.com.br/2012/01/my-five-favorite-hidden-features-in-rails-3-2/&quot;&gt;José Valim&lt;/a&gt; that may be considered even more
+elegant to some:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# config/application.rb&lt;/span&gt;
+config&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;exceptions_app &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;routes
+
+&lt;span class=&quot;token comment&quot;&gt;# routes.rb&lt;/span&gt;
+match &lt;span class=&quot;token string&quot;&gt;&quot;/404&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token symbol&quot;&gt;:to&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;errors#not_found&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Regardless of how you decide to handle this, I think the most important take
+away is that Rails almost always provides a way to exploit the functionality
+it provides as a framework. Rarely do you have to “fight against” the
+framework and recreate existing functionality to get the behavior you want.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Running NGINX in the Foreground]]></title><description><![CDATA[If you’re planning on using nginx as a frontend to one or more app processes,
+it can be helpful to setup and test things locally. An easy…]]></description><link>https://quinnshanahan.com/2014/03-26-running-nginx-in-the-foreground/</link><guid isPermaLink="false">https://quinnshanahan.com/2014/03-26-running-nginx-in-the-foreground/</guid><pubDate>Wed, 26 Mar 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;If you’re planning on using nginx as a frontend to one or more app processes,
+it can be helpful to setup and test things locally. An easy way to do this is
+to run nginx in the foreground so you can quickly iterate your config options
+to see what works. First, you need to create a config:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;nginx&quot;&gt;&lt;pre class=&quot;language-nginx&quot;&gt;&lt;code class=&quot;language-nginx&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# nginx.conf&lt;/span&gt;
+&lt;span class=&quot;token comment&quot;&gt;# put wherever you want, mine is in the base of my project directory&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;worker_processes&lt;/span&gt;  &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;daemon&lt;/span&gt; off&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;events&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;worker_connections&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1024&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;http&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;server&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;listen&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;8080&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;the most important line is &lt;code class=&quot;language-text&quot;&gt;daemon off&lt;/code&gt; which will cause nginx to run in the
+foreground. This will still run with the typical master / worker setup though,
+and can be used in production.&lt;/p&gt;
+&lt;p&gt;The rest is the most minimal boilerplate to get nginx to serve an http server
+on port 8080.&lt;/p&gt;
+&lt;p&gt;Try opening browsing to &lt;a href=&quot;http://localhost:8080/&quot;&gt;http://localhost:8080/&lt;/a&gt;. You
+should see a successful installation message from nginx. From here you can
+setup proxies to your apps or whatever other config you want to test out.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Specify a local path for a gem in your Gemfile]]></title><description><![CDATA[Bundler provides a mechanism to override a gem with a local one which works as
+follows: This is great and easy to understand. Unfortunately…]]></description><link>https://quinnshanahan.com/2014/03-21-specify-a-local-path-for-a-gem/</link><guid isPermaLink="false">https://quinnshanahan.com/2014/03-21-specify-a-local-path-for-a-gem/</guid><pubDate>Fri, 21 Mar 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Bundler provides a mechanism to override a gem with a local one which works as
+follows:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;bundle config local.GEM_NAME /path/to/local/git/repository&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This is great and easy to understand. Unfortunately, it only works if the gem
+is pulling from git in the Gemfile:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;gem &lt;span class=&quot;token string&quot;&gt;&apos;GEM_NAME&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; github&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;your/gem&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; branch&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;master&apos;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This is great in some cases, but in others I’d rather develop against a gem
+and not modify the Gemfile when I am ready to deploy. The hack I came up with
+is to use two gemfiles. Create a file called &lt;code class=&quot;language-text&quot;&gt;Gemfile.local&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# Gemfile.local&lt;/span&gt;
+eval &lt;span class=&quot;token builtin&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;read&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token builtin&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;expand_path&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;../Gemfile&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; __FILE__&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;token variable&quot;&gt;@dependencies&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;delete &lt;span class=&quot;token variable&quot;&gt;@dependencies&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;find &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;d&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; d&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;name &lt;span class=&quot;token operator&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;GEM_NAME&apos;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+gem &lt;span class=&quot;token string&quot;&gt;&apos;GEM_NAME&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; path&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;path/to/local/gem&apos;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This file loads the original &lt;code class=&quot;language-text&quot;&gt;Gemfile&lt;/code&gt;, finds the gem, and redefines it to
+point to your local gem. Next, run:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;bundle install --gemfile=Gemfile.local&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You only have to run this once with the extra option. bundler will remember
+the choice to use &lt;code class=&quot;language-text&quot;&gt;Gemfile.local&lt;/code&gt; in &lt;code class=&quot;language-text&quot;&gt;.bundle/config&lt;/code&gt;. This will generate a
+separate lock file as well.&lt;/p&gt;
+&lt;p&gt;From this point forward, Bundler should now reference your local gem, but
+still use the actual gem in other environments. If you’d like to revert to
+using the original Gemfile, just remove the line from &lt;code class=&quot;language-text&quot;&gt;.bundle/config&lt;/code&gt;.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Fundamentals of git]]></title><description><![CDATA[I’m going to document here some basics about git. I think a lot of very
+skilled developers who use git everyday haven’t yet “grocked” the…]]></description><link>https://quinnshanahan.com/2014/01-06-git-basics/</link><guid isPermaLink="false">https://quinnshanahan.com/2014/01-06-git-basics/</guid><pubDate>Mon, 06 Jan 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;I’m going to document here some basics about git. I think a lot of very
+skilled developers who use git everyday haven’t yet “grocked” the fundamentals
+of how it works. For starters, I am going to define a glossary of terms
+relating to git (more are available by running “git help glossary”).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;working tree (or working copy)&lt;/strong&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;The working tree is the name given to the files and folders you are able to
+edit and are being managed by git.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;HEAD&lt;/strong&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;The HEAD ref represents where you currently * are * in the git history. For
+example, if you are on the master branch, your head is associated with the
+most recent commit on the master branch.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;clean (working tree)&lt;/strong&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;The working tree is considered clean (or pristine) if there is no difference
+between the code contained in the working tree and the state of the commit
+referenced by HEAD.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;sha&lt;/strong&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;the sha is the canonical reference to a commit. All commits have a sha which
+is a (practically) unique identifier of the commit.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ref&lt;/strong&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;A ref is any reference to a commit. a ref can be a branch or tag name, sha,
+HEAD or it can also be part of git’s special syntax for referencing commits.&lt;/p&gt;
+&lt;h2&gt;Different ways to reference commits&lt;/h2&gt;
+&lt;p&gt;git provides many different ways to reference commits beyond a branch or tag
+name. The two I am going to be using the most for this article are the
+relative references. For example, to reference a commit’s ancestor you would
+use ^. Add more ^‘s to move further back in time. Also, you can use ~number to
+have the same affect. Some examples&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;HEAD^  # =&amp;gt; one commit behind HEAD
+HEAD~1 #
+
+HEAD^^^^^^^^^^ # =&amp;gt; ten commits behind HEAD
+HEAD~10        #&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Diffs, the working tree and HEAD&lt;/h2&gt;
+&lt;p&gt;Any time a diff exists (seen by running “git diff”) this is because of a
+difference between HEAD and the working tree. If either of these change (the
+HEAD changes, or the working tree changes) it changes the diff.&lt;/p&gt;
+&lt;h2&gt;reset&lt;/h2&gt;
+&lt;p&gt;the &lt;code class=&quot;language-text&quot;&gt;git reset&lt;/code&gt; command moves the current location of HEAD. When adding
+&lt;code class=&quot;language-text&quot;&gt;--hard&lt;/code&gt; to &lt;code class=&quot;language-text&quot;&gt;git reset&lt;/code&gt; it will also modify the working tree to match the new
+commit that HEAD is associated with after being moved. HEAD is implied if no
+ref is given. Some examples:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;git reset --hard
+# is the same as
+git reset --hard HEAD&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This command moves HEAD to where it already is and modifies the working tree
+to match. This has the effect of removing any diff on the current working
+tree.&lt;/p&gt;
+&lt;h2&gt;checkout&lt;/h2&gt;
+&lt;p&gt;It is possible to associate a branch with HEAD so that it remains associated
+with HEAD as commits are created (rather than remaining associated with a
+specific commit). This is achieved through “checking out” a branch. &lt;code class=&quot;language-text&quot;&gt;git
+checkout&lt;/code&gt; can also be used to checkout any ref. &lt;code class=&quot;language-text&quot;&gt;git checkout&lt;/code&gt; differs from
+&lt;code class=&quot;language-text&quot;&gt;git reset --hard&lt;/code&gt; in that it attemps to safely move HEAD, i.e. it will throw
+an error if there is a diff that would be overwritten by the checkout.&lt;/p&gt;
+&lt;h2&gt;rebase (non-interactive)&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;git rebase&lt;/code&gt;, when used non-interactively, is a way of moving groups of
+commits around within a project. &lt;code class=&quot;language-text&quot;&gt;git rebase&lt;/code&gt; is able to determine the common
+ancestor of the current branch as well as the target, and move only the
+commits that are different. For example:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;      -----------* feature-001
+    /
+----*-----*
+          ▲
+          | master
+
+git checkout feature-001
+git rebase master
+
+    | this commit used to be the
+    | place where master and feature-001
+    | diverged. It is no longer significant
+    ▼
+----*-----*-----------* feature-001
+          ▲
+          | master&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;try it out!&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Make a new branch on a project and see if you can complete some of these git
+related tasks with only using reset.&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Squash the last 5 commits on your current branch into one commit.&lt;/li&gt;
+&lt;li&gt;Split the most recent commit you made into two commits.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;Try doing this using checkout, reset, and rebase:&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;split the 5th newest (~5) commit into two commits.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;rebase (interactive)&lt;/h2&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;git rebase -i&lt;/code&gt; is a toolchain to help comlete some of the tasks described
+above. It allows you to squash, split, and delete commits easily. For example,
+&lt;code class=&quot;language-text&quot;&gt;git rebase -i HEAD~5&lt;/code&gt; will allow you to reorganize and edit the last 5
+commits on your project. Try to complete the tasks above using &lt;code class=&quot;language-text&quot;&gt;git rebase -i&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;I hoped this helped you understand git’s core features a little bit more. It’s
+easy to use git without fully understanding what is going on, but it’s
+important to have a deep understanding of the working of git to trully take
+advantage of it’s power.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[faking placeholder from html5 in jquery]]></title><description><![CDATA[I just coded up a simple plugin to enable placeholder text for inputs in browsers that don’t support it yet. This isn’t tested thoroughly…]]></description><link>https://quinnshanahan.com/2010/10-07-faking-placeholder-text/</link><guid isPermaLink="false">https://quinnshanahan.com/2010/10-07-faking-placeholder-text/</guid><pubDate>Thu, 07 Oct 2010 16:29:06 GMT</pubDate><content:encoded>&lt;p&gt;I just coded up a simple plugin to enable placeholder text for inputs in browsers that don’t support it yet. This isn’t tested thoroughly, please let me know if anything isn’t working properly!&lt;/p&gt;
+&lt;p&gt;Check it out on github: &lt;a href=&quot;http://github.com/quinn/jquery.placeholder.js&quot;&gt;http://github.com/quinn/jquery.placeholder.js&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[new website up contactjam.com, built using rails 3]]></title><description><![CDATA[Exciting news, my friend Kevin (http://www.linkedin.com/pub/kevin-incorvia/20/339/508/) just launched an alpha of his new site: http…]]></description><link>https://quinnshanahan.com/2010/09-24-new-website-contactjam/</link><guid isPermaLink="false">https://quinnshanahan.com/2010/09-24-new-website-contactjam/</guid><pubDate>Fri, 24 Sep 2010 15:36:27 GMT</pubDate><content:encoded>&lt;p&gt;Exciting news, my friend Kevin (&lt;a href=&quot;http://www.linkedin.com/pub/kevin-incorvia/20/339/508/&quot;&gt;http://www.linkedin.com/pub/kevin-incorvia/20/339/508/&lt;/a&gt;) just launched an alpha of his new site: &lt;a href=&quot;http://contactjam.com&quot;&gt;http://contactjam.com&lt;/a&gt;. Cool! In a nutshell it is a “foursquare” that also ties in the time and the locale of other people. Its really neat, but I don’t want to give too much away because it is still in a closed alpha. I had the privilege of building the first iteration using rails 3, datamapper, and deploying it on aws using ec2 and s3. I’ll keep you posted with updates about it as it develops.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Quickly search through your Bash history]]></title><description><![CDATA[Is everyone up on ctrl+R in bash? It lets you do a reverse filter search through your bash history (kind of like history piped to grep but…]]></description><link>https://quinnshanahan.com/2010/09-21-quickly-search-bash/</link><guid isPermaLink="false">https://quinnshanahan.com/2010/09-21-quickly-search-bash/</guid><pubDate>Tue, 21 Sep 2010 10:51:02 GMT</pubDate><content:encoded>&lt;p&gt;Is everyone up on ctrl+R in bash? It lets you do a reverse filter search through your bash history (kind of like history piped to grep but cooler). It’s really handy, I’m guessing most everyone knows it already but just in case anybody missed it, you should definitely give it a try.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Why I think datamapper is awesome]]></title><description><![CDATA[I know Datamapper is probably considered “old news” at this point, which is something I think unfortunate considering its low adoption rate…]]></description><link>https://quinnshanahan.com/2010/08-30-why-i-think-datamapper-is-awesome/</link><guid isPermaLink="false">https://quinnshanahan.com/2010/08-30-why-i-think-datamapper-is-awesome/</guid><pubDate>Mon, 30 Aug 2010 08:30:26 GMT</pubDate><content:encoded>&lt;p&gt;I know Datamapper is probably considered “old news” at this point, which is something I think unfortunate considering its low adoption rate. I’m going to re-hash its advantages here just to add my own voice to its fan base. Here are some of the reasons I really like datamapper. In no specific order.&lt;/p&gt;
+&lt;h2&gt;#1 robust query mapping&lt;/h2&gt;
+&lt;p&gt;the datamapper API is robust enough that it drastically reduces how much one has to drop down to sql to get the desired results. For example:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Book&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;DataMapper&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;Resource&lt;/span&gt;
+
+  property &lt;span class=&quot;token symbol&quot;&gt;:published_at&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;DateTime&lt;/span&gt;
+
+  belongs_to &lt;span class=&quot;token symbol&quot;&gt;:author&lt;/span&gt;
+
+  &lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token method-definition&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;published_recently&lt;/span&gt;&lt;/span&gt;
+    all &lt;span class=&quot;token symbol&quot;&gt;:published_at&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;gte &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1.&lt;/span&gt;week&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;ago
+  &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;token constant&quot;&gt;Book&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;all&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;published_recently&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;authors&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;only executes a single query. neat right?&lt;/p&gt;
+&lt;h2&gt;#2 The property API&lt;/h2&gt;
+&lt;p&gt;Datamapper favors explicit property definitions rather than attempting to infer them from the table. There are advantages to this, such as easier introspection and tighter control over serialization. Also, one of the ways that Datamapper offer’s to its users to add features is the property api. One can create their own classes to extend datamapper’s serialization and property mapping through a sussinct api:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;DataMapper&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Property&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Geo&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Yaml&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token method-definition&quot;&gt;&lt;span class=&quot;token function&quot;&gt;dump&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;value&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; value&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; value&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;kind_of&lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;Geokit&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;GeoLoc&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+          &lt;span class=&quot;token keyword&quot;&gt;super&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;value&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt;
+          &lt;span class=&quot;token keyword&quot;&gt;raise&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;ArgumentError&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;quot&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt;value&lt;span class=&quot;token operator&quot;&gt;+&lt;/span&gt; must be &lt;span class=&quot;token keyword&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token builtin&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;or&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Geokit&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;GeoLoc&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;amp;&lt;/span&gt;quot&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+      &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+
+      &lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token method-definition&quot;&gt;&lt;span class=&quot;token function&quot;&gt;typecast&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;value&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; value &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; value&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;nil&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;||&lt;/span&gt; value&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;kind_of&lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;Geokit&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;GeoLoc&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        geoloc &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;GeoKit&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;Geocoders&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;MultiGeocoder&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;geocode&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;value&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;unless&lt;/span&gt; geoloc&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;success
+          &lt;span class=&quot;token keyword&quot;&gt;raise&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;ArgumentError&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;+value+ is not a valid address&quot;&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+        geoloc
+      &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This piggybacks on the existing yaml implementation that exists here: &lt;a href=&quot;http://github.com/datamapper/dm-types/blob/v1.0.0/lib/dm-types/yaml.rb&quot;&gt;http://github.com/datamapper/dm-types/blob/v1.0.0/lib/dm-types/yaml.rb&lt;/a&gt; . Basically, you get two methods, one for loading (deserializing) from the database and one for dumping (serializing) to the database. Using the above class you can now:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Profile&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;DataMapper&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;Resource&lt;/span&gt;
+
+  property &lt;span class=&quot;token symbol&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Serial&lt;/span&gt;
+  property &lt;span class=&quot;token symbol&quot;&gt;:address&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Geo&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+
+profile &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Profile&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;new&lt;/span&gt;
+profile&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;address &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;Brooklyn Bridge&quot;&lt;/span&gt;
+profile&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;address&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;district &lt;span class=&quot;token comment&quot;&gt;#=&gt; &quot;Manhattan&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;#3 inclusion over inheritance&lt;/h2&gt;
+&lt;p&gt;I suppose this one is largely a stylistic preference. I like explicitly saying &lt;code class=&quot;language-text&quot;&gt;include DataMapper::Resource&lt;/code&gt; that way you know where to include your modules. for example:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;DataMapper&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;Resource&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;MyModule&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;InstanceMethods&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;token keyword&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;DataMapper&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;Model&lt;/span&gt;
+  &lt;span class=&quot;token keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;MyModule&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;ClassMethods&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This is about as simple as it gets in my opinion. DataMapper::Resource’s self.included method simple extends the current class with DataMapper::Model and does nothing else. To me this is clean and simple and doesn’t add any fluff on top of what ruby does by default.&lt;/p&gt;
+&lt;h2&gt;Rails 3&lt;/h2&gt;
+&lt;p&gt;Rails 3 will fix many of these problems, but I think DataMapper’s api is still unique enough to merit looking into. Despite the improvements to activerecord 3 I plan on continuing to use datamapper in future projects.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Switching wordpress to nginx]]></title><description><![CDATA[I just updated my server to use nginx from apache/mod_php because loading wordpress on my tiny slicehost slice was tanking the poor thing…]]></description><link>https://quinnshanahan.com/2010/08-23-switching-wordpress-to-nginx/</link><guid isPermaLink="false">https://quinnshanahan.com/2010/08-23-switching-wordpress-to-nginx/</guid><pubDate>Mon, 23 Aug 2010 08:30:35 GMT</pubDate><content:encoded>&lt;p&gt;I just updated my server to use nginx from apache/mod_php because loading wordpress on my tiny slicehost slice was tanking the poor thing. Apache was spawning processes like crazy and pages were taking forever to load, even when I am the only person viewing the site. My new setup uses php-cgi based on this tutorial:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://tomasz.sterna.tv/2009/04/php-fastcgi-with-nginx-on-ubuntu/&quot;&gt;http://tomasz.sterna.tv/2009/04/php-fastcgi-with-nginx-on-ubuntu/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;this is what my nginx config looks like:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;server {
+  listen          80;
+  server_name     blog.quinnshanahan.com;
+
+  access_log      /var/log/nginx/blog.quinnshanahan.com.access_log;
+  error_log       /var/log/nginx/blog.quinnshanahan.com.error_log warn;
+
+  root            /var/www/blog.quinnshanahan.com;
+
+  index           index.php index.html;
+  fastcgi_index   index.php;
+
+  location / {
+    # this sends all non-existing file or directory requests to index.php
+    if (!-e $request_filename) {
+      rewrite ^(.+)$ /index.php?q=$1 last;
+    }
+  }
+
+  location ~ \.php {
+    include /etc/nginx/fastcgi_params;
+    keepalive_timeout 0;
+    fastcgi_param   SCRIPT_FILENAME  $document_root$fastcgi_script_name;
+    fastcgi_pass    127.0.0.1:9000;
+  }
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;highly recommended.. its amazing how much faster it is!&lt;/p&gt;</content:encoded></item></channel></rss>
