@@ -1,4 +1,102 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Quinn's Blog]]></title><description><![CDATA[It's probably gonna mostly be about code]]></description><link>https://quinnshanahan.com</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 03 Feb 2020 12:53:26 GMT</lastBuildDate><item><title><![CDATA[Create a Blog With Github Pages and Gatsby]]></title><description><![CDATA[I’m putting down the steps I took to set this thing up before I forget. Install and run Gatsby init Recently, I decided to give this whole…]]></description><link>https://quinnshanahan.com/2020/02-02-gatsby-and-gh-pages/</link><guid isPermaLink="false">https://quinnshanahan.com/2020/02-02-gatsby-and-gh-pages/</guid><pubDate>Sun, 02 Feb 2020 22:49:51 GMT</pubDate><content:encoded>&lt;p&gt;I’m putting down the steps I took to set this thing up before I forget.&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Quinn's Blog]]></title><description><![CDATA[It's probably gonna mostly be about code]]></description><link>https://quinnshanahan.com</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 08 Feb 2020 04:01:58 GMT</lastBuildDate><item><title><![CDATA[Setup serverless redirects on AWS with SSL and Route 53]]></title><description><![CDATA[All I wanted to do was redirect quinnshanahan.com to quinn.io. Simple, right? Simple enough to not require a server, right? As simple as…]]></description><link>https://quinnshanahan.com/2020/02-07-redirect-with-ssl-aws/</link><guid isPermaLink="false">https://quinnshanahan.com/2020/02-07-redirect-with-ssl-aws/</guid><pubDate>Fri, 07 Feb 2020 10:58:00 GMT</pubDate><content:encoded>&lt;p&gt;All I wanted to do was redirect quinnshanahan.com to quinn.io. Simple, right? Simple enough to not require a server, &lt;em&gt;right&lt;/em&gt;?&lt;/p&gt;
+&lt;p&gt;As simple as this would be using a droplet or an existing host I have running with nginx, or even a lambda function I really wanted to do this without any host of any kind. I thought this should be possible on AWS, and it was, but very convoluted.&lt;/p&gt;
+&lt;p&gt;The main thing that makes this work is a feature for S3 that allows you to redirect a bucket to any other domain. The config looks like this in the console:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/cbbbce30fbefdbc3e471c2a82441c386/8c557/static-web-hosting.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 94.14285714285715%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAAACXBIWXMAAAsSAAALEgHS3X78AAAC0ElEQVQ4y5WUS08UQRDH51N5NRqN0ZuPRA++MIKcvfoZvHtxjRDBqFEENFw8+gjKI4TFqCzssLDuzM7Ou3uePX+re3dwWVkDnfzSPd1d/6mqqRrtS8NFZcXA1Fob0xsWptbbqCy18Jh4smzsrys91D4xSTYTPSZXDdo3MLdhQnv4uYkTlR84+2wTZ6ZruPCmjpH5Hdyd03Hl1RZuv9XV+sZMXXFnVse119s4+fQnTk10OU2cm6phbOYXtEfLLZx/XlPGV8nw+sIu7i00MD6v4+bMNkZpb/ydjpHZOgnXMUr7Y8TFFzVc6uPyyy3cf1+DpjsMaybHuhGi2maoWhFWWhyLuyGWfzN8a4ZY3AtpZlhqMjV/pecVOpOs0t11sl8zIlSbLrQiT4EiR8sw0bEdWCyDyXK4sUCYFoSAR+sgEYgzAZbk8OO/RHReDpHG0OIkQSYKGEGChs2gWz6aToiAcfAoImJwzuGxSAlwEmCEtCmKAoLI5ZoEGd3TEhKkE+VlxEjIcxH4HlzXhe95Cs+x0WwTQQqbZ2hTFGleKK+kqESOiBzQRJaiw1J80l2wwIfVseGSiN3pQHcitLmAxXMEaYHBUYodEMzSBBHlZs+LEUccQRCAMabwQkZ5y1V4WS+skkHhfUGZw3JIkZCQOZOHLAyR51nXCyEgDuEfD5OeoNySoZpmWx3Iy3lO3mWUr5TIDiFNFeU4KEhvUaGSd2KIN+I/Xh4uSGL8mIJDQ5bDcVyVQ1Wk0kDWWC6OH7I0lrmStWdRuTg0245DL3AQ0odRBTzUy25hy37hnATTNNn3KI5jEmDqTTL0soSOOpKYBCNSbW1Z8DwfHnWI9Mj3fSU2WGdFf81R7co2lB3zcSfAwqYP22fQOPWsXm2SQKhE+gX7k14iim5pG9SG3+kvY1GXPfjQwC361dVMD1pI/ctjpoQGkcLDkBGpmXBcDw49y2/wB17uk5mBqL5YAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Static Website S3 Properties&quot;
+        title=&quot;Static Website S3 Properties&quot;
+        src=&quot;/static/cbbbce30fbefdbc3e471c2a82441c386/fcda8/static-web-hosting.png&quot;
+        srcset=&quot;/static/cbbbce30fbefdbc3e471c2a82441c386/12f09/static-web-hosting.png 148w,
+/static/cbbbce30fbefdbc3e471c2a82441c386/e4a3f/static-web-hosting.png 295w,
+/static/cbbbce30fbefdbc3e471c2a82441c386/fcda8/static-web-hosting.png 590w,
+/static/cbbbce30fbefdbc3e471c2a82441c386/8c557/static-web-hosting.png 700w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Thats pretty straightforward. Now all you have to do is create a bucket with a name matching the hostname that you want to redirect from and you are good to go. You may notice here the bucket name is &lt;code class=&quot;language-text&quot;&gt;redirect.quinnshanahan.com&lt;/code&gt;. The reason for this is that it is not possible to attach an SSL certificate to a bucket, and instead you must create an SSL certificate and attach it to a Cloudfront distribution. The latter half of &lt;a href=&quot;https://medium.com/@channaly/how-to-host-static-website-with-https-using-amazon-s3-251434490c59&quot;&gt;This blog post&lt;/a&gt; describes the process well. The main difference is that instead of associating the distribution with the S3 bucket I associated it with the domain &lt;code class=&quot;language-text&quot;&gt;redirect.quinnshanahan.com&lt;/code&gt;. This allows cloudfront to receive the &lt;code class=&quot;language-text&quot;&gt;301&lt;/code&gt; from the static website hosting rather than the &lt;code class=&quot;language-text&quot;&gt;403&lt;/code&gt; from the bucket.&lt;/p&gt;
+&lt;p&gt;The final step is to tie everything together in Route 53 using aliases.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 471px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/8a21698ef6e3000ffbc71fcebc12c081/1f09d/redirect-config.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 53.92781316348195%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsSAAALEgHS3X78AAAB3klEQVQoz2VSiXKbMBT0//9Uj8lM6kmbjtPGtWPHgGxukMAggbi2T7KT4JaZnZXE02qfVosoP+MY5ojzCmFaWj6rEaUa/sFoUcgepRz+g6h7KD1gwfwEm72LV9fH7sDAghR1O102qp7EB1QNCSmNotGQGvb/DfSEirgxgpznODIPjVJI0wSF4KjOJYpCgOeZnZ/LErXk5IDj8k0z/hiPIwnmeQ7GGLquh5QSnHOLJElQ1TUVjeiHgZg2DJOda63Rtu1FZpoIFx6obmFEjCgmU9iiriWqqiKHBZSSVDjakw0Gy3RA31vMv3fBMIrxa/WIH9sMPzcBRJbAcRm1n0OIAlnGkeW3yC3EezecC2uq6zosjKMoDBHEHCc/gutzOKGCF0uwWH0gmXFi/iscqM603jQtXZeyrheKwnBd1wbiHPbYMW6TbLqRUqPkuivexvq6TgjEYFu9admcIISwIaRpSpyCFzWOQQLvGOFEzE4RjUOIUkE2A2p6TpXqoNreBmTu1cAKmr49z8N6vcbz829sty94ePLw+dsWX5c7fFm+4NP9xvL9o4vl6oi776+4e9hj+eRj9ed0DW4maNyZp+M4DoIgoDfXwITlByEhQkyuoyixa2EY20C0NkmPlucO/wIaFUaxNgYx+AAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Route 53 config for redirect.quinnshanahan.com&quot;
+        title=&quot;Route 53 config for redirect.quinnshanahan.com&quot;
+        src=&quot;/static/8a21698ef6e3000ffbc71fcebc12c081/1f09d/redirect-config.png&quot;
+        srcset=&quot;/static/8a21698ef6e3000ffbc71fcebc12c081/12f09/redirect-config.png 148w,
+/static/8a21698ef6e3000ffbc71fcebc12c081/e4a3f/redirect-config.png 295w,
+/static/8a21698ef6e3000ffbc71fcebc12c081/1f09d/redirect-config.png 471w&quot;
+        sizes=&quot;(max-width: 471px) 100vw, 471px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 478px;&quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/33caa5dfd266f32662a798d2416fe5f0/50978/cloudfront-config.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 65.48117154811716%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsSAAALEgHS3X78AAACF0lEQVQ4y3WT6W6bUBCF/f7P1SY/ErmV0tbEBrNjdriXfT2duTZOKqdIRyNAfHfOnGEnqhZhKhBlEhHVtGxQdfNddbdSXf559pVkO2OaF+yCKMW74cCwfJxMF7YfQ9BLliRQ3nQQ3UgfbeCvtCrgOM3YCVHCdRxUUqLrWkghkGcppBRo6hpVk2KYalyvFf+/VizLwkABh4BN0xCwQ1EUyPIcSZIQVGJdgJmszPOsxB/1/YBhGK6Y9XrIst6ADIrjWMH6vkfNXVUSZVmgpXfrwpAP8f00jQSfVFcMXG+wW4cS2uE33o4BXrQUeRrDcnx4QYwkEwjj/EFRUihlWYE8Z+VgpwrIHUVRhEsYIwhCmF4KO+4RZB2pxyUf7nUT33tJD5c0jQN6ss/u7pbDMFQz8z0Huh0hr2ld2hGyGSHqHlU7oZAtMlqpsqKxdJNalaicyO5yneFynfOubVvVrud58H2fxDWAYZh4P55gWjYOB42CKlA3Ldquv4W0qhkyhGe4hbbjVrk7TdOg67oSJ23bNkzTVAdxTdOUgiopsEp1sy3RA5DT5aFuMP44CHwCWjidjnBdhw470H6Wn9L9tH1k+QGYZRlZNHA+n1VnSVpAPzs4GRZM28dRtyj5AD4lL2iWkufaDKrW9Cdt1u+W2eIG44B+/nHxtLfw/INl4/XXBS9vPr69Gnim5097U+n73sbxfFGdTtMV+Bewed9tcT0WUAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Route 53 config for cloudfront&quot;
+        title=&quot;Route 53 config for cloudfront&quot;
+        src=&quot;/static/33caa5dfd266f32662a798d2416fe5f0/50978/cloudfront-config.png&quot;
+        srcset=&quot;/static/33caa5dfd266f32662a798d2416fe5f0/12f09/cloudfront-config.png 148w,
+/static/33caa5dfd266f32662a798d2416fe5f0/e4a3f/cloudfront-config.png 295w,
+/static/33caa5dfd266f32662a798d2416fe5f0/50978/cloudfront-config.png 478w&quot;
+        sizes=&quot;(max-width: 478px) 100vw, 478px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;I did the same thing for &lt;code class=&quot;language-text&quot;&gt;www&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Adding SSL to the redirect domain probably made things overly complicated, and arguably not necessary. Since my browser has cached that I had SSL on &lt;code class=&quot;language-text&quot;&gt;quinnshanahan.com&lt;/code&gt; it was probably mostly for myself than anyone else.&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;References:&lt;br /&gt;
+&lt;a href=&quot;https://medium.com/@channaly/how-to-host-static-website-with-https-using-amazon-s3-251434490c59&quot;&gt;How to host static website with https using amazon s3&lt;/a&gt;&lt;br /&gt;
+&lt;a href=&quot;https://aws.amazon.com/premiumsupport/knowledge-center/redirect-domain-route-53/&quot;&gt;Redirect a Domain to Another Domain using Route 53&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Create a Blog With Github Pages and Gatsby]]></title><description><![CDATA[I’m putting down the steps I took to set this thing up before I forget. Install and run Gatsby init Recently, I decided to give this whole…]]></description><link>https://quinnshanahan.com/2020/02-02-gatsby-and-gh-pages/</link><guid isPermaLink="false">https://quinnshanahan.com/2020/02-02-gatsby-and-gh-pages/</guid><pubDate>Sun, 02 Feb 2020 22:49:51 GMT</pubDate><content:encoded>&lt;p&gt;I’m putting down the steps I took to set this thing up before I forget.&lt;/p&gt;
 &lt;h2&gt;Install and run Gatsby init&lt;/h2&gt;
 &lt;p&gt;Recently, I decided to give this whole go directory structure a try, so I made a dir for my personal stuff:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; -p github.com/quinn
