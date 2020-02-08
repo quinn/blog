@@ -3,7 +3,7 @@ module.exports = {
     title: `Quinn's Blog`,
     author: `Quinn Shanahan`,
     description: `It's probably gonna mostly be about code`,
-    siteUrl: `https://quinnshanahan.com/`,
+    siteUrl: `https://quinn.io/`,
     social: {
       twitter: `quinnshanahan`,
       github: `quinn`,
@@ -59,8 +59,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
+        name: `Quinn's Blog`,
+        short_name: `quinns-blog`,
         start_url: `/`,
         background_color: `#ffffff`,
         theme_color: `#663399`,

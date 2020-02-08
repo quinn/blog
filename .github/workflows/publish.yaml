@@ -25,7 +25,7 @@ jobs:
     - name: Set CNAME
       run: |
         sudo tee -a public/CNAME > /dev/null << EOF
-        quinnshanahan.com
+        quinn.io
         EOF
 
     - name: Deploy
