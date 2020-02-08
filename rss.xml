@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Quinn's Blog]]></title><description><![CDATA[It's probably gonna mostly be about code]]></description><link>https://quinn.io</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 08 Feb 2020 04:15:40 GMT</lastBuildDate><item><title><![CDATA[Setup serverless redirects on AWS with SSL and Route 53]]></title><description><![CDATA[All I wanted to do was redirect quinnshanahan.com to quinn.io. Simple, right? Simple enough to not require a server, right? As simple as…]]></description><link>https://quinn.io/2020/02-07-redirect-with-ssl-aws/</link><guid isPermaLink="false">https://quinn.io/2020/02-07-redirect-with-ssl-aws/</guid><pubDate>Fri, 07 Feb 2020 10:58:00 GMT</pubDate><content:encoded>&lt;p&gt;All I wanted to do was redirect quinnshanahan.com to quinn.io. Simple, right? Simple enough to not require a server, &lt;em&gt;right&lt;/em&gt;?&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Dan Abramov's Overreacted Blog RSS Feed]]></title><description><![CDATA[It's probably gonna mostly be about code]]></description><link>https://quinn.io</link><generator>GatsbyJS</generator><lastBuildDate>Sat, 08 Feb 2020 20:10:05 GMT</lastBuildDate><item><title><![CDATA[Setup serverless redirects on AWS with SSL and Route 53]]></title><link>https://quinn.io/2020/02-07-redirect-with-ssl-aws/</link><guid isPermaLink="false">https://quinn.io/2020/02-07-redirect-with-ssl-aws/</guid><pubDate>Fri, 07 Feb 2020 10:58:00 GMT</pubDate><content:encoded>&lt;p&gt;All I wanted to do was redirect quinnshanahan.com to quinn.io. Simple, right? Simple enough to not require a server, &lt;em&gt;right&lt;/em&gt;?&lt;/p&gt;
 &lt;p&gt;As simple as this would be using a droplet or an existing host I have running with nginx, or even a lambda function I really wanted to do this without any host of any kind. I thought this should be possible on AWS, and it was, but very convoluted.&lt;/p&gt;
 &lt;p&gt;The main thing that makes this work is a feature for S3 that allows you to redirect a bucket to any other domain. The config looks like this in the console:&lt;/p&gt;
 &lt;p&gt;&lt;span
@@ -7,7 +7,7 @@
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/cbbbce30fbefdbc3e471c2a82441c386/8c557/static-web-hosting.png&quot;
+    href=&quot;https://quinn.io/static/cbbbce30fbefdbc3e471c2a82441c386/8c557/static-web-hosting.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -20,11 +20,8 @@
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Static Website S3 Properties&quot;
         title=&quot;Static Website S3 Properties&quot;
-        src=&quot;/static/cbbbce30fbefdbc3e471c2a82441c386/fcda8/static-web-hosting.png&quot;
-        srcset=&quot;/static/cbbbce30fbefdbc3e471c2a82441c386/12f09/static-web-hosting.png 148w,
-/static/cbbbce30fbefdbc3e471c2a82441c386/e4a3f/static-web-hosting.png 295w,
-/static/cbbbce30fbefdbc3e471c2a82441c386/fcda8/static-web-hosting.png 590w,
-/static/cbbbce30fbefdbc3e471c2a82441c386/8c557/static-web-hosting.png 700w&quot;
+        src=&quot;https://quinn.io/static/cbbbce30fbefdbc3e471c2a82441c386/fcda8/static-web-hosting.png&quot;
+        srcset=&quot;https://quinn.io/static/cbbbce30fbefdbc3e471c2a82441c386/12f09/static-web-hosting.png 148w,https://quinn.io/static/cbbbce30fbefdbc3e471c2a82441c386/e4a3f/static-web-hosting.png 295w,https://quinn.io/static/cbbbce30fbefdbc3e471c2a82441c386/fcda8/static-web-hosting.png 590w,https://quinn.io/static/cbbbce30fbefdbc3e471c2a82441c386/8c557/static-web-hosting.png 700w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -39,7 +36,7 @@
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/8a21698ef6e3000ffbc71fcebc12c081/1f09d/redirect-config.png&quot;
+    href=&quot;https://quinn.io/static/8a21698ef6e3000ffbc71fcebc12c081/1f09d/redirect-config.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -52,10 +49,8 @@
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Route 53 config for redirect.quinnshanahan.com&quot;
         title=&quot;Route 53 config for redirect.quinnshanahan.com&quot;
-        src=&quot;/static/8a21698ef6e3000ffbc71fcebc12c081/1f09d/redirect-config.png&quot;
-        srcset=&quot;/static/8a21698ef6e3000ffbc71fcebc12c081/12f09/redirect-config.png 148w,
-/static/8a21698ef6e3000ffbc71fcebc12c081/e4a3f/redirect-config.png 295w,
-/static/8a21698ef6e3000ffbc71fcebc12c081/1f09d/redirect-config.png 471w&quot;
+        src=&quot;https://quinn.io/static/8a21698ef6e3000ffbc71fcebc12c081/1f09d/redirect-config.png&quot;
+        srcset=&quot;https://quinn.io/static/8a21698ef6e3000ffbc71fcebc12c081/12f09/redirect-config.png 148w,https://quinn.io/static/8a21698ef6e3000ffbc71fcebc12c081/e4a3f/redirect-config.png 295w,https://quinn.io/static/8a21698ef6e3000ffbc71fcebc12c081/1f09d/redirect-config.png 471w&quot;
         sizes=&quot;(max-width: 471px) 100vw, 471px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -68,7 +63,7 @@
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/33caa5dfd266f32662a798d2416fe5f0/50978/cloudfront-config.png&quot;
+    href=&quot;https://quinn.io/static/33caa5dfd266f32662a798d2416fe5f0/50978/cloudfront-config.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -81,10 +76,8 @@
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Route 53 config for cloudfront&quot;
         title=&quot;Route 53 config for cloudfront&quot;
-        src=&quot;/static/33caa5dfd266f32662a798d2416fe5f0/50978/cloudfront-config.png&quot;
-        srcset=&quot;/static/33caa5dfd266f32662a798d2416fe5f0/12f09/cloudfront-config.png 148w,
-/static/33caa5dfd266f32662a798d2416fe5f0/e4a3f/cloudfront-config.png 295w,
-/static/33caa5dfd266f32662a798d2416fe5f0/50978/cloudfront-config.png 478w&quot;
+        src=&quot;https://quinn.io/static/33caa5dfd266f32662a798d2416fe5f0/50978/cloudfront-config.png&quot;
+        srcset=&quot;https://quinn.io/static/33caa5dfd266f32662a798d2416fe5f0/12f09/cloudfront-config.png 148w,https://quinn.io/static/33caa5dfd266f32662a798d2416fe5f0/e4a3f/cloudfront-config.png 295w,https://quinn.io/static/33caa5dfd266f32662a798d2416fe5f0/50978/cloudfront-config.png 478w&quot;
         sizes=&quot;(max-width: 478px) 100vw, 478px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -96,7 +89,9 @@
 &lt;hr&gt;
 &lt;p&gt;References:&lt;br /&gt;
 &lt;a href=&quot;https://medium.com/@channaly/how-to-host-static-website-with-https-using-amazon-s3-251434490c59&quot;&gt;How to host static website with https using amazon s3&lt;/a&gt;&lt;br /&gt;
-&lt;a href=&quot;https://aws.amazon.com/premiumsupport/knowledge-center/redirect-domain-route-53/&quot;&gt;Redirect a Domain to Another Domain using Route 53&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Create a Blog With Github Pages and Gatsby]]></title><description><![CDATA[I’m putting down the steps I took to set this thing up before I forget. Install and run Gatsby init Recently, I decided to give this whole…]]></description><link>https://quinn.io/2020/02-02-gatsby-and-gh-pages/</link><guid isPermaLink="false">https://quinn.io/2020/02-02-gatsby-and-gh-pages/</guid><pubDate>Sun, 02 Feb 2020 22:49:51 GMT</pubDate><content:encoded>&lt;p&gt;I’m putting down the steps I took to set this thing up before I forget.&lt;/p&gt;
+&lt;a href=&quot;https://aws.amazon.com/premiumsupport/knowledge-center/redirect-domain-route-53/&quot;&gt;Redirect a Domain to Another Domain using Route 53&lt;/a&gt;&lt;/p&gt;
+		&lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at quinn.io. You can read it online by &lt;a href=&quot;https://quinn.io/2020/02-07-redirect-with-ssl-aws/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
+	</content:encoded></item><item><title><![CDATA[Create a Blog With Github Pages and Gatsby]]></title><description><![CDATA[Setup a blog using Gatsby.js that publishes on push using github actions to github pages]]></description><link>https://quinn.io/2020/02-02-gatsby-and-gh-pages/</link><guid isPermaLink="false">https://quinn.io/2020/02-02-gatsby-and-gh-pages/</guid><pubDate>Sun, 02 Feb 2020 22:49:51 GMT</pubDate><content:encoded>&lt;p&gt;I’m putting down the steps I took to set this thing up before I forget.&lt;/p&gt;
 &lt;h2&gt;Install and run Gatsby init&lt;/h2&gt;
 &lt;p&gt;Recently, I decided to give this whole go directory structure a try, so I made a dir for my personal stuff:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; -p github.com/quinn
@@ -145,7 +140,9 @@
         &lt;span class=&quot;token key atrule&quot;&gt;ACTIONS_DEPLOY_KEY&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt; secrets.ACTIONS_DEPLOY_KEY &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
         &lt;span class=&quot;token key atrule&quot;&gt;PUBLISH_BRANCH&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; gh&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;pages
         &lt;span class=&quot;token key atrule&quot;&gt;PUBLISH_DIR&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ./public&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;And that should do it! You can see this &lt;em&gt;in action&lt;/em&gt; (lol) for my blog here: &lt;a href=&quot;https://github.com/quinn/blog/actions&quot;&gt;https://github.com/quinn/blog/actions&lt;/a&gt;. Neat!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Create simple services for web clients using API Gateway, CloudFormation, and Lambda]]></title><description><![CDATA[Functional demo can be found here: GitHub — quinn/lambda-nodejs-example Here’s a process for creating simple backends for a web client app…]]></description><link>https://quinn.io/2019/02-10-simple-services-lambda/</link><guid isPermaLink="false">https://quinn.io/2019/02-10-simple-services-lambda/</guid><pubDate>Sun, 10 Feb 2019 22:49:51 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;Functional demo can be found here: &lt;a href=&quot;https://github.com/quinn/lambda-nodejs-example&quot;&gt;GitHub — quinn/lambda-nodejs-example&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;And that should do it! You can see this &lt;em&gt;in action&lt;/em&gt; (lol) for my blog here: &lt;a href=&quot;https://github.com/quinn/blog/actions&quot;&gt;https://github.com/quinn/blog/actions&lt;/a&gt;. Neat!&lt;/p&gt;
+		&lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at quinn.io. You can read it online by &lt;a href=&quot;https://quinn.io/2020/02-02-gatsby-and-gh-pages/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
+	</content:encoded></item><item><title><![CDATA[Create simple services for web clients using API Gateway, CloudFormation, and Lambda]]></title><link>https://quinn.io/2019/02-10-simple-services-lambda/</link><guid isPermaLink="false">https://quinn.io/2019/02-10-simple-services-lambda/</guid><pubDate>Sun, 10 Feb 2019 22:49:51 GMT</pubDate><content:encoded>&lt;p&gt;&lt;em&gt;Functional demo can be found here: &lt;a href=&quot;https://github.com/quinn/lambda-nodejs-example&quot;&gt;GitHub — quinn/lambda-nodejs-example&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;Here’s a process for creating simple backends for a web client app. Use cases would be when you would like to add a small piece of functionality that doesn’t have much interaction with the rest of the app, but don’t want the overhead that comes with standing up a server.&lt;/p&gt;
 &lt;h2&gt;API Gateway Models&lt;/h2&gt;
 &lt;p&gt;A lot of articles on this topic using &lt;a href=&quot;https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-model.html&quot;&gt;AWS API Gateway Models&lt;/a&gt;. This is probably helpful if you are building a full-sized REST API around well defined resources, which wasn’t really my use case (small, independent/unrelated behavior). I’m interested in learning more about this but (for now) I’ll probably continue using ruby / node / python app server on VPS (e.g. EC2) for this type of thing.&lt;/p&gt;
@@ -158,7 +155,7 @@
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/724dd7f7c52a1ebf4b0ea1f75c1602fd/c6e28/diagram.png&quot;
+    href=&quot;https://quinn.io/static/724dd7f7c52a1ebf4b0ea1f75c1602fd/c6e28/diagram.png&quot;
     style=&quot;display: block&quot;
     target=&quot;_blank&quot;
     rel=&quot;noopener&quot;
@@ -171,13 +168,8 @@
         class=&quot;gatsby-resp-image-image&quot;
         alt=&quot;Diagram&quot;
         title=&quot;Diagram&quot;
-        src=&quot;/static/724dd7f7c52a1ebf4b0ea1f75c1602fd/fcda8/diagram.png&quot;
-        srcset=&quot;/static/724dd7f7c52a1ebf4b0ea1f75c1602fd/12f09/diagram.png 148w,
-/static/724dd7f7c52a1ebf4b0ea1f75c1602fd/e4a3f/diagram.png 295w,
-/static/724dd7f7c52a1ebf4b0ea1f75c1602fd/fcda8/diagram.png 590w,
-/static/724dd7f7c52a1ebf4b0ea1f75c1602fd/efc66/diagram.png 885w,
-/static/724dd7f7c52a1ebf4b0ea1f75c1602fd/c83ae/diagram.png 1180w,
-/static/724dd7f7c52a1ebf4b0ea1f75c1602fd/c6e28/diagram.png 1777w&quot;
+        src=&quot;https://quinn.io/static/724dd7f7c52a1ebf4b0ea1f75c1602fd/fcda8/diagram.png&quot;
+        srcset=&quot;https://quinn.io/static/724dd7f7c52a1ebf4b0ea1f75c1602fd/12f09/diagram.png 148w,https://quinn.io/static/724dd7f7c52a1ebf4b0ea1f75c1602fd/e4a3f/diagram.png 295w,https://quinn.io/static/724dd7f7c52a1ebf4b0ea1f75c1602fd/fcda8/diagram.png 590w,https://quinn.io/static/724dd7f7c52a1ebf4b0ea1f75c1602fd/efc66/diagram.png 885w,https://quinn.io/static/724dd7f7c52a1ebf4b0ea1f75c1602fd/c83ae/diagram.png 1180w,https://quinn.io/static/724dd7f7c52a1ebf4b0ea1f75c1602fd/c6e28/diagram.png 1777w&quot;
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
@@ -238,7 +230,9 @@ appropriate headers to enforce a whitelist of allowed domains.&lt;/li&gt;
 &lt;h2&gt;Caveats&lt;/h2&gt;
 &lt;p&gt;The main caveat that I found was that CloudFormation only &lt;em&gt;updates configuration&lt;/em&gt;. So, certain things may require manual intervention after the stack has been deployed. Updates to the lambda function code seem to be available immediately. However, API Gateway has it’s own “deploy” process which must be ran for any changes to the API Gateway. Typically, changes will probably be with the function code rather than the API structure, so this doesn’t seem like a huge inconvenience. Ideally I’d like to figure out a way to automate this as well.&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;This is a “beginner” post, so let me know if what you think and if I missed anything!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Setting up Docker Compose for Development]]></title><description><![CDATA[General project structure: From here, you can setup how the images should be built and how the containers should be run. Sharing files for…]]></description><link>https://quinn.io/2017/12-06-setting-up-docker-compose-for-development/</link><guid isPermaLink="false">https://quinn.io/2017/12-06-setting-up-docker-compose-for-development/</guid><pubDate>Wed, 06 Dec 2017 22:49:51 GMT</pubDate><content:encoded>&lt;p&gt;General project structure:&lt;/p&gt;
+&lt;p&gt;This is a “beginner” post, so let me know if what you think and if I missed anything!&lt;/p&gt;
+		&lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at quinn.io. You can read it online by &lt;a href=&quot;https://quinn.io/2019/02-10-simple-services-lambda/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
+	</content:encoded></item><item><title><![CDATA[Setting up Docker Compose for Development]]></title><description><![CDATA[General project structure:]]></description><link>https://quinn.io/2017/12-06-setting-up-docker-compose-for-development/</link><guid isPermaLink="false">https://quinn.io/2017/12-06-setting-up-docker-compose-for-development/</guid><pubDate>Wed, 06 Dec 2017 22:49:51 GMT</pubDate><content:encoded>&lt;p&gt;General project structure:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;.
 ├─ (app code)
 ├─ containers
@@ -270,8 +264,10 @@ appropriate headers to enforce a whitelist of allowed domains.&lt;/li&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;FROM com.your-app.base&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This allows you to create generalized configurations that are still local to the project.&lt;/p&gt;
 &lt;hr&gt;
-&lt;p&gt;If you have any suggestions on how this could be improved or found any of this helpful please let me know, thank you!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Change the default port that rails uses]]></title><description><![CDATA[This is a bit hackish, I’d love to know if there is a more “official” solution
-out there. This works on versions 3.2 and 4.0 from what I can…]]></description><link>https://quinn.io/2014/09-15-change-rails-server-default-port/</link><guid isPermaLink="false">https://quinn.io/2014/09-15-change-rails-server-default-port/</guid><pubDate>Mon, 15 Sep 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;This is a bit hackish, I’d love to know if there is a more “official” solution
+&lt;p&gt;If you have any suggestions on how this could be improved or found any of this helpful please let me know, thank you!&lt;/p&gt;
+		&lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at quinn.io. You can read it online by &lt;a href=&quot;https://quinn.io/2017/12-06-setting-up-docker-compose-for-development/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
+	</content:encoded></item><item><title><![CDATA[Change the default port that rails uses]]></title><description><![CDATA[Just a quick tip to save you from writing "-p 1234" on the command line.
+]]></description><link>https://quinn.io/2014/09-15-change-rails-server-default-port/</link><guid isPermaLink="false">https://quinn.io/2014/09-15-change-rails-server-default-port/</guid><pubDate>Mon, 15 Sep 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;This is a bit hackish, I’d love to know if there is a more “official” solution
 out there. This works on versions 3.2 and 4.0 from what I can tell.&lt;/p&gt;
 &lt;p&gt;The way I’ve found to do this is to add the following lines to &lt;code class=&quot;language-text&quot;&gt;config/boot.rb&lt;/code&gt;:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;rails/commands/server&apos;&lt;/span&gt;
@@ -286,8 +282,10 @@ out there. This works on versions 3.2 and 4.0 from what I can tell.&lt;/p&gt;
 &lt;p&gt;just change &lt;code class=&quot;language-text&quot;&gt;:Port =&amp;gt; XXXX&lt;/code&gt; to whatever you want it to be. From now on you can
 simple start rails with &lt;code class=&quot;language-text&quot;&gt;rails s&lt;/code&gt; and it will use the port you specified. If
 you are looking for a more robust solution consider checking out Pow:
-&lt;a href=&quot;http://pow.cx/&quot;&gt;http://pow.cx/&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Docker Tips and Tricks]]></title><description><![CDATA[Enter a container To do this you’ll need a tool called . The easiest way to get it is
-to use the docker based installer: https://github.com…]]></description><link>https://quinn.io/2014/09-07-docker-tips-and-tricks/</link><guid isPermaLink="false">https://quinn.io/2014/09-07-docker-tips-and-tricks/</guid><pubDate>Sun, 07 Sep 2014 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;Enter a container&lt;/h3&gt;
+&lt;a href=&quot;http://pow.cx/&quot;&gt;http://pow.cx/&lt;/a&gt;.&lt;/p&gt;
+		&lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at quinn.io. You can read it online by &lt;a href=&quot;https://quinn.io/2014/09-15-change-rails-server-default-port/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
+	</content:encoded></item><item><title><![CDATA[Docker Tips and Tricks]]></title><description><![CDATA[Here are a few little things I use on a daily basis while working with docker.
+]]></description><link>https://quinn.io/2014/09-07-docker-tips-and-tricks/</link><guid isPermaLink="false">https://quinn.io/2014/09-07-docker-tips-and-tricks/</guid><pubDate>Sun, 07 Sep 2014 00:00:00 GMT</pubDate><content:encoded>&lt;h3&gt;Enter a container&lt;/h3&gt;
 &lt;p&gt;To do this you’ll need a tool called &lt;code class=&quot;language-text&quot;&gt;nsenter&lt;/code&gt;. The easiest way to get it is
 to use the docker based installer: &lt;a href=&quot;https://github.com/jpetazzo/nsenter&quot;&gt;https://github.com/jpetazzo/nsenter&lt;/a&gt; One you
 have this you can enter a running instance or run a command on a running
@@ -325,9 +323,10 @@ docker &lt;span class=&quot;token function&quot;&gt;ps&lt;/span&gt; -a &lt;span 
 images is less common):&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;docker &lt;span class=&quot;token function&quot;&gt;ps&lt;/span&gt; -a &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;grep&lt;/span&gt; string-of-text &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;cut&lt;/span&gt; -d &lt;span class=&quot;token string&quot;&gt;&apos; &apos;&lt;/span&gt; -f &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;xargs&lt;/span&gt; docker rmi&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Hopefully this helps! Let me know if you have any other common techniques
-while using docker.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Preventing brute-force attacks on Wordpress's wp-login.php]]></title><description><![CDATA[The solution here uses ModSecurity and is based mostly on this
-article by Todd Garrison. There are many ways that one could handle
-this…]]></description><link>https://quinn.io/2014/08-30-prevent-brute-force-login-on-wordpress/</link><guid isPermaLink="false">https://quinn.io/2014/08-30-prevent-brute-force-login-on-wordpress/</guid><pubDate>Sat, 30 Aug 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;The solution here uses &lt;a href=&quot;https://www.modsecurity.org/&quot;&gt;ModSecurity&lt;/a&gt; and is based mostly on &lt;a href=&quot;http://www.frameloss.org/2011/07/29/stopping-brute-force-logins-against-wordpress/&quot;&gt;this
+while using docker.&lt;/p&gt;
+		&lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at quinn.io. You can read it online by &lt;a href=&quot;https://quinn.io/2014/09-07-docker-tips-and-tricks/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
+	</content:encoded></item><item><title><![CDATA[Preventing brute-force attacks on Wordpress's wp-login.php]]></title><description><![CDATA[Even if you use a non-standard username and strong password it can still be a burden on your server getting hit with the occasional brute-force attack to Wordpress's login page. Here you can use ModSecurity to limit the number requests and save resources.
+]]></description><link>https://quinn.io/2014/08-30-prevent-brute-force-login-on-wordpress/</link><guid isPermaLink="false">https://quinn.io/2014/08-30-prevent-brute-force-login-on-wordpress/</guid><pubDate>Sat, 30 Aug 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;The solution here uses &lt;a href=&quot;https://www.modsecurity.org/&quot;&gt;ModSecurity&lt;/a&gt; and is based mostly on &lt;a href=&quot;http://www.frameloss.org/2011/07/29/stopping-brute-force-logins-against-wordpress/&quot;&gt;this
 article by Todd Garrison&lt;/a&gt;. There are many ways that one could handle
 this issue, for example a plugin in wordpress, an upstream proxy server that
 handles security, or a modifacation to the web server (in this case apache). I
@@ -389,7 +388,10 @@ will never get denied access for 5 minutes.&lt;/p&gt;
 incorrect credentials. You should see a screen telling you that you are denied
 access pretty quickly.&lt;/p&gt;
 &lt;p&gt;I hope this helps with how to deal with this common brute-force attack and
-also how ModSecurity works.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Analyzing historical apache log data using piwik]]></title><description><![CDATA[There are various tools that provide log anaslysis for apache. Of the ones I was able to find piwik seemed like the best. it seems well…]]></description><link>https://quinn.io/2014/08-22-analyzing-historical-apache-logs-piwik/</link><guid isPermaLink="false">https://quinn.io/2014/08-22-analyzing-historical-apache-logs-piwik/</guid><pubDate>Fri, 22 Aug 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;There are various tools that provide log anaslysis for apache. Of the ones I was able to find piwik seemed like the best. it seems well maintaned and seemed to support themy specific use case well.&lt;/p&gt;
+also how ModSecurity works.&lt;/p&gt;
+		&lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at quinn.io. You can read it online by &lt;a href=&quot;https://quinn.io/2014/08-30-prevent-brute-force-login-on-wordpress/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
+	</content:encoded></item><item><title><![CDATA[Analyzing historical apache log data using piwik]]></title><description><![CDATA[Sometimes tools like google analytics don't provide the insight you need and it can be helpful to go directly to the source: the log files.
+]]></description><link>https://quinn.io/2014/08-22-analyzing-historical-apache-logs-piwik/</link><guid isPermaLink="false">https://quinn.io/2014/08-22-analyzing-historical-apache-logs-piwik/</guid><pubDate>Fri, 22 Aug 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;There are various tools that provide log anaslysis for apache. Of the ones I was able to find piwik seemed like the best. it seems well maintaned and seemed to support themy specific use case well.&lt;/p&gt;
 &lt;h3&gt;Installation&lt;/h3&gt;
 &lt;p&gt;The easiest way I found to install piwik was using Docker:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;docker run --name piwik -p=10000:80 -v=/mnt/piwik:/data quinn/piwik&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -404,10 +406,12 @@ file named access.log, run this:&lt;/p&gt;
 &lt;p&gt;Now navigate to the visits tab within the piwik interface and you should see
 all of the apache request logs.  Piwik provides great filtering and sorting
 functionality to help you find any unusual traffic. Next, you may want to
-emulate some nefarious traffic of your own. &lt;a href=&quot;/blog/installing-metasploit-on-osx-with-rbenv&quot;&gt;Read our install guide for
+emulate some nefarious traffic of your own. &lt;a href=&quot;https://quinn.io/blog/installing-metasploit-on-osx-with-rbenv&quot;&gt;Read our install guide for
 metasploit&lt;/a&gt;, a tool for finding
-and testing vulnurabilities in your infrastructure.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Installing Metasploit on OS X with rbenv]]></title><description><![CDATA[For some recent work I’ve had to identify and fix some Denial of Service /
-brute force attacks for one of our clients. A great open-source…]]></description><link>https://quinn.io/2014/08-17-installing-metasploit-on-osx-with-rbenv/</link><guid isPermaLink="false">https://quinn.io/2014/08-17-installing-metasploit-on-osx-with-rbenv/</guid><pubDate>Sun, 17 Aug 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;For some recent work I’ve had to identify and fix some Denial of Service /
+and testing vulnurabilities in your infrastructure.&lt;/p&gt;
+		&lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at quinn.io. You can read it online by &lt;a href=&quot;https://quinn.io/2014/08-22-analyzing-historical-apache-logs-piwik/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
+	</content:encoded></item><item><title><![CDATA[Installing Metasploit on OS X with rbenv]]></title><description><![CDATA[Setting up metasploit from scratch can be a bit convoluted, here are steps I took to get it set up on OS X.
+]]></description><link>https://quinn.io/2014/08-17-installing-metasploit-on-osx-with-rbenv/</link><guid isPermaLink="false">https://quinn.io/2014/08-17-installing-metasploit-on-osx-with-rbenv/</guid><pubDate>Sun, 17 Aug 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;For some recent work I’ve had to identify and fix some Denial of Service /
 brute force attacks for one of our clients. A great open-source tool for this
 is called &lt;a href=&quot;https://github.com/rapid7/metasploit-framework&quot;&gt;Metasploit&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;They provide an installer (sign-up required), but for this type of thing I
@@ -476,8 +480,10 @@ Matching Modules
 
 msf &amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If you see this you should be good to go. Metasploit is a great tool for
-testing your site for vulnerabilities and for testing your fixes.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Facilitating Bidirectional Cross-Domain Communication with an Iframe]]></title><description><![CDATA[I recently was working on a project where iframes seemed to be the most
-logical solution. Actually, iframes I think are a perfectly…]]></description><link>https://quinn.io/2014/08-12-iframe-communication/</link><guid isPermaLink="false">https://quinn.io/2014/08-12-iframe-communication/</guid><pubDate>Tue, 12 Aug 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;I recently was working on a project where iframes seemed to be the most
+testing your site for vulnerabilities and for testing your fixes.&lt;/p&gt;
+		&lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at quinn.io. You can read it online by &lt;a href=&quot;https://quinn.io/2014/08-17-installing-metasploit-on-osx-with-rbenv/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
+	</content:encoded></item><item><title><![CDATA[Facilitating Bidirectional Cross-Domain Communication with an Iframe]]></title><description><![CDATA[Using iframes in your app can be excruciating, especially when the iframe and the parent window are on two different domains. I'm going to go over the process of facilitating bi-directional communication between the iframe and it's parent window.
+]]></description><link>https://quinn.io/2014/08-12-iframe-communication/</link><guid isPermaLink="false">https://quinn.io/2014/08-12-iframe-communication/</guid><pubDate>Tue, 12 Aug 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;I recently was working on a project where iframes seemed to be the most
 logical solution. Actually, iframes I think are a perfectly reasonable tool
 for some problems, but unfortunately the get a bad name because of their many
 edge cases. I originally set out to create bi-directional event-based
@@ -574,7 +580,10 @@ and then navigate back.&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;targetWindow&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;postMessage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;message&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;       &lt;span class=&quot;token string&quot;&gt;&apos;http://locahost:3000&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
 targetWindow&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;postMessage&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token string&quot;&gt;&apos;other message&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;https://example.com&apos;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;That’s it for now! I’ll post more tips and tricks later on when I’ve come up
-with more.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Log to STDOUT and STDERR when Running NGINX in the Foreground]]></title><description><![CDATA[This is somewhat of a follow-up to this post: http://tastehoneyco.com/blog/running-nginx-in-the-foreground/ The instructions there are…]]></description><link>https://quinn.io/2014/04-19-log-nginx-to-stdout-and-stderr-when-run/</link><guid isPermaLink="false">https://quinn.io/2014/04-19-log-nginx-to-stdout-and-stderr-when-run/</guid><pubDate>Sat, 19 Apr 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;This is somewhat of a follow-up to this post:&lt;/p&gt;
+with more.&lt;/p&gt;
+		&lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at quinn.io. You can read it online by &lt;a href=&quot;https://quinn.io/2014/08-12-iframe-communication/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
+	</content:encoded></item><item><title><![CDATA[Log to STDOUT and STDERR when Running NGINX in the Foreground]]></title><description><![CDATA[I'm wrapping NGINX in a small go script to capture the output of the log files and pass them to STDOUT and STDERR. This is somewhat of a follow-up on my original post about running NGINX in the foreground.
+]]></description><link>https://quinn.io/2014/04-19-log-nginx-to-stdout-and-stderr-when-run/</link><guid isPermaLink="false">https://quinn.io/2014/04-19-log-nginx-to-stdout-and-stderr-when-run/</guid><pubDate>Sat, 19 Apr 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;This is somewhat of a follow-up to this post:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://tastehoneyco.com/blog/running-nginx-in-the-foreground/&quot;&gt;http://tastehoneyco.com/blog/running-nginx-in-the-foreground/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;The instructions there are simple enough and it works great, but no output is
 logged while NGINX is running. This can be annoying if you like treating logs
@@ -655,9 +664,10 @@ in the NGINX config:&lt;/p&gt;
 &lt;p&gt;As you can see I’ve increased the log level to &lt;code class=&quot;language-text&quot;&gt;debug&lt;/code&gt; to get the maximum
 amount of information from NGINX. That’s it! Try running the go script, and
 you should see requests and errors showing up in the terminal as they are
-made.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Postgresql Array and Hstore Column Reference]]></title><description><![CDATA[First of all, let’s start with links to the relevant postgres docs: http://www.postgresql.org/docs/9.3/static/hstore.html
-
-http://www…]]></description><link>https://quinn.io/2014/04-14-postgresql-array-and-hstore-column-reference/</link><guid isPermaLink="false">https://quinn.io/2014/04-14-postgresql-array-and-hstore-column-reference/</guid><pubDate>Mon, 14 Apr 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;First of all, let’s start with links to the relevant postgres docs:&lt;/p&gt;
+made.&lt;/p&gt;
+		&lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at quinn.io. You can read it online by &lt;a href=&quot;https://quinn.io/2014/04-19-log-nginx-to-stdout-and-stderr-when-run/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
+	</content:encoded></item><item><title><![CDATA[Postgresql Array and Hstore Column Reference]]></title><description><![CDATA[I've had trouble finding a good reference for hstore and arrays in postgres that includes examples and use-cases so I decided to put together my own here. Hopefully others can get some use out of it. I've also included some examples of how to use with ActiveRecord.
+]]></description><link>https://quinn.io/2014/04-14-postgresql-array-and-hstore-column-reference/</link><guid isPermaLink="false">https://quinn.io/2014/04-14-postgresql-array-and-hstore-column-reference/</guid><pubDate>Mon, 14 Apr 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;First of all, let’s start with links to the relevant postgres docs:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://www.postgresql.org/docs/9.3/static/hstore.html&quot;&gt;http://www.postgresql.org/docs/9.3/static/hstore.html&lt;/a&gt;
 &lt;br&gt;
 &lt;a href=&quot;http://www.postgresql.org/docs/9.3/static/arrays.html&quot;&gt;http://www.postgresql.org/docs/9.3/static/arrays.html&lt;/a&gt;
@@ -813,8 +823,10 @@ same hacky solution described previously for &lt;code class=&quot;language-text&
 &lt;p&gt;That’s all for now. Hopefully this helps clarify some ways of using arrays and
 hstore especially in practice, and when using ActiveRecord. Stay tuned for
 more snippets as well as examples of using postgres’s enum functionality in
-ActiveRecord.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Stubbing Rails request with custom Rack env]]></title><description><![CDATA[If you are are using the  gem you should know that there are a
-ton of really good ways to test controllers. But, sometimes it can be nice to…]]></description><link>https://quinn.io/2014/04-09-stubbing-rails-request-with-custom-rack/</link><guid isPermaLink="false">https://quinn.io/2014/04-09-stubbing-rails-request-with-custom-rack/</guid><pubDate>Wed, 09 Apr 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;If you are are using the &lt;code class=&quot;language-text&quot;&gt;rspec-rails&lt;/code&gt; gem you should know that there are a
+ActiveRecord.&lt;/p&gt;
+		&lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at quinn.io. You can read it online by &lt;a href=&quot;https://quinn.io/2014/04-14-postgresql-array-and-hstore-column-reference/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
+	</content:encoded></item><item><title><![CDATA[Stubbing Rails request with custom Rack env]]></title><description><![CDATA[There are plenty of tools that provide easy ways to do controller testing in rails, but sometimes in can be nice to test against a specifically built rack env when testing a controller or middleware. Here I dig through some Rails internals to figure out some different ways of doing this.
+]]></description><link>https://quinn.io/2014/04-09-stubbing-rails-request-with-custom-rack/</link><guid isPermaLink="false">https://quinn.io/2014/04-09-stubbing-rails-request-with-custom-rack/</guid><pubDate>Wed, 09 Apr 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;If you are are using the &lt;code class=&quot;language-text&quot;&gt;rspec-rails&lt;/code&gt; gem you should know that there are a
 ton of really good ways to test controllers. But, sometimes it can be nice to
 have total control over the input that is going to your controller. I’m going
 to show you how to construct a request as a rack environment as well as a
@@ -888,8 +900,10 @@ success:&lt;/p&gt;
 &lt;p&gt;As you can see, this allows you to stub your own rack environment with the
 parameters that work for your scenario. Most of the time this won’t be
 necessary with the testing tools that are available but it can be useful every
-once and awhile.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Experiments with Docker]]></title><description><![CDATA[Docker is a wonderfully fun tool that makes building something like a PaaS
-almost trivial. Docker has great tutorials and documentation on…]]></description><link>https://quinn.io/2014/04-04-experiments-with-docker/</link><guid isPermaLink="false">https://quinn.io/2014/04-04-experiments-with-docker/</guid><pubDate>Fri, 04 Apr 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Docker is a wonderfully fun tool that makes building something like a PaaS
+once and awhile.&lt;/p&gt;
+		&lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at quinn.io. You can read it online by &lt;a href=&quot;https://quinn.io/2014/04-09-stubbing-rails-request-with-custom-rack/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
+	</content:encoded></item><item><title><![CDATA[Experiments with Docker]]></title><description><![CDATA[Docker is a wonderfully fun tool that makes building things like a PaaS almost trivial. I've documented a brief intro to some of Docker's common cli functions
+]]></description><link>https://quinn.io/2014/04-04-experiments-with-docker/</link><guid isPermaLink="false">https://quinn.io/2014/04-04-experiments-with-docker/</guid><pubDate>Fri, 04 Apr 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Docker is a wonderfully fun tool that makes building something like a PaaS
 almost trivial. Docker has great tutorials and documentation on their main
 website: &lt;a href=&quot;https://www.docker.io/&quot;&gt;https://www.docker.io/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Docker builds on top of LXC (LinuX Containers) to provide a clean, easy-to-use
@@ -963,7 +977,10 @@ preinstalled. Try running:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;bash&quot;&gt;&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;docker run buildtools &lt;span class=&quot;token function&quot;&gt;make&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;As you can see, the &lt;code class=&quot;language-text&quot;&gt;docker&lt;/code&gt; command provides some great high-level tools for
 learning about Docker. For anything serious though, you’ll probably want to
-use the API. I’ll be writing a follow-up on that soon. Stay tuned!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Custom error pages in Rails]]></title><description><![CDATA[This has been previously documented, but the predominant way is this: https://gist.github.com/gonzedge/1563416 There are a number of things…]]></description><link>https://quinn.io/2014/03-30-custom-rails-exception-pages/</link><guid isPermaLink="false">https://quinn.io/2014/03-30-custom-rails-exception-pages/</guid><pubDate>Sun, 30 Mar 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;This has been previously documented, but the predominant way is this:&lt;/p&gt;
+use the API. I’ll be writing a follow-up on that soon. Stay tuned!&lt;/p&gt;
+		&lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at quinn.io. You can read it online by &lt;a href=&quot;https://quinn.io/2014/04-04-experiments-with-docker/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
+	</content:encoded></item><item><title><![CDATA[Custom error pages in Rails]]></title><description><![CDATA[I know this has been documented many times, but I felt this was necessary because I am still seeing many more descriptions of the "wrong" way to do this rather than the right way. Hopefully I can help tip the scales a bit on the subject.
+]]></description><link>https://quinn.io/2014/03-30-custom-rails-exception-pages/</link><guid isPermaLink="false">https://quinn.io/2014/03-30-custom-rails-exception-pages/</guid><pubDate>Sun, 30 Mar 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;This has been previously documented, but the predominant way is this:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;https://gist.github.com/gonzedge/1563416&quot;&gt;https://gist.github.com/gonzedge/1563416&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;There are a number of things obviously wrong with this, and I always disliked
 this technique because it completely overrode rails’ existing handling of
@@ -1065,8 +1082,10 @@ match &lt;span class=&quot;token string&quot;&gt;&quot;/404&quot;&lt;/span&gt;&l
 &lt;p&gt;Regardless of how you decide to handle this, I think the most important take
 away is that Rails almost always provides a way to exploit the functionality
 it provides as a framework. Rarely do you have to “fight against” the
-framework and recreate existing functionality to get the behavior you want.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Running NGINX in the Foreground]]></title><description><![CDATA[If you’re planning on using nginx as a frontend to one or more app processes,
-it can be helpful to setup and test things locally. An easy…]]></description><link>https://quinn.io/2014/03-26-running-nginx-in-the-foreground/</link><guid isPermaLink="false">https://quinn.io/2014/03-26-running-nginx-in-the-foreground/</guid><pubDate>Wed, 26 Mar 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;If you’re planning on using nginx as a frontend to one or more app processes,
+framework and recreate existing functionality to get the behavior you want.&lt;/p&gt;
+		&lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at quinn.io. You can read it online by &lt;a href=&quot;https://quinn.io/2014/03-30-custom-rails-exception-pages/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
+	</content:encoded></item><item><title><![CDATA[Running NGINX in the Foreground]]></title><description><![CDATA[If you're planning on using nginx as a frontend to one or more app processes, it can be helpful to setup and test things locally. An easy way to do this is to run nginx in the foreground so you can quickly iterate your config options to see what works.
+]]></description><link>https://quinn.io/2014/03-26-running-nginx-in-the-foreground/</link><guid isPermaLink="false">https://quinn.io/2014/03-26-running-nginx-in-the-foreground/</guid><pubDate>Wed, 26 Mar 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;If you’re planning on using nginx as a frontend to one or more app processes,
 it can be helpful to setup and test things locally. An easy way to do this is
 to run nginx in the foreground so you can quickly iterate your config options
 to see what works. First, you need to create a config:&lt;/p&gt;
@@ -1092,8 +1111,13 @@ and can be used in production.&lt;/p&gt;
 on port 8080.&lt;/p&gt;
 &lt;p&gt;Try opening browsing to &lt;a href=&quot;http://localhost:8080/&quot;&gt;http://localhost:8080/&lt;/a&gt;. You
 should see a successful installation message from nginx. From here you can
-setup proxies to your apps or whatever other config you want to test out.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Specify a local path for a gem in your Gemfile]]></title><description><![CDATA[Bundler provides a mechanism to override a gem with a local one which works as
-follows: This is great and easy to understand. Unfortunately…]]></description><link>https://quinn.io/2014/03-21-specify-a-local-path-for-a-gem/</link><guid isPermaLink="false">https://quinn.io/2014/03-21-specify-a-local-path-for-a-gem/</guid><pubDate>Fri, 21 Mar 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Bundler provides a mechanism to override a gem with a local one which works as
+setup proxies to your apps or whatever other config you want to test out.&lt;/p&gt;
+		&lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at quinn.io. You can read it online by &lt;a href=&quot;https://quinn.io/2014/03-26-running-nginx-in-the-foreground/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
+	</content:encoded></item><item><title><![CDATA[Specify a local path for a gem in your Gemfile]]></title><description><![CDATA[Sometimes it can be nice to develop against a local gem without modifying
+your Gemfile. Bundler provides a convenient mechanism for this, but it is
+limited in the scenarios that it will work under. Here I describe a simple
+approach to get a similar effect.
+]]></description><link>https://quinn.io/2014/03-21-specify-a-local-path-for-a-gem/</link><guid isPermaLink="false">https://quinn.io/2014/03-21-specify-a-local-path-for-a-gem/</guid><pubDate>Fri, 21 Mar 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;Bundler provides a mechanism to override a gem with a local one which works as
 follows:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;bundle config local.GEM_NAME /path/to/local/git/repository&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This is great and easy to understand. Unfortunately, it only works if the gem
@@ -1114,8 +1138,13 @@ the choice to use &lt;code class=&quot;language-text&quot;&gt;Gemfile.local&lt;/
 separate lock file as well.&lt;/p&gt;
 &lt;p&gt;From this point forward, Bundler should now reference your local gem, but
 still use the actual gem in other environments. If you’d like to revert to
-using the original Gemfile, just remove the line from &lt;code class=&quot;language-text&quot;&gt;.bundle/config&lt;/code&gt;.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Fundamentals of git]]></title><description><![CDATA[I’m going to document here some basics about git. I think a lot of very
-skilled developers who use git everyday haven’t yet “grocked” the…]]></description><link>https://quinn.io/2014/01-06-git-basics/</link><guid isPermaLink="false">https://quinn.io/2014/01-06-git-basics/</guid><pubDate>Mon, 06 Jan 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;I’m going to document here some basics about git. I think a lot of very
+using the original Gemfile, just remove the line from &lt;code class=&quot;language-text&quot;&gt;.bundle/config&lt;/code&gt;.&lt;/p&gt;
+		&lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at quinn.io. You can read it online by &lt;a href=&quot;https://quinn.io/2014/03-21-specify-a-local-path-for-a-gem/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
+	</content:encoded></item><item><title><![CDATA[Fundamentals of git]]></title><description><![CDATA[
+I'm going to document here some basics about git. I think a lot of very
+skilled developers who use git everyday haven't yet "grocked" the
+fundamentals of how it works.
+]]></description><link>https://quinn.io/2014/01-06-git-basics/</link><guid isPermaLink="false">https://quinn.io/2014/01-06-git-basics/</guid><pubDate>Mon, 06 Jan 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;I’m going to document here some basics about git. I think a lot of very
 skilled developers who use git everyday haven’t yet “grocked” the fundamentals
 of how it works. For starters, I am going to define a glossary of terms
 relating to git (more are available by running “git help glossary”).&lt;/p&gt;
@@ -1209,8 +1238,16 @@ commits on your project. Try to complete the tasks above using &lt;code class=&q
 &lt;p&gt;I hoped this helped you understand git’s core features a little bit more. It’s
 easy to use git without fully understanding what is going on, but it’s
 important to have a deep understanding of the working of git to trully take
-advantage of it’s power.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[faking placeholder from html5 in jquery]]></title><description><![CDATA[I just coded up a simple plugin to enable placeholder text for inputs in browsers that don’t support it yet. This isn’t tested thoroughly…]]></description><link>https://quinn.io/2010/10-07-faking-placeholder-text/</link><guid isPermaLink="false">https://quinn.io/2010/10-07-faking-placeholder-text/</guid><pubDate>Thu, 07 Oct 2010 16:29:06 GMT</pubDate><content:encoded>&lt;p&gt;I just coded up a simple plugin to enable placeholder text for inputs in browsers that don’t support it yet. This isn’t tested thoroughly, please let me know if anything isn’t working properly!&lt;/p&gt;
-&lt;p&gt;Check it out on github: &lt;a href=&quot;http://github.com/quinn/jquery.placeholder.js&quot;&gt;http://github.com/quinn/jquery.placeholder.js&lt;/a&gt;&lt;/p&gt;</content:encoded></item><item><title><![CDATA[new website up contactjam.com, built using rails 3]]></title><description><![CDATA[Exciting news, my friend Kevin (http://www.linkedin.com/pub/kevin-incorvia/20/339/508/) just launched an alpha of his new site: http…]]></description><link>https://quinn.io/2010/09-24-new-website-contactjam/</link><guid isPermaLink="false">https://quinn.io/2010/09-24-new-website-contactjam/</guid><pubDate>Fri, 24 Sep 2010 15:36:27 GMT</pubDate><content:encoded>&lt;p&gt;Exciting news, my friend Kevin (&lt;a href=&quot;http://www.linkedin.com/pub/kevin-incorvia/20/339/508/&quot;&gt;http://www.linkedin.com/pub/kevin-incorvia/20/339/508/&lt;/a&gt;) just launched an alpha of his new site: &lt;a href=&quot;http://contactjam.com&quot;&gt;http://contactjam.com&lt;/a&gt;. Cool! In a nutshell it is a “foursquare” that also ties in the time and the locale of other people. Its really neat, but I don’t want to give too much away because it is still in a closed alpha. I had the privilege of building the first iteration using rails 3, datamapper, and deploying it on aws using ec2 and s3. I’ll keep you posted with updates about it as it develops.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Quickly search through your Bash history]]></title><description><![CDATA[Is everyone up on ctrl+R in bash? It lets you do a reverse filter search through your bash history (kind of like history piped to grep but…]]></description><link>https://quinn.io/2010/09-21-quickly-search-bash/</link><guid isPermaLink="false">https://quinn.io/2010/09-21-quickly-search-bash/</guid><pubDate>Tue, 21 Sep 2010 10:51:02 GMT</pubDate><content:encoded>&lt;p&gt;Is everyone up on ctrl+R in bash? It lets you do a reverse filter search through your bash history (kind of like history piped to grep but cooler). It’s really handy, I’m guessing most everyone knows it already but just in case anybody missed it, you should definitely give it a try.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Why I think datamapper is awesome]]></title><description><![CDATA[I know Datamapper is probably considered “old news” at this point, which is something I think unfortunate considering its low adoption rate…]]></description><link>https://quinn.io/2010/08-30-why-i-think-datamapper-is-awesome/</link><guid isPermaLink="false">https://quinn.io/2010/08-30-why-i-think-datamapper-is-awesome/</guid><pubDate>Mon, 30 Aug 2010 08:30:26 GMT</pubDate><content:encoded>&lt;p&gt;I know Datamapper is probably considered “old news” at this point, which is something I think unfortunate considering its low adoption rate. I’m going to re-hash its advantages here just to add my own voice to its fan base. Here are some of the reasons I really like datamapper. In no specific order.&lt;/p&gt;
+advantage of it’s power.&lt;/p&gt;
+		&lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at quinn.io. You can read it online by &lt;a href=&quot;https://quinn.io/2014/01-06-git-basics/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
+	</content:encoded></item><item><title><![CDATA[faking placeholder from html5 in jquery]]></title><link>https://quinn.io/2010/10-07-faking-placeholder-text/</link><guid isPermaLink="false">https://quinn.io/2010/10-07-faking-placeholder-text/</guid><pubDate>Thu, 07 Oct 2010 16:29:06 GMT</pubDate><content:encoded>&lt;p&gt;I just coded up a simple plugin to enable placeholder text for inputs in browsers that don’t support it yet. This isn’t tested thoroughly, please let me know if anything isn’t working properly!&lt;/p&gt;
+&lt;p&gt;Check it out on github: &lt;a href=&quot;http://github.com/quinn/jquery.placeholder.js&quot;&gt;http://github.com/quinn/jquery.placeholder.js&lt;/a&gt;&lt;/p&gt;
+		&lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at quinn.io. You can read it online by &lt;a href=&quot;https://quinn.io/2010/10-07-faking-placeholder-text/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
+	</content:encoded></item><item><title><![CDATA[new website up contactjam.com, built using rails 3]]></title><link>https://quinn.io/2010/09-24-new-website-contactjam/</link><guid isPermaLink="false">https://quinn.io/2010/09-24-new-website-contactjam/</guid><pubDate>Fri, 24 Sep 2010 15:36:27 GMT</pubDate><content:encoded>&lt;p&gt;Exciting news, my friend Kevin (&lt;a href=&quot;http://www.linkedin.com/pub/kevin-incorvia/20/339/508/&quot;&gt;http://www.linkedin.com/pub/kevin-incorvia/20/339/508/&lt;/a&gt;) just launched an alpha of his new site: &lt;a href=&quot;http://contactjam.com&quot;&gt;http://contactjam.com&lt;/a&gt;. Cool! In a nutshell it is a “foursquare” that also ties in the time and the locale of other people. Its really neat, but I don’t want to give too much away because it is still in a closed alpha. I had the privilege of building the first iteration using rails 3, datamapper, and deploying it on aws using ec2 and s3. I’ll keep you posted with updates about it as it develops.&lt;/p&gt;
+		&lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at quinn.io. You can read it online by &lt;a href=&quot;https://quinn.io/2010/09-24-new-website-contactjam/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
+	</content:encoded></item><item><title><![CDATA[Quickly search through your Bash history]]></title><link>https://quinn.io/2010/09-21-quickly-search-bash/</link><guid isPermaLink="false">https://quinn.io/2010/09-21-quickly-search-bash/</guid><pubDate>Tue, 21 Sep 2010 10:51:02 GMT</pubDate><content:encoded>&lt;p&gt;Is everyone up on ctrl+R in bash? It lets you do a reverse filter search through your bash history (kind of like history piped to grep but cooler). It’s really handy, I’m guessing most everyone knows it already but just in case anybody missed it, you should definitely give it a try.&lt;/p&gt;
+		&lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at quinn.io. You can read it online by &lt;a href=&quot;https://quinn.io/2010/09-21-quickly-search-bash/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
+	</content:encoded></item><item><title><![CDATA[Why I think datamapper is awesome]]></title><link>https://quinn.io/2010/08-30-why-i-think-datamapper-is-awesome/</link><guid isPermaLink="false">https://quinn.io/2010/08-30-why-i-think-datamapper-is-awesome/</guid><pubDate>Mon, 30 Aug 2010 08:30:26 GMT</pubDate><content:encoded>&lt;p&gt;I know Datamapper is probably considered “old news” at this point, which is something I think unfortunate considering its low adoption rate. I’m going to re-hash its advantages here just to add my own voice to its fan base. Here are some of the reasons I really like datamapper. In no specific order.&lt;/p&gt;
 &lt;h2&gt;#1 robust query mapping&lt;/h2&gt;
 &lt;p&gt;the datamapper API is robust enough that it drastically reduces how much one has to drop down to sql to get the desired results. For example:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;token class-name&quot;&gt;Book&lt;/span&gt;
@@ -1274,7 +1311,9 @@ profile&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;address&lt;
 &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This is about as simple as it gets in my opinion. DataMapper::Resource’s self.included method simple extends the current class with DataMapper::Model and does nothing else. To me this is clean and simple and doesn’t add any fluff on top of what ruby does by default.&lt;/p&gt;
 &lt;h2&gt;Rails 3&lt;/h2&gt;
-&lt;p&gt;Rails 3 will fix many of these problems, but I think DataMapper’s api is still unique enough to merit looking into. Despite the improvements to activerecord 3 I plan on continuing to use datamapper in future projects.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Switching wordpress to nginx]]></title><description><![CDATA[I just updated my server to use nginx from apache/mod_php because loading wordpress on my tiny slicehost slice was tanking the poor thing…]]></description><link>https://quinn.io/2010/08-23-switching-wordpress-to-nginx/</link><guid isPermaLink="false">https://quinn.io/2010/08-23-switching-wordpress-to-nginx/</guid><pubDate>Mon, 23 Aug 2010 08:30:35 GMT</pubDate><content:encoded>&lt;p&gt;I just updated my server to use nginx from apache/mod_php because loading wordpress on my tiny slicehost slice was tanking the poor thing. Apache was spawning processes like crazy and pages were taking forever to load, even when I am the only person viewing the site. My new setup uses php-cgi based on this tutorial:&lt;/p&gt;
+&lt;p&gt;Rails 3 will fix many of these problems, but I think DataMapper’s api is still unique enough to merit looking into. Despite the improvements to activerecord 3 I plan on continuing to use datamapper in future projects.&lt;/p&gt;
+		&lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at quinn.io. You can read it online by &lt;a href=&quot;https://quinn.io/2010/08-30-why-i-think-datamapper-is-awesome/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
+	</content:encoded></item><item><title><![CDATA[Switching wordpress to nginx]]></title><link>https://quinn.io/2010/08-23-switching-wordpress-to-nginx/</link><guid isPermaLink="false">https://quinn.io/2010/08-23-switching-wordpress-to-nginx/</guid><pubDate>Mon, 23 Aug 2010 08:30:35 GMT</pubDate><content:encoded>&lt;p&gt;I just updated my server to use nginx from apache/mod_php because loading wordpress on my tiny slicehost slice was tanking the poor thing. Apache was spawning processes like crazy and pages were taking forever to load, even when I am the only person viewing the site. My new setup uses php-cgi based on this tutorial:&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://tomasz.sterna.tv/2009/04/php-fastcgi-with-nginx-on-ubuntu/&quot;&gt;http://tomasz.sterna.tv/2009/04/php-fastcgi-with-nginx-on-ubuntu/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;this is what my nginx config looks like:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;server {
@@ -1303,4 +1342,6 @@ profile&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;address&lt;
     fastcgi_pass    127.0.0.1:9000;
   }
 }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;highly recommended.. its amazing how much faster it is!&lt;/p&gt;</content:encoded></item></channel></rss>
+&lt;p&gt;highly recommended.. its amazing how much faster it is!&lt;/p&gt;
+		&lt;div style=&quot;margin-top=55px; font-style: italic;&quot;&gt;(This is an article posted to my blog at quinn.io. You can read it online by &lt;a href=&quot;https://quinn.io/2010/08-23-switching-wordpress-to-nginx/&quot;&gt;clicking here&lt;/a&gt;.)&lt;/div&gt;
+	</content:encoded></item></channel></rss>
