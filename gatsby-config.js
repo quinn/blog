@@ -102,54 +102,6 @@ module.exports = {
 			},
 		},
 
-				{
-			resolve: `gatsby-plugin-feed`,
-			options: {
-				query: `
-					{
-						site {
-							siteMetadata {
-								title
-								description
-								siteUrl
-								site_url: siteUrl
-							}
-						}
-					}
-				`,
-				feeds: [
-					{
-						serialize: feedSerializer,
-						query: `
-							{
-								allMarkdownRemark(
-									limit: 1000,
-									sort: { order: DESC, fields: [frontmatter___date] }
-								) {
-									edges {
-										node {
-											excerpt(pruneLength: 250)
-											html
-											fields {
-												slug
-											}
-											frontmatter {
-												title
-												date
-												description
-											}
-										}
-									}
-								}
-							}
-						`,
-						output: '/rss.xml',
-						title: "Dan Abramov's Overreacted Blog RSS Feed",
-					},
-				],
-			},
-		},
-
 		// this (optional) plugin enables Progressive Web App + Offline functionality
 		// To learn more, visit: https://gatsby.dev/offline
 		// `gatsby-plugin-offline`,
