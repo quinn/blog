@@ -10,6 +10,7 @@ module.exports = {
 			instagram: `qshan`,
 		},
 	},
+
 	plugins: [
 		{
 			resolve: `gatsby-source-filesystem`,
@@ -18,6 +19,7 @@ module.exports = {
 				name: `blog`,
 			},
 		},
+
 		{
 			resolve: `gatsby-source-filesystem`,
 			options: {
@@ -25,6 +27,7 @@ module.exports = {
 				name: `assets`,
 			},
 		},
+
 		{
 			resolve: `gatsby-transformer-remark`,
 			options: {
@@ -47,15 +50,19 @@ module.exports = {
 				],
 			},
 		},
+
 		`gatsby-transformer-sharp`,
 		`gatsby-plugin-sharp`,
+
 		{
 			resolve: `gatsby-plugin-google-analytics`,
 			options: {
 				trackingId: process.env.GA_TRACKING_ID,
 			},
 		},
+
 		`gatsby-plugin-feed`,
+
 		{
 			resolve: `gatsby-plugin-manifest`,
 			options: {
@@ -68,7 +75,9 @@ module.exports = {
 				icon: `content/assets/gatsby-icon.png`,
 			},
 		},
+
 		`gatsby-plugin-react-helmet`,
+
 		{
 			resolve: `gatsby-plugin-typography`,
 			options: {
