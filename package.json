@@ -33,7 +33,7 @@
     "gatsby-transformer-sharp": "^2.3.13",
     "husky": "^4.2.1",
     "lint-staged": "^10.0.7",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "prismjs": "^1.19.0",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
