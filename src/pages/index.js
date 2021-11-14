@@ -54,7 +54,10 @@ export const pageQuery = graphql`
 			}
 		}
 
-		allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+		allMarkdownRemark(
+			filter: { frontmatter: { published: { ne: false } } }, 
+			sort: { fields: [frontmatter___date], order: DESC }
+		) {
 			edges {
 				node {
 					excerpt
