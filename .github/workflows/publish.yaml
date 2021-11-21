@@ -9,15 +9,12 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
 
-    - name: Install NPM Packages
-      uses: borales/actions-yarn@v2.0.0
+    - uses: actions/setup-node@v2
       with:
-        cmd: install --production
+        node-version: '14'
 
-    - name: Static Build
-      uses: borales/actions-yarn@v2.0.0
-      with:
-        cmd: build
+    - run: yarn install --production
+    - run: yarn build
       env:
         GA_TRACKING_ID: ${{ secrets.GA_TRACKING_ID }}
         NODE_ENV: production
