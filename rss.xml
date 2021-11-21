@@ -1,9 +1,72 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Quinn's Blog]]></title><description><![CDATA[It's probably gonna mostly be about code]]></description><link>https://quinn.io</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 01 Mar 2021 21:02:06 GMT</lastBuildDate><item><title><![CDATA[Setup serverless redirects on AWS with SSL and Route 53]]></title><description><![CDATA[All I wanted to do was redirect quinnshanahan.com to quinn.io. Simple, right? Simple enough to not require a server, right? As simple as…]]></description><link>https://quinn.io/2020/02-07-redirect-with-ssl-aws/</link><guid isPermaLink="false">https://quinn.io/2020/02-07-redirect-with-ssl-aws/</guid><pubDate>Fri, 07 Feb 2020 10:58:00 GMT</pubDate><content:encoded>&lt;p&gt;All I wanted to do was redirect quinnshanahan.com to quinn.io. Simple, right? Simple enough to not require a server, &lt;em&gt;right&lt;/em&gt;?&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Your Site's RSS Feed]]></title><description><![CDATA[It's probably gonna mostly be about code]]></description><link>https://quinn.io</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 21 Nov 2021 02:02:14 GMT</lastBuildDate><item><title><![CDATA[Writing a C Compiler: Part 1, Lexer]]></title><description><![CDATA[As a programmer I enjoy building things. I also like knowing how things work, I figure the two are related. There are a few things that I…]]></description><link>https://quinn.io/2021/11-20-compiler-lexer/</link><guid isPermaLink="false">https://quinn.io/2021/11-20-compiler-lexer/</guid><pubDate>Wed, 10 Nov 2021 20:33:00 GMT</pubDate><content:encoded>&lt;p&gt;As a programmer I enjoy building things. I also like knowing how things work, I figure the two are related. There are a few things that I feel I’ve missed out on from not attending a CS program (nothing practical of course), one being a deeper understanding of how programming languages are written. To this end I’ve decided to spend some time learning how to write compilers.&lt;/p&gt;
+&lt;p&gt;I decided that writing a C compiler would be a good place to start. I don’t know C. In spite of this, I think it will be a good choice because of it’s simplicity. Not simplicity in terms of writing correct programs with it, but simplicity in terms of being “lower level” so probably less work to turn it into assembly.&lt;/p&gt;
+&lt;p&gt;I did a Google search for something like “write C compiler tutorial” and &lt;a href=&quot;https://norasandler.com/2017/11/29/Write-a-Compiler.html&quot;&gt;found this post series&lt;/a&gt; which looks promising. I’ll probably try to do posts that match, 10 parts.&lt;/p&gt;
+&lt;p&gt;Nora said examples will be given in x86 instruction sets, but I’ll be attempting to rewrite using AMD64. Based on AMD64 docs this should be fine because it should support all x86 instructions.&lt;/p&gt;
+&lt;p&gt;Also, Nora started writing in python and eventually switched to OCamel, despite not knowing the language at all. I’m going to start in Ruby and see how it goes!&lt;/p&gt;
+&lt;p&gt;The first step is to write a lexer. It seems all a lexer does is turn a code file into a list of tokens. Parenthes, keywords, identifiers, etc. It does not add any structure or attempt to check the code as valid. Later steps use the list of tokens to create the structure of the program.&lt;/p&gt;
+&lt;p&gt;The program to be, uh, lexed is this:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;c&quot;&gt;&lt;pre class=&quot;language-c&quot;&gt;&lt;code class=&quot;language-c&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Here’s the lexer I wrote:&lt;/p&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Token&lt;/span&gt;
+    &lt;span class=&quot;token constant&quot;&gt;BLOCK&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token symbol&quot;&gt;:BLOCK&lt;/span&gt;
+    &lt;span class=&quot;token constant&quot;&gt;END_BLOCK&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token symbol&quot;&gt;:END_BLOCK&lt;/span&gt;
+    &lt;span class=&quot;token constant&quot;&gt;PAREN&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token symbol&quot;&gt;:PAREN&lt;/span&gt;
+    &lt;span class=&quot;token constant&quot;&gt;END_PAREN&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token symbol&quot;&gt;:END_PAREN&lt;/span&gt;
+    &lt;span class=&quot;token constant&quot;&gt;KEYWORD&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token symbol&quot;&gt;:KEYWORD&lt;/span&gt;
+    &lt;span class=&quot;token constant&quot;&gt;CONST&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token symbol&quot;&gt;:CONST&lt;/span&gt;
+    &lt;span class=&quot;token constant&quot;&gt;TERM&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token symbol&quot;&gt;:TERM&lt;/span&gt;
+    &lt;span class=&quot;token constant&quot;&gt;ID&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token symbol&quot;&gt;:ID&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token method-definition&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;keywords&lt;/span&gt;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;
+            &lt;span class=&quot;token string&quot;&gt;&quot;int&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;
+            &lt;span class=&quot;token string&quot;&gt;&quot;return&quot;&lt;/span&gt;
+        &lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+
+tokens &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+curconst &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;
+
+&lt;span class=&quot;token builtin&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;open&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;ARGV&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;last&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;each_char &lt;span class=&quot;token keyword&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;char&lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;a&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;zA&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;Z0&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;~&lt;/span&gt; char
+        curconst &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; char
+        &lt;span class=&quot;token keyword&quot;&gt;next&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+
+    &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; curconst&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;length &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;Token&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;keywords&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token keyword&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;?&lt;/span&gt; curconst
+            tokens &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;Token&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;KEYWORD&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; curconst&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;elsif&lt;/span&gt; curconst &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;~&lt;/span&gt; &lt;span class=&quot;token regex&quot;&gt;/^[0-9]+$/&lt;/span&gt;
+            tokens &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;Token&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;CONST&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; curconst&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt;
+            tokens &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;Token&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;ID&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; curconst&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+
+        curconst &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+
+    token &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;case&lt;/span&gt; char
+    &lt;span class=&quot;token keyword&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;{&apos;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;Token&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;BLOCK&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; char&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;}&apos;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;Token&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;END_BLOCK&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; char&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;(&apos;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;Token&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;PAREN&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; char&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;)&apos;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;Token&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;END_PAREN&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; char&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;;&apos;&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;Token&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;TERM&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; char&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;when&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;\s&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;then&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;next&lt;/span&gt;
+    &lt;span class=&quot;token keyword&quot;&gt;else&lt;/span&gt;
+        &lt;span class=&quot;token keyword&quot;&gt;raise&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;unknown token %s&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;%&lt;/span&gt; char&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;inspect
+    &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
+
+    tokens &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; token
+&lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;neat-o, it lexes! cool. The next step is to create the AST. I’ll be covering that in my next post, unless I completely lose interest and never work on this again!&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Setup serverless redirects on AWS with SSL and Route 53]]></title><description><![CDATA[All I wanted to do was redirect quinnshanahan.com to quinn.io. Simple, right? Simple enough to not require a server, right? As simple as…]]></description><link>https://quinn.io/2020/02-07-redirect-with-ssl-aws/</link><guid isPermaLink="false">https://quinn.io/2020/02-07-redirect-with-ssl-aws/</guid><pubDate>Fri, 07 Feb 2020 10:58:00 GMT</pubDate><content:encoded>&lt;p&gt;All I wanted to do was redirect quinnshanahan.com to quinn.io. Simple, right? Simple enough to not require a server, &lt;em&gt;right&lt;/em&gt;?&lt;/p&gt;
 &lt;p&gt;As simple as this would be using a droplet or an existing host I have running with nginx, or even a lambda function I really wanted to do this without any host of any kind. I thought this should be possible on AWS, and it was, but very convoluted.&lt;/p&gt;
 &lt;p&gt;The main thing that makes this work is a feature for S3 that allows you to redirect a bucket to any other domain. The config looks like this in the console:&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
@@ -14,7 +77,7 @@
   &gt;
     &lt;span
     class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 94.14285714285715%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAAACXBIWXMAAAsSAAALEgHS3X78AAAC0ElEQVQ4y5WUS08UQRDH51N5NRqN0ZuPRA++MIKcvfoZvHtxjRDBqFEENFw8+gjKI4TFqCzssLDuzM7Ou3uePX+re3dwWVkDnfzSPd1d/6mqqRrtS8NFZcXA1Fob0xsWptbbqCy18Jh4smzsrys91D4xSTYTPSZXDdo3MLdhQnv4uYkTlR84+2wTZ6ZruPCmjpH5Hdyd03Hl1RZuv9XV+sZMXXFnVse119s4+fQnTk10OU2cm6phbOYXtEfLLZx/XlPGV8nw+sIu7i00MD6v4+bMNkZpb/ydjpHZOgnXMUr7Y8TFFzVc6uPyyy3cf1+DpjsMaybHuhGi2maoWhFWWhyLuyGWfzN8a4ZY3AtpZlhqMjV/pecVOpOs0t11sl8zIlSbLrQiT4EiR8sw0bEdWCyDyXK4sUCYFoSAR+sgEYgzAZbk8OO/RHReDpHG0OIkQSYKGEGChs2gWz6aToiAcfAoImJwzuGxSAlwEmCEtCmKAoLI5ZoEGd3TEhKkE+VlxEjIcxH4HlzXhe95Cs+x0WwTQQqbZ2hTFGleKK+kqESOiBzQRJaiw1J80l2wwIfVseGSiN3pQHcitLmAxXMEaYHBUYodEMzSBBHlZs+LEUccQRCAMabwQkZ5y1V4WS+skkHhfUGZw3JIkZCQOZOHLAyR51nXCyEgDuEfD5OeoNySoZpmWx3Iy3lO3mWUr5TIDiFNFeU4KEhvUaGSd2KIN+I/Xh4uSGL8mIJDQ5bDcVyVQ1Wk0kDWWC6OH7I0lrmStWdRuTg0245DL3AQ0odRBTzUy25hy37hnATTNNn3KI5jEmDqTTL0soSOOpKYBCNSbW1Z8DwfHnWI9Mj3fSU2WGdFf81R7co2lB3zcSfAwqYP22fQOPWsXm2SQKhE+gX7k14iim5pG9SG3+kvY1GXPfjQwC361dVMD1pI/ctjpoQGkcLDkBGpmXBcDw49y2/wB17uk5mBqL5YAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    style=&quot;padding-bottom: 93.91891891891892%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAATCAYAAACQjC21AAAACXBIWXMAAAsTAAALEwEAmpwYAAAC2ElEQVQ4y5WT24sURxjF+5/yNWiSB0HIW9RA0IjRsJJ/IOTRvyCbQETMQxaSQNhFN3sBg29CvBAiLkaZ3Z1xJuPuXHqmr1XVl+run1T19rq7GVf84PBVV3cfzvnqlHOv7TH/aMDNf0bceupy88mY+Ye7zD/Y5YdHg/319w8HFubZ9B8fv8GNxwO+ezBgcWOIc/3+Did+avHxL1t89FubM7e7fLn2H1dWeny62OHySo+rqz0u3OlycbnLldUe55de8sHPm5xa2OTkwiYfLmxy+tc215a3cOb/HvLJ7x0+u93l8/U+l/58xdzdPnNrPb5Y7loys778R0321R7OLnY4t9Th3GKNs0sv+eZuB2c3TNj2ErYngrYn2fZTnrsJG0PJc1fxbKTYGCqejRX/juu+MVK8cBOL1iSh46VsexntUYhDoTHYGYxwvYCR0AyFJkhLRF4R5xVhVq8TXSKygjAtiNK6p7qkKZ0mOFmWo8sKV+bseIL+JGToxwgpkUqhVIKSEj+WlkDmNWlRVpakqiq7Nk/mHyfLc7MLpUZJgYhC4igiDEOiyCAiDHwG01q9n2imSlsRDaGBKaVUbXkQZfzVDZBxyGTqEQQh0+mUrp/iqpKJqi0frYbsEKHWuZ2NKzISpYiFQBq7UhIJSV6UlAdsNThKvE+YZdn+CzMDIYR9kSSJJS2KgqoqKcvZ+J/C3MyQeox+EDB2XUtmPjZkWmvyXJPrGchz25s6RGhsGUUN2SFU1Wwcr7AmNJuNuqJ4u9V3Wjbl+b7dtIr3lBnS97Zc2p9yfN9nMpngeZ6NzdTz7CFVe/beptBk0twX49DGplFkTlwlCWmaWjQzPRgNZsSmKRM7RwnFTmtEGIQEQUAUxTbYYRRxXNVXsLQZXt8KWHoR4EUCR8aSV62hVSP2Qh3HYj+Ds22W9na1XMU4zvj2Xp+v13v03QDHnmxakx2FucfHIT7QRWzufMBrBXGTh+wMrvkAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
   &gt;&lt;/span&gt;
   &lt;img
         class=&quot;gatsby-resp-image-image&quot;
@@ -28,6 +91,7 @@
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -35,7 +99,7 @@
 &lt;p&gt;The final step is to tie everything together in Route 53 using aliases.&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 471px;&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 471px; &quot;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
@@ -46,7 +110,7 @@
   &gt;
     &lt;span
     class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 53.92781316348195%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsSAAALEgHS3X78AAAB3klEQVQoz2VSiXKbMBT0//9Uj8lM6kmbjtPGtWPHgGxukMAggbi2T7KT4JaZnZXE02qfVosoP+MY5ojzCmFaWj6rEaUa/sFoUcgepRz+g6h7KD1gwfwEm72LV9fH7sDAghR1O102qp7EB1QNCSmNotGQGvb/DfSEirgxgpznODIPjVJI0wSF4KjOJYpCgOeZnZ/LErXk5IDj8k0z/hiPIwnmeQ7GGLquh5QSnHOLJElQ1TUVjeiHgZg2DJOda63Rtu1FZpoIFx6obmFEjCgmU9iiriWqqiKHBZSSVDjakw0Gy3RA31vMv3fBMIrxa/WIH9sMPzcBRJbAcRm1n0OIAlnGkeW3yC3EezecC2uq6zosjKMoDBHEHCc/gutzOKGCF0uwWH0gmXFi/iscqM603jQtXZeyrheKwnBd1wbiHPbYMW6TbLqRUqPkuivexvq6TgjEYFu9admcIISwIaRpSpyCFzWOQQLvGOFEzE4RjUOIUkE2A2p6TpXqoNreBmTu1cAKmr49z8N6vcbz829sty94ePLw+dsWX5c7fFm+4NP9xvL9o4vl6oi776+4e9hj+eRj9ed0DW4maNyZp+M4DoIgoDfXwITlByEhQkyuoyixa2EY20C0NkmPlucO/wIaFUaxNgYx+AAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    style=&quot;padding-bottom: 54.05405405405405%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAALCAYAAAB/Ca1DAAAACXBIWXMAAAsTAAALEwEAmpwYAAAB4UlEQVQoz2WSiWrcMBCG8/4vVZqWJmlLDxJIasebXW+8vg/5kGzJ9lckLzlawccvhtHPzGguorTCkpYdp6ymEIpWLQg5v6OVC2KYaQbj9F/q3qDNwoX/dMTfhQT7CC8IScuWblxpBo2QhlbOdGqhlop2NAwT9OO6MW3YmM1xhkl8wqKUJE1iuq5FiAbR1JRFTtNU9G1HO2ToWfL+rGesLCzLwkUUnUiSBGNm2rajLCtHlueocXRJ8zzbfOZ5e6SUQhuz+ayrs7RxZyiEwGJf2Cr7vqfrOpqmYZomVpc4O1Or9pHW2unb82IYBAF3t7dcPwj+PIZUZc7uaU9dC8qypigqivI9Nm6pqsphO6rrejO0F9vyc1IRnWJ2Ucs+GTikkvAt2aseM8kulkS5RE8jUimklK+Gh8OBPEvw/cAZTQbktKCmFaXPnO82PuoVIRcysfzf8jAMlGVJlmWOoqzJq5YwSjkcY6I4Zx+eeD7ltP3IoAy91HRSM05mm/O6YozZDG2pnudxf//A3d0tnr/n8/eAyxufj9ceH288Pny559O3R65+Hrj5feTyq8/Vjyeufz3zuE9dhS+GdgWiKCIMQ+wH2QGLtucUJ26mVrOsIE7SMxmN6NwSG7Mwae12cduChb9nCUbVSzqzNQAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
   &gt;&lt;/span&gt;
   &lt;img
         class=&quot;gatsby-resp-image-image&quot;
@@ -59,12 +123,13 @@
         sizes=&quot;(max-width: 471px) 100vw, 471px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 478px;&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 478px; &quot;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
@@ -75,7 +140,7 @@
   &gt;
     &lt;span
     class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 65.48117154811716%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsSAAALEgHS3X78AAACF0lEQVQ4y3WT6W6bUBCF/f7P1SY/ErmV0tbEBrNjdriXfT2duTZOKqdIRyNAfHfOnGEnqhZhKhBlEhHVtGxQdfNddbdSXf559pVkO2OaF+yCKMW74cCwfJxMF7YfQ9BLliRQ3nQQ3UgfbeCvtCrgOM3YCVHCdRxUUqLrWkghkGcppBRo6hpVk2KYalyvFf+/VizLwkABh4BN0xCwQ1EUyPIcSZIQVGJdgJmszPOsxB/1/YBhGK6Y9XrIst6ADIrjWMH6vkfNXVUSZVmgpXfrwpAP8f00jQSfVFcMXG+wW4cS2uE33o4BXrQUeRrDcnx4QYwkEwjj/EFRUihlWYE8Z+VgpwrIHUVRhEsYIwhCmF4KO+4RZB2pxyUf7nUT33tJD5c0jQN6ss/u7pbDMFQz8z0Huh0hr2ld2hGyGSHqHlU7oZAtMlqpsqKxdJNalaicyO5yneFynfOubVvVrud58H2fxDWAYZh4P55gWjYOB42CKlA3Ldquv4W0qhkyhGe4hbbjVrk7TdOg67oSJ23bNkzTVAdxTdOUgiopsEp1sy3RA5DT5aFuMP44CHwCWjidjnBdhw470H6Wn9L9tH1k+QGYZRlZNHA+n1VnSVpAPzs4GRZM28dRtyj5AD4lL2iWkufaDKrW9Cdt1u+W2eIG44B+/nHxtLfw/INl4/XXBS9vPr69Gnim5097U+n73sbxfFGdTtMV+Bewed9tcT0WUAAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
+    style=&quot;padding-bottom: 65.54054054054055%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAANCAYAAACpUE5eAAAACXBIWXMAAAsTAAALEwEAmpwYAAACJUlEQVQ4y32TC2+bMBRG8///1rRNU9dN06omDXkQEiA8bMA8DMHkTDYt6yZtlo4+IeDg63tZqUaTCEUqFalQ5GVDrc1Coydqh/kvqjOMZmIVp4KXfcDOv+AdzvjnhKo1VJ1B6QnZasruRq3v7trK1Sv1kndUNzGMhlVVVZzPAVVV0vcaVVVIIVCqpG0a6lbQ3xTzuvPvdWeaplkYBGfquqbve4qiREhJluXYe9N0x5gJY4zDvjQMA30/zJr73X3GphO2bUuWZXRd5x5s7K5qRVkWtG3DNJk/uE+GcbxhxvG38FXmhErVvGyeedpe+LKWiCwhOMecw4RcKq6pJMn+pnAIUVDIAikLyrJyFazsjtI0Jb6mhNEV/5LhXzVRrgnznkjMxGIglgORGIjynkuuCVLNzZbvjqCfhbbkJEmcNAoDPD9G1Iamu6HaG1UzUHcjhdKIsqWsexo90mjDtRhdmXbZXIRKKcIwJAyjJfcHn5etx9EPeF6/kOWSpu1ou97N22jms3tr1FvTVlprhBBsNhv2+z2e5yGlJAgCjscj4eXi0jbOjpadhsmYZVis5K0pi7AsS3a7ncO+HIUhQXDC2265nAM2mzVFIV13Le/n8X2HF2FRFG53h8OB0+lElhcc7J+z8/GDkO3uiB9EhHGKqjV1O9C0w2vqpfRFaAfYCn3f5xrH/Fhf+Pjo8/n7zNeniIefIR8ednz6dpx5tHli7YVL6Vb4C4Rn31ZxCVsMAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
   &gt;&lt;/span&gt;
   &lt;img
         class=&quot;gatsby-resp-image-image&quot;
@@ -88,6 +153,7 @@
         sizes=&quot;(max-width: 478px) 100vw, 478px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;&lt;/p&gt;
@@ -154,7 +220,7 @@
 &lt;h2&gt;Application Structure&lt;/h2&gt;
 &lt;p&gt;&lt;span
       class=&quot;gatsby-resp-image-wrapper&quot;
-      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto;  max-width: 590px;&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
     &gt;
       &lt;a
     class=&quot;gatsby-resp-image-link&quot;
@@ -165,7 +231,7 @@
   &gt;
     &lt;span
     class=&quot;gatsby-resp-image-background-image&quot;
-    style=&quot;padding-bottom: 72.14406302757456%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAIAAACgpqunAAAACXBIWXMAAAsSAAALEgHS3X78AAABiUlEQVQoz42ROXPcMAyF9f/bFG7yC9ylzSRNXGfijOONd3L6kLXiHiRFkQAJHiElSyt77HHevIKS8IECXqVFzX6fO/AxUAz+GceYUnLect5CB+QpTapsf5DtH77bBwfBYiSM3gWHkyEO1SF6g5q1TPUqP44dqxTIKAIlHWAK2EvU8pDPM597zdWzJjjG9nZ9/vEEeorWbf7++vLhDfT2yc1j9dziAQ6ONjVbX6wMN8HY5oatLy/7rY7+P24OhB6t40gaAqA1uhMikk/epoxlR58eKw4qcCRLoIFzZ7CcUe9YI/lW7EczyQ/dIKWUFKKX6rjt3Gd7P81M5T+9BQd6ck8WvfdEBPk9BiWUIxfIeqQqOceu765W31DDCJc5yR49zLwX7N2nk6bebe5ZfXtdv3+rm21VSp31lpbxPM65wILtv69XQigpRdM0Nz+vjNFlYWPRc+Rx21mqM5zn2eUcW4btS9gy53K5OCC4ZWZlYa87Jeh4e3aqFS3jrtKrGmDVyR9fP6PWyy//ADDGK9BwOr0DAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+    style=&quot;padding-bottom: 72.2972972972973%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAOCAIAAACgpqunAAAACXBIWXMAAAsTAAALEwEAmpwYAAABjklEQVQoz42SvW8UMRDF7//vkEJLQ00PkaCgjWgRiRTubnN32e+11x6Pv2aM7MvtJgShzL5iLPmnt2/GGzPXx5/f9aQpOo6BY6Dgz82TKKaUIoV+PMpOoMV0qU20gHOn5EweyVvylon40udj9CklZo4xCCEA4HzMcCIP0shmZwETWS3MeLq3YC4wLnB6VgtMfV39uL7SAtj5rjrcfHmnp5mDfw1zqRUm74dWbu8q1WlG29di+7uaW83hDc4cLDsbpSW00WBAkGNfbPEvmMqXKHNMlDjDzhslH7eokYONDse+nYZ2GrqzxDjIUlrpWUo5iuUvcuahqW6ur2AGDm4Z8jqwkJ2JWOjOIWmhrbNR9UHhJnkn636/ezDKXHK+gCm4lNKsxKdv7/f7qjm1VVXtPn9Qp8MmbzI4Dj7Y1+TqbAQcHx7FBABqGMa6bgyanDk6jA7/Ra6PJJtrmKYcfs2cBxvcf8QxlGkn2RwM+GVXZWClLVqalyr3rIHD149aqOfr3qS3lUG8v/0Fcn6yKPAfbMsr4IyEB9YAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
   &gt;&lt;/span&gt;
   &lt;img
         class=&quot;gatsby-resp-image-image&quot;
@@ -181,6 +247,7 @@
         sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
         style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
         loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
       /&gt;
   &lt;/a&gt;
     &lt;/span&gt;
@@ -194,18 +261,20 @@
 the request as arguments to the lambda function. The function returns an object which
 contains information on how the http response should be structured, e.g:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;{
-   body: &amp;quot;Content for the HTTP Body&amp;quot;,
-   statusCode: 200, // or any other status code
-   headers: {
-       &amp;quot;Content-Type&amp;quot;: &amp;quot;text/plain&amp;quot;,
-       // etc, more headers
-   },
+    body: &quot;Content for the HTTP Body&quot;,
+    statusCode: 200, // or any other status code
+    headers: {
+        &quot;Content-Type&quot;: &quot;text/plain&quot;,
+        // etc, more headers
+    },
 }&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;code class=&quot;language-text&quot;&gt;OPTIONS /&lt;/code&gt;: The second route is on the same path but receives on an OPTIONS request. It
+&lt;li&gt;
+&lt;p&gt;&lt;code class=&quot;language-text&quot;&gt;OPTIONS /&lt;/code&gt;: The second route is on the same path but receives on an OPTIONS request. It
 simply responds with the most permissive CORS possible. In a larger app, you could
 configure your own CORS API handler to do something more sophisticated, e.g. returning the
-appropriate headers to enforce a whitelist of allowed domains.&lt;/li&gt;
+appropriate headers to enforce a whitelist of allowed domains.&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Here is the resource definition that attaches API Gateway to Lambda:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;yaml&quot;&gt;&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;&quot;apiGatewayRootMethod&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;
@@ -283,7 +352,7 @@ out there. This works on versions 3.2 and 4.0 from what I can tell.&lt;/p&gt;
     &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
   &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
 &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;just change &lt;code class=&quot;language-text&quot;&gt;:Port =&amp;gt; XXXX&lt;/code&gt; to whatever you want it to be. From now on you can
+&lt;p&gt;just change &lt;code class=&quot;language-text&quot;&gt;:Port =&gt; XXXX&lt;/code&gt; to whatever you want it to be. From now on you can
 simple start rails with &lt;code class=&quot;language-text&quot;&gt;rails s&lt;/code&gt; and it will use the port you specified. If
 you are looking for a more robust solution consider checking out Pow:
 &lt;a href=&quot;http://pow.cx/&quot;&gt;http://pow.cx/&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Docker Tips and Tricks]]></title><description><![CDATA[Enter a container To do this you’ll need a tool called . The easiest way to get it is
@@ -374,12 +443,12 @@ best I can. The first assumption is that a 302 response on wp-login.php means
 a successful login and a 200 means a failed one. Each time a request is made
 (that returns with a 200 status code) it increments a counter for the ip
 address by one &lt;code class=&quot;language-text&quot;&gt;setvar:ip.bf_counter=+1&lt;/code&gt; and then checks to see if the counter
-is over 15 &lt;code class=&quot;language-text&quot;&gt;SecRule ip:bf_counter &amp;quot;@gt 15&amp;quot;&lt;/code&gt;. If it is, it says a variable to
+is over 15 &lt;code class=&quot;language-text&quot;&gt;SecRule ip:bf_counter &quot;@gt 15&quot;&lt;/code&gt;. If it is, it says a variable to
 block the user that expires in 300 seconds (5 minutes)
 &lt;code class=&quot;language-text&quot;&gt;setvar:user.bf_block=1,expirevar:user.bf_block=300&lt;/code&gt; and resets the counter on
 the IP address &lt;code class=&quot;language-text&quot;&gt;setvar:ip.bf_counter=0&lt;/code&gt;. As long as the blocking variable is
-set the user will be denied access &lt;code class=&quot;language-text&quot;&gt;SecRule user:bf_block &amp;quot;@gt 0&amp;quot;
-&amp;quot;deny,status:401&amp;quot;&lt;/code&gt;.&lt;/p&gt;
+set the user will be denied access &lt;code class=&quot;language-text&quot;&gt;SecRule user:bf_block &quot;@gt 0&quot;
+&quot;deny,status:401&quot;&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;While all of this is happening the ip address counter is being decremented by
 1 every 180 seconds (3 minutes) &lt;code class=&quot;language-text&quot;&gt;deprecatevar:ip.bf_counter=1/180&lt;/code&gt;. This means
 that as long as the user waits at least 3 minutes in between each request they
@@ -443,7 +512,7 @@ chmod +x /usr/local/bin/msf&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;The first time you run &lt;code class=&quot;language-text&quot;&gt;msf&lt;/code&gt; you may want to rebuild the cache for faster searching:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;sh&quot;&gt;&lt;pre class=&quot;language-sh&quot;&gt;&lt;code class=&quot;language-sh&quot;&gt;msf -x db_rebuild_cache&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Try to search for an exploit to test it out:&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;msf &amp;gt; search wordpress
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;text&quot;&gt;&lt;pre class=&quot;language-text&quot;&gt;&lt;code class=&quot;language-text&quot;&gt;msf &gt; search wordpress
 
 Matching Modules
 ================
@@ -465,16 +534,16 @@ Matching Modules
    exploit/unix/webapp/wp_property_upload_exec               2012-03-26       excellent  WordPress WP-Property PHP File Upload Vulnerability
    exploit/unix/webapp/wp_wptouch_file_upload                2014-07-14       excellent  Wordpress WPTouch Authenticated File Upload
    exploit/unix/webapp/wp_wysija_newsletters_upload          2014-07-01       excellent  Wordpress MailPoet Newsletters (wysija-newsletters) Unauthenticated File Upload
-   exploit/windows/browser/adobe_flashplayer_newfunction     2010-06-04       normal     Adobe Flash Player &amp;quot;newfunction&amp;quot; Invalid Pointer Use
-   exploit/windows/fileformat/adobe_flashplayer_button       2010-10-28       normal     Adobe Flash Player &amp;quot;Button&amp;quot; Remote Code Execution
-   exploit/windows/fileformat/adobe_flashplayer_newfunction  2010-06-04       normal     Adobe Flash Player &amp;quot;newfunction&amp;quot; Invalid Pointer Use
+   exploit/windows/browser/adobe_flashplayer_newfunction     2010-06-04       normal     Adobe Flash Player &quot;newfunction&quot; Invalid Pointer Use
+   exploit/windows/fileformat/adobe_flashplayer_button       2010-10-28       normal     Adobe Flash Player &quot;Button&quot; Remote Code Execution
+   exploit/windows/fileformat/adobe_flashplayer_newfunction  2010-06-04       normal     Adobe Flash Player &quot;newfunction&quot; Invalid Pointer Use
    exploit/windows/fileformat/ms12_005                       2012-01-10       excellent  MS12-005 Microsoft Office ClickOnce Unsafe Object Package Handling Vulnerability
    exploit/windows/fileformat/winrar_name_spoofing           2009-09-28       excellent  WinRAR Filename Spoofing
    exploit/windows/ftp/easyftp_cwd_fixret                    2010-02-16       great      EasyFTP Server CWD Command Stack Buffer Overflow
    exploit/windows/http/sws_connection_bof                   2012-07-20       normal     Simple Web Server Connection Header Buffer Overflow
    post/windows/gather/credentials/razer_synapse                              normal     Windows Gather Razer Synapse Password Extraction
 
-msf &amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+msf &gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;If you see this you should be good to go. Metasploit is a great tool for
 testing your site for vulnerabilities and for testing your fixes.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Facilitating Bidirectional Cross-Domain Communication with an Iframe]]></title><description><![CDATA[I recently was working on a project where iframes seemed to be the most
 logical solution. Actually, iframes I think are a perfectly…]]></description><link>https://quinn.io/2014/08-12-iframe-communication/</link><guid isPermaLink="false">https://quinn.io/2014/08-12-iframe-communication/</guid><pubDate>Tue, 12 Aug 2014 00:00:00 GMT</pubDate><content:encoded>&lt;p&gt;I recently was working on a project where iframes seemed to be the most
@@ -497,7 +566,8 @@ around certain browsers.&lt;/p&gt;
   &lt;span class=&quot;token comment&quot;&gt;// do something with the message.&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This is a pretty minimal and easy to understand API. In my case, it seemed helpful to be able to send more complex messages, so I created a shared javascript file across the two domains that knows how to serialize and deserialize JSON messages containing named events. This allows for a more automated workflow:&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;// IframeMessages.prototype.iframe is an object that contains&lt;/span&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;js&quot;&gt;&lt;pre class=&quot;language-js&quot;&gt;&lt;code class=&quot;language-js&quot;&gt;
+&lt;span class=&quot;token comment&quot;&gt;// IframeMessages.prototype.iframe is an object that contains&lt;/span&gt;
 &lt;span class=&quot;token comment&quot;&gt;// all of the events for the iframe. This code is used by the iframe.&lt;/span&gt;
 &lt;span class=&quot;token class-name&quot;&gt;IframeMessages&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;prototype&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;wrapper&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;token function-variable function&quot;&gt;activityFinished&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;token keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token parameter&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
 
@@ -555,10 +625,10 @@ different domain). See the following snippet:&lt;/p&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h3&gt;Getting cookies to work&lt;/h3&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Note (2014-08-13)&lt;/strong&gt;: Newer versions of Chrome and other browsers seem to
-block 3rd party cookies by default. I am still working on a workaround for
-this.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note (2014-08-13)&lt;/strong&gt;: Newer versions of Chrome and other browsers seem to&lt;/p&gt;
 &lt;/blockquote&gt;
+&lt;p&gt;block 3rd party cookies by default. I am still working on a workaround for
+this.&lt;/p&gt;
 &lt;p&gt;If you’ve done this before on a different domain, you’ve probably noticed that
 there are some issues cookies. Safari (and possibly other browsers) blocks
 iframes on domains that the user hasn’t visited from storing cookies. This
@@ -637,19 +707,19 @@ handle this:&lt;/p&gt;
 1 for a tail of the error log which gets printed to STDERR, and 1 for the
 access log which gets printed to STDOUT. This requires some additional config
 in the NGINX config:&lt;/p&gt;
-&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;nginx&quot;&gt;&lt;pre class=&quot;language-nginx&quot;&gt;&lt;code class=&quot;language-nginx&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;worker_processes&lt;/span&gt;  &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;daemon&lt;/span&gt; off&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;nginx&quot;&gt;&lt;pre class=&quot;language-nginx&quot;&gt;&lt;code class=&quot;language-nginx&quot;&gt;&lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;worker_processes&lt;/span&gt;  &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;daemon&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;off&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 
-&lt;span class=&quot;token keyword&quot;&gt;events&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;token keyword&quot;&gt;worker_connections&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1024&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;events&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;worker_connections&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1024&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
 
-&lt;span class=&quot;token keyword&quot;&gt;http&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;token keyword&quot;&gt;access_log&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;path&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;to&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;nginx&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;logs&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;nginx&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;access&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;log&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-  &lt;span class=&quot;token keyword&quot;&gt;error_log&lt;/span&gt;  &lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;path&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;to&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;nginx&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;logs&lt;span class=&quot;token operator&quot;&gt;/&lt;/span&gt;nginx&lt;span class=&quot;token operator&quot;&gt;-&lt;/span&gt;error&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;log debug&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;http&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;access_log&lt;/span&gt; /path/to/nginx/logs/nginx-access.log&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;error_log&lt;/span&gt;  /path/to/nginx/logs/nginx-error.log debug&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 
-  &lt;span class=&quot;token keyword&quot;&gt;server&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;listen&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;8080&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;server&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;listen&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;8080&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;As you can see I’ve increased the log level to &lt;code class=&quot;language-text&quot;&gt;debug&lt;/code&gt; to get the maximum
@@ -708,11 +778,11 @@ this is what that could look like:&lt;/p&gt;
 article&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;tags &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&apos;programming&apos;&lt;/span&gt;
 article&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;save&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Note (2014-04-16)&lt;/strong&gt;: There may be currently a bug in rails that can cause
-issues with the above syntax. If so, try running &lt;code class=&quot;language-text&quot;&gt;article.tags_will_change!&lt;/code&gt;.
+&lt;p&gt;&lt;strong&gt;Note (2014-04-16)&lt;/strong&gt;: There may be currently a bug in rails that can cause&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;issues with the above syntax. If so, try running &lt;code class=&quot;language-text&quot;&gt;article.tags_will_change!&lt;/code&gt;.
 More info on the bug &lt;a href=&quot;https://github.com/rails/rails/issues/6127&quot;&gt;here&lt;/a&gt;. Thanks, &lt;a href=&quot;http://www.komendera.com/&quot;&gt;Dieter Komendera&lt;/a&gt; for
 pointing this out.&lt;/p&gt;
-&lt;/blockquote&gt;
 &lt;p&gt;But what if you wanted to perform this in a single operation, or what if you
 wanted to perform this on multiple records at once in a single query? This is
 possible, using the &lt;code class=&quot;language-text&quot;&gt;append_array&lt;/code&gt; function:&lt;/p&gt;
@@ -862,7 +932,7 @@ the controller get called from the router:&lt;/p&gt;
   &lt;span class=&quot;token keyword&quot;&gt;raise&lt;/span&gt; &lt;span class=&quot;token constant&quot;&gt;ActionController&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;token constant&quot;&gt;RoutingError&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;message&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; e&lt;span class=&quot;token punctuation&quot;&gt;.&lt;/span&gt;backtrace &lt;span class=&quot;token keyword&quot;&gt;if&lt;/span&gt; default_controller
 &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;It’s easy to tell that this the business logic for translating
-&lt;code class=&quot;language-text&quot;&gt;params[:controller] = &amp;#39;articles&amp;#39;&lt;/code&gt; into &lt;code class=&quot;language-text&quot;&gt;ArticlesController&lt;/code&gt;. We can safely
+&lt;code class=&quot;language-text&quot;&gt;params[:controller] = &apos;articles&apos;&lt;/code&gt; into &lt;code class=&quot;language-text&quot;&gt;ArticlesController&lt;/code&gt;. We can safely
 assume that a controller class is now stored in the &lt;code class=&quot;language-text&quot;&gt;controller&lt;/code&gt; variable. Now
 let’s look at the definition of &lt;code class=&quot;language-text&quot;&gt;dispatch()&lt;/code&gt;:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;ruby&quot;&gt;&lt;pre class=&quot;language-ruby&quot;&gt;&lt;code class=&quot;language-ruby&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;token method-definition&quot;&gt;&lt;span class=&quot;token function&quot;&gt;dispatch&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;controller&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; action&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt; env&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;
@@ -905,9 +975,9 @@ A self-sufficient runtime for linux containers.
 Commands:
     attach    Attach to a running container
     build     Build a container from a Dockerfile
-    commit    Create a new image from a container&amp;#39;s changes
+    commit    Create a new image from a container&apos;s changes
     cp        Copy files/folders from the containers filesystem to the host path
-    diff      Inspect changes on a container&amp;#39;s filesystem
+    diff      Inspect changes on a container&apos;s filesystem
     events    Get real time events from the server
     export    Stream the contents of a container as a tar archive
     history   Show the history of an image
@@ -1073,18 +1143,19 @@ to see what works. First, you need to create a config:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;nginx&quot;&gt;&lt;pre class=&quot;language-nginx&quot;&gt;&lt;code class=&quot;language-nginx&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# nginx.conf&lt;/span&gt;
 &lt;span class=&quot;token comment&quot;&gt;# put wherever you want, mine is in the base of my project directory&lt;/span&gt;
 
-&lt;span class=&quot;token keyword&quot;&gt;worker_processes&lt;/span&gt;  &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;token keyword&quot;&gt;daemon&lt;/span&gt; off&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;worker_processes&lt;/span&gt;  &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;daemon&lt;/span&gt; &lt;span class=&quot;token boolean&quot;&gt;off&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 
-&lt;span class=&quot;token keyword&quot;&gt;events&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;token keyword&quot;&gt;worker_connections&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1024&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;events&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;worker_connections&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1024&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
 
-&lt;span class=&quot;token keyword&quot;&gt;http&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-  &lt;span class=&quot;token keyword&quot;&gt;server&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;token keyword&quot;&gt;listen&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;8080&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;http&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;server&lt;/span&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;token directive&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;listen&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;8080&lt;/span&gt;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
   &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;the most important line is &lt;code class=&quot;language-text&quot;&gt;daemon off&lt;/code&gt; which will cause nginx to run in the
 foreground. This will still run with the typical master / worker setup though,
 and can be used in production.&lt;/p&gt;
