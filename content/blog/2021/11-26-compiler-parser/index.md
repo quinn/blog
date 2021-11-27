@@ -1,5 +1,5 @@
 ---
-title: "Writing a C Compiler: Part 2, Parser and Code generation"
+title: "Writing a C Compiler: Part 2, Parser and Code Generation"
 date: "2021-11-26T21:19Z"
 ---
 
