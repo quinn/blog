@@ -48,7 +48,9 @@
     "typography-theme-wordpress-2016": "^0.16.19"
   },
   "devDependencies": {
-    "prettier": "^2.4.1"
+    "prettier": "^2.4.1",
+    "ts-node": "^10.8.0",
+    "typescript": "^4.6.4"
   },
   "keywords": [
     "gatsby"
@@ -63,6 +65,7 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
+    "new-post": "ts-node ./bin/new-post.ts",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   }
 }
