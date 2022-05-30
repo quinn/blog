@@ -1,4 +1,108 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Your Site's RSS Feed]]></title><description><![CDATA[It's probably gonna mostly be about code]]></description><link>https://quinn.io</link><generator>GatsbyJS</generator><lastBuildDate>Sun, 19 Dec 2021 02:29:50 GMT</lastBuildDate><item><title><![CDATA[Writing a C Compiler: Part 3, Variables]]></title><description><![CDATA[I struggled with this one beacuse i had to look ahead 2 tokens to parse expression assigment vs. reference.]]></description><link>https://quinn.io/2021/12-18-comiler-vars/</link><guid isPermaLink="false">https://quinn.io/2021/12-18-comiler-vars/</guid><pubDate>Fri, 26 Nov 2021 21:19:00 GMT</pubDate><content:encoded>&lt;p&gt;I struggled with this one beacuse i had to look ahead 2 tokens to parse expression assigment vs. reference.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Writing a C Compiler: Part 2, Parser and Code Generation]]></title><description><![CDATA[I’ve worked a bit more on the compiler, implementing the parsing and code generation steps. So, the program to compile is as follows…]]></description><link>https://quinn.io/2021/11-26-compiler-parser/</link><guid isPermaLink="false">https://quinn.io/2021/11-26-compiler-parser/</guid><pubDate>Fri, 26 Nov 2021 21:19:00 GMT</pubDate><content:encoded>&lt;p&gt;I’ve worked a bit more on the compiler, implementing the parsing and code generation steps. So, the program to compile is as follows:&lt;/p&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Your Site's RSS Feed]]></title><description><![CDATA[It's probably gonna mostly be about code]]></description><link>https://quinn.io</link><generator>GatsbyJS</generator><lastBuildDate>Mon, 30 May 2022 23:36:35 GMT</lastBuildDate><item><title><![CDATA[How to fix joystick drift in Unity]]></title><description><![CDATA[How did we end up here I’ve decided to add Unity to my long list of unfinished “learn a new thing” projects. This decision was inspired by a…]]></description><link>https://quinn.io/2022/05-27-joystick-in-unity/</link><guid isPermaLink="false">https://quinn.io/2022/05-27-joystick-in-unity/</guid><pubDate>Fri, 27 May 2022 23:13:50 GMT</pubDate><content:encoded>&lt;h2&gt;How did we end up here&lt;/h2&gt;
+&lt;p&gt;I’ve decided to add Unity to my long list of unfinished “learn a new thing” projects. This decision was inspired by a few different things. The first is nastalgia for Adobe, &lt;em&gt;cough&lt;/em&gt;, &lt;strong&gt;Macromedia&lt;/strong&gt; (RIP) Flash, one of the first tools I used to learn programming. It also drove a lot of creative and interactive content in the early days of the web, some of it amazing, and some of it (most of it?) terrible. It did create the opportunity for very open-ended interactive experiences in the browser, something that hasn’t been fully replicated to this day, in my opinion. Unity seems like a good fit to recreate some of this experience, given that it is a visual editor tool, with programming as an extension: C#, compared to Flash’s proprietary actionscript.&lt;/p&gt;
+&lt;p&gt;The second is trying to find a consistent programming hobby for myself. I code for work of course, but programming first and foremost for me is a hobby. I’ve tried in the past to work on side projects for hobby programming, but the problem with building products is that I usually end up with too many practical considerations and losing motivation in that way. Game development seems like an open-ended project where I don’t have to worry about the practical implications of what I’m building.&lt;/p&gt;
+&lt;h2&gt;Setting up a joystick&lt;/h2&gt;
+&lt;p&gt;In the first tutorial for a 2d platformer I decided to see if I could get my joystick (X-Box controller) to work instead of using the keyboard. I don’t use the default keyboard layout so WASD doesn’t really work for me. This can be changed in this settings panel:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/eda77cb9e62caec807f3cd12d4f02250/105d8/unity-editor-horizontal-axis.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 46.621621621621614%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAIAAAC9o5sfAAAACXBIWXMAAA7DAAAOwwHHb6hkAAABGklEQVQoz3XR227DIAwGYF4lbRVizjY4B0LaVGnV9f1faErRJm1qP1kILn4sgyilOL9DpDSMPM3DvKQxBx6IR+IRfyqkwYRoPHXagnHGo7jdbn3fB0StFBE+n19zzj0zERJiJEyRXhuKVNeIYReJxOPxuFwuzIyIiTkxO+eMMdbtlNYdwP/qOiml917c7/dpmqy1xpgQAjPnnIloTyp1Op0O7zRNo7UW27Yxs/e+hmOMpZSUUg0fPmiaRkoprtfrMAwhhBpOKfV975yz1gJA89nxeBTrup7PZ0T87VwvqoNorQFAvQMA+2vP8+y9d27/spRSHdgYk3Petm1ZllLK/FcphZnFNGWlVNu2Usq2bWu3egQA/QLvdF33DRiwYpWXa75HAAAAAElFTkSuQmCC&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Unity editor horizontal axis&quot;
+        title=&quot;Unity editor horizontal axis&quot;
+        src=&quot;/static/eda77cb9e62caec807f3cd12d4f02250/fcda8/unity-editor-horizontal-axis.png&quot;
+        srcset=&quot;/static/eda77cb9e62caec807f3cd12d4f02250/12f09/unity-editor-horizontal-axis.png 148w,
+/static/eda77cb9e62caec807f3cd12d4f02250/e4a3f/unity-editor-horizontal-axis.png 295w,
+/static/eda77cb9e62caec807f3cd12d4f02250/fcda8/unity-editor-horizontal-axis.png 590w,
+/static/eda77cb9e62caec807f3cd12d4f02250/efc66/unity-editor-horizontal-axis.png 885w,
+/static/eda77cb9e62caec807f3cd12d4f02250/105d8/unity-editor-horizontal-axis.png 1170w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;It seemed to work right away after this, but I immediately noticed the character in the tutorial project “drifting” slightly to the right when I wasn’t touching the joystick.&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/adc945552d54ed3176d0505d98a50a83/35252/character-drift-x-transform.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 42.567567567567565%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAJCAIAAAC9o5sfAAAACXBIWXMAAA7DAAAOwwHHb6hkAAACMElEQVQozwElAtr9ACssLS8wMS4uLigpKSQkJSYmJyMjJCEiIiMjIycqLissLScnJyoqKykpKSMjIikpKS4uLiYmJiYmJiYnJwBZYGi4xt25x97C0ejD0ubG1ubS4O7W5PHT4fDF1ObBz+W8yuKgscWcqbw2NzkqKik7Ozs4OTk2NTU4OzwAYGhy0eL90+P+0eP65fb+6/z/pLzTlq/GhKC5s8rc7Pv/0uT9tsrjVWyFJyosLCsqNDQ0LCwsKysrLS4tAGNqdMbZ85OuxWWFo5KqwqvB1ERnhCBHaCJIaJizyrfR6Mzc9MjZ80JcdCAkJy8vLjY3NzIyMjMzMzIxMgBVXmbH2fLG2PJQdZMiSWgzV3Y+YX4uXHorWniPqL+DoLSXqbSGna9GX28jJiktLCs4ODk1NTUoKCksLCwAQE1Wdpevkq/JVHiUO2OBRGyJRWqIP3CNO26Ma4mhgZ6yd5itaoyjTW2EKi0vKikpNzc4Li4uKSgnLi4uAEBOV2WJomOHoG6Rq3KWsHKYs3SatXWZtHSYtG6VsGqQq2eLpmeLpWB+lCwvMSsqKjo7OzExMCopKC4uLgBATlhtkKpukKpxlbB0mbV2nLh3nbl3nrl2nbl1m7dzmLNwlK5tkapigZYsLzEqKik6OjoxMTEzNDI0MzQAOEBGTGJwTmNyUGZ1Umh4U2p6U2p7U2p7VGp7U2l5UWd3T2R0TmNyR1lmJigpKioqOjo6Ly8vNDQyMjIzcS3lujo3RTwAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Character drift&quot;
+        title=&quot;Character drift&quot;
+        src=&quot;/static/adc945552d54ed3176d0505d98a50a83/fcda8/character-drift-x-transform.png&quot;
+        srcset=&quot;/static/adc945552d54ed3176d0505d98a50a83/12f09/character-drift-x-transform.png 148w,
+/static/adc945552d54ed3176d0505d98a50a83/e4a3f/character-drift-x-transform.png 295w,
+/static/adc945552d54ed3176d0505d98a50a83/fcda8/character-drift-x-transform.png 590w,
+/static/adc945552d54ed3176d0505d98a50a83/efc66/character-drift-x-transform.png 885w,
+/static/adc945552d54ed3176d0505d98a50a83/c83ae/character-drift-x-transform.png 1180w,
+/static/adc945552d54ed3176d0505d98a50a83/35252/character-drift-x-transform.png 1204w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;Since this is a still screenshot its hard to tell, but you can see in the X transform on the right. This is without touching the controller. Some quick googling reveals this can be fixed by adjusting the “dead value”:&lt;/p&gt;
+&lt;p&gt;&lt;span
+      class=&quot;gatsby-resp-image-wrapper&quot;
+      style=&quot;position: relative; display: block; margin-left: auto; margin-right: auto; max-width: 590px; &quot;
+    &gt;
+      &lt;a
+    class=&quot;gatsby-resp-image-link&quot;
+    href=&quot;/static/67d89c7b67d4f6f94556eab8926252c4/bc962/dead-value-input.png&quot;
+    style=&quot;display: block&quot;
+    target=&quot;_blank&quot;
+    rel=&quot;noopener&quot;
+  &gt;
+    &lt;span
+    class=&quot;gatsby-resp-image-background-image&quot;
+    style=&quot;padding-bottom: 41.21621621621622%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAICAIAAAB2/0i6AAAACXBIWXMAAA7DAAAOwwHHb6hkAAAA9UlEQVQY012RSY6AIBBFuY4uDDFgKYMUqFGmsHPl/c/RiUba7rer/Dwq9SHLsgDAeAMA8zwbY6SU3vvjOBBxGIbxQ/OBeO+dc/9kIURKKcYYQlBK1dcppX/k6eYrI6KUMoRgrUVEIURNu65rmqZ9Idu2SSlrrJTSWk/TZK3lnDPGhmGAD23b/m4OISBiPWnf93ATY/TeP+O6rlprxljf95TS/oXknBHxuQoArLXLsiBiSkm/PBEAOOf2fXfOmRuyrmvtEwCklEopIQQics4fp0bXdZ3nWUrJOZdSSO2j+owxY0xKaZ7n2vM4jkKIGOPzCymlnPMPaXlvSVc9hocAAAAASUVORK5CYII=&apos;); background-size: cover; display: block;&quot;
+  &gt;&lt;/span&gt;
+  &lt;img
+        class=&quot;gatsby-resp-image-image&quot;
+        alt=&quot;Screenshot of dead value input&quot;
+        title=&quot;Screenshot of dead value input&quot;
+        src=&quot;/static/67d89c7b67d4f6f94556eab8926252c4/fcda8/dead-value-input.png&quot;
+        srcset=&quot;/static/67d89c7b67d4f6f94556eab8926252c4/12f09/dead-value-input.png 148w,
+/static/67d89c7b67d4f6f94556eab8926252c4/e4a3f/dead-value-input.png 295w,
+/static/67d89c7b67d4f6f94556eab8926252c4/fcda8/dead-value-input.png 590w,
+/static/67d89c7b67d4f6f94556eab8926252c4/bc962/dead-value-input.png 617w&quot;
+        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
+        style=&quot;width:100%;height:100%;margin:0;vertical-align:middle;position:absolute;top:0;left:0;&quot;
+        loading=&quot;lazy&quot;
+        decoding=&quot;async&quot;
+      /&gt;
+  &lt;/a&gt;
+    &lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;I bumped the value all the way up to &lt;code class=&quot;language-text&quot;&gt;0.5&lt;/code&gt; before all of the drift was removed. This made me wonder, do all games program in a high dead value like this? I assume they must, since my controller works fine for all games I’ve played with it. Or, there is some other adjustment happening with the OS, or some other variable I’m not aware of, which all seems unlikely. It’s an interesting problem I wouldn’t have expected to encounter.&lt;/p&gt;
+&lt;p&gt;That’s all for now, more exciting tails of game dev coming soon hopefully.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Writing a C Compiler: Part 2, Parser and Code Generation]]></title><description><![CDATA[I’ve worked a bit more on the compiler, implementing the parsing and code generation steps. So, the program to compile is as follows…]]></description><link>https://quinn.io/2021/11-26-compiler-parser/</link><guid isPermaLink="false">https://quinn.io/2021/11-26-compiler-parser/</guid><pubDate>Fri, 26 Nov 2021 21:19:00 GMT</pubDate><content:encoded>&lt;p&gt;I’ve worked a bit more on the compiler, implementing the parsing and code generation steps. So, the program to compile is as follows:&lt;/p&gt;
 &lt;div class=&quot;gatsby-highlight&quot; data-language=&quot;c&quot;&gt;&lt;pre class=&quot;language-c&quot;&gt;&lt;code class=&quot;language-c&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;
     &lt;span class=&quot;token keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;42&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;
 &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -183,7 +287,7 @@
   &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;
 &lt;span class=&quot;token keyword&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;I’m a bit concerned how this will scale. It seems like the parsing of each node is &lt;em&gt;very&lt;/em&gt; specific to that node. I guess it would be, I’m not sure what I’m trying to say here. I just assume what I’m doing here will break down quickly and stop working. We’ll see!&lt;/p&gt;
-&lt;p&gt;I’m glad I made it this far, I’m curious to see how much more I can build on what I have here. Looking forward to &lt;a href=&quot;https://norasandler.com/2017/12/05/Write-a-Compiler-2.html&quot;&gt;Part 2&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Writing a C Compiler: Part 1, Lexer]]></title><description><![CDATA[As a programmer I enjoy building things. I also like knowing how things work, I figure the two are related. There are a few things that I…]]></description><link>https://quinn.io/2021/11-20-compiler-lexer/</link><guid isPermaLink="false">https://quinn.io/2021/11-20-compiler-lexer/</guid><pubDate>Sat, 20 Nov 2021 20:33:00 GMT</pubDate><content:encoded>&lt;p&gt;As a programmer I enjoy building things. I also like knowing how things work, I figure the two are related. There are a few things that I feel I’ve missed out on from not attending a CS program (nothing practical of course), one being a deeper understanding of how programming languages are written. To this end I’ve decided to spend some time learning how to write compilers.&lt;/p&gt;
+&lt;p&gt;I’m glad I made it this far, I’m curious to see how much more I can build on what I have here. Looking forward to &lt;a href=&quot;https://norasandler.com/2017/12/05/Write-a-Compiler-2.html&quot;&gt;Part 2&lt;/a&gt;.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Writing a C Compiler: Part 3, Variables]]></title><description><![CDATA[I struggled with this one beacuse i had to look ahead 2 tokens to parse expression assigment vs. reference.]]></description><link>https://quinn.io/2021/12-18-comiler-vars/</link><guid isPermaLink="false">https://quinn.io/2021/12-18-comiler-vars/</guid><pubDate>Fri, 26 Nov 2021 21:19:00 GMT</pubDate><content:encoded>&lt;p&gt;I struggled with this one beacuse i had to look ahead 2 tokens to parse expression assigment vs. reference.&lt;/p&gt;</content:encoded></item><item><title><![CDATA[Writing a C Compiler: Part 1, Lexer]]></title><description><![CDATA[As a programmer I enjoy building things. I also like knowing how things work, I figure the two are related. There are a few things that I…]]></description><link>https://quinn.io/2021/11-20-compiler-lexer/</link><guid isPermaLink="false">https://quinn.io/2021/11-20-compiler-lexer/</guid><pubDate>Sat, 20 Nov 2021 20:33:00 GMT</pubDate><content:encoded>&lt;p&gt;As a programmer I enjoy building things. I also like knowing how things work, I figure the two are related. There are a few things that I feel I’ve missed out on from not attending a CS program (nothing practical of course), one being a deeper understanding of how programming languages are written. To this end I’ve decided to spend some time learning how to write compilers.&lt;/p&gt;
 &lt;p&gt;I decided that writing a C compiler would be a good place to start. I don’t know C. In spite of this, I think it will be a good choice because of it’s simplicity. Not simplicity in terms of writing correct programs with it, but simplicity in terms of being “lower level” so probably less work to turn it into assembly.&lt;/p&gt;
 &lt;p&gt;I did a Google search for something like “write C compiler tutorial” and &lt;a href=&quot;https://norasandler.com/2017/11/29/Write-a-Compiler.html&quot;&gt;found this post series&lt;/a&gt; which looks promising. I’ll probably try to do posts that match, 10 parts.&lt;/p&gt;
 &lt;p&gt;Nora said examples will be given in x86 instruction sets, but I’ll be attempting to rewrite using AMD64. Based on AMD64 docs this should be fine because it should support all x86 instructions.&lt;/p&gt;
