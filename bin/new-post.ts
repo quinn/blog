@@ -10,7 +10,7 @@ const title = process.argv[2]
 const date = new Date()
 
 const titleSlug = title.replace(new RegExp(' ', "g"), '-').toLowerCase()
-const slug = `${zpad(date.getMonth())}-${zpad(date.getDate())}-${titleSlug}`
+const slug = `${zpad(date.getMonth() + 1)}-${zpad(date.getDate())}-${titleSlug}`
 const path = `content/blog/${date.getFullYear()}/${slug}`
 const filename = `${path}/index.md`
 
