@@ -2,37 +2,37 @@
 <h2>#1 robust query mapping</h2>
 <p>the datamapper API is robust enough that it drastically reduces how much one has to drop down to sql to get the desired results. For example:</p>
 <div class="gatsby-highlight" data-language="ruby"><pre class="language-ruby"><code class="language-ruby"><span class="token keyword">class</span> <span class="token class-name">Book</span>
-  <span class="token keyword">include</span> <span class="token constant">DataMapper</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">Resource</span>
+  <span class="token keyword">include</span> DataMapper<span class="token double-colon punctuation">::</span>Resource
 
-  property <span class="token symbol">:published_at</span><span class="token punctuation">,</span> <span class="token constant">DateTime</span>
+  property <span class="token symbol">:published_at</span><span class="token punctuation">,</span> DateTime
 
   belongs_to <span class="token symbol">:author</span>
 
   <span class="token keyword">def</span> <span class="token method-definition"><span class="token keyword">self</span><span class="token punctuation">.</span><span class="token function">published_recently</span></span>
-    all <span class="token symbol">:published_at</span><span class="token punctuation">.</span>gte <span class="token operator">=</span><span class="token operator">></span> <span class="token number">1.</span>week<span class="token punctuation">.</span>ago
+    all <span class="token symbol">:published_at</span><span class="token punctuation">.</span>gte <span class="token operator">=></span> <span class="token number">1.</span>week<span class="token punctuation">.</span>ago
   <span class="token keyword">end</span>
 <span class="token keyword">end</span>
 
-<span class="token constant">Book</span><span class="token punctuation">.</span>all<span class="token punctuation">.</span>published_recently<span class="token punctuation">.</span>authors</code></pre></div>
+Book<span class="token punctuation">.</span>all<span class="token punctuation">.</span>published_recently<span class="token punctuation">.</span>authors</code></pre></div>
 <p>only executes a single query. neat right?</p>
 <h2>#2 The property API</h2>
 <p>Datamapper favors explicit property definitions rather than attempting to infer them from the table. There are advantages to this, such as easier introspection and tighter control over serialization. Also, one of the ways that Datamapper offer’s to its users to add features is the property api. One can create their own classes to extend datamapper’s serialization and property mapping through a sussinct api:</p>
-<div class="gatsby-highlight" data-language="ruby"><pre class="language-ruby"><code class="language-ruby"><span class="token keyword">module</span> <span class="token constant">DataMapper</span>
+<div class="gatsby-highlight" data-language="ruby"><pre class="language-ruby"><code class="language-ruby"><span class="token keyword">module</span> <span class="token class-name">DataMapper</span>
   <span class="token keyword">class</span> <span class="token class-name">Property</span>
-    <span class="token keyword">class</span> <span class="token class-name">Geo</span> <span class="token operator">></span> <span class="token constant">Yaml</span>
+    <span class="token keyword">class</span> <span class="token class-name">Geo</span> <span class="token operator">></span> Yaml
       <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">dump</span></span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
-        <span class="token keyword">if</span> value<span class="token punctuation">.</span><span class="token keyword">nil</span><span class="token operator">?</span> <span class="token operator">||</span> value<span class="token punctuation">.</span>kind_of<span class="token operator">?</span><span class="token punctuation">(</span><span class="token constant">Geokit</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">GeoLoc</span><span class="token punctuation">)</span>
+        <span class="token keyword">if</span> value<span class="token punctuation">.</span><span class="token keyword">nil</span><span class="token operator">?</span> <span class="token operator">||</span> value<span class="token punctuation">.</span>kind_of<span class="token operator">?</span><span class="token punctuation">(</span>Geokit<span class="token double-colon punctuation">::</span>GeoLoc<span class="token punctuation">)</span>
           <span class="token keyword">super</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
         <span class="token keyword">else</span>
-          <span class="token keyword">raise</span> <span class="token constant">ArgumentError</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>quot<span class="token punctuation">;</span><span class="token operator">+</span>value<span class="token operator">+</span> must be <span class="token keyword">nil</span><span class="token punctuation">,</span> <span class="token builtin">String</span> <span class="token keyword">or</span> <span class="token constant">Geokit</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">GeoLoc</span><span class="token operator">&amp;</span>quot<span class="token punctuation">;</span>
+          <span class="token keyword">raise</span> ArgumentError<span class="token punctuation">,</span> <span class="token operator">&amp;</span>quot<span class="token punctuation">;</span><span class="token operator">+</span>value<span class="token operator">+</span> must be <span class="token keyword">nil</span><span class="token punctuation">,</span> <span class="token builtin">String</span> <span class="token keyword">or</span> Geokit<span class="token double-colon punctuation">::</span>GeoLoc<span class="token operator">&amp;</span>quot<span class="token punctuation">;</span>
         <span class="token keyword">end</span>
       <span class="token keyword">end</span>
 
       <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">typecast</span></span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
-        <span class="token keyword">return</span> value <span class="token keyword">if</span> value<span class="token punctuation">.</span><span class="token keyword">nil</span><span class="token operator">?</span> <span class="token operator">||</span> value<span class="token punctuation">.</span>kind_of<span class="token operator">?</span><span class="token punctuation">(</span><span class="token constant">Geokit</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">GeoLoc</span><span class="token punctuation">)</span>
-        geoloc <span class="token operator">=</span> <span class="token constant">GeoKit</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">Geocoders</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">MultiGeocoder</span><span class="token punctuation">.</span>geocode<span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> value <span class="token keyword">if</span> value<span class="token punctuation">.</span><span class="token keyword">nil</span><span class="token operator">?</span> <span class="token operator">||</span> value<span class="token punctuation">.</span>kind_of<span class="token operator">?</span><span class="token punctuation">(</span>Geokit<span class="token double-colon punctuation">::</span>GeoLoc<span class="token punctuation">)</span>
+        geoloc <span class="token operator">=</span> GeoKit<span class="token double-colon punctuation">::</span>Geocoders<span class="token double-colon punctuation">::</span>MultiGeocoder<span class="token punctuation">.</span>geocode<span class="token punctuation">(</span>value<span class="token punctuation">)</span>
         <span class="token keyword">unless</span> geoloc<span class="token punctuation">.</span>success
-          <span class="token keyword">raise</span> <span class="token constant">ArgumentError</span><span class="token punctuation">,</span> <span class="token string">"+value+ is not a valid address"</span>
+          <span class="token keyword">raise</span> ArgumentError<span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">"+value+ is not a valid address"</span></span>
         <span class="token keyword">end</span>
         geoloc
       <span class="token keyword">end</span>
@@ -42,23 +42,23 @@
 <span class="token keyword">end</span></code></pre></div>
 <p>This piggybacks on the existing yaml implementation that exists here: <a href="http://github.com/datamapper/dm-types/blob/v1.0.0/lib/dm-types/yaml.rb">http://github.com/datamapper/dm-types/blob/v1.0.0/lib/dm-types/yaml.rb</a> . Basically, you get two methods, one for loading (deserializing) from the database and one for dumping (serializing) to the database. Using the above class you can now:</p>
 <div class="gatsby-highlight" data-language="ruby"><pre class="language-ruby"><code class="language-ruby"><span class="token keyword">class</span> <span class="token class-name">Profile</span>
-  <span class="token keyword">include</span> <span class="token constant">DataMapper</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">Resource</span>
+  <span class="token keyword">include</span> DataMapper<span class="token double-colon punctuation">::</span>Resource
 
-  property <span class="token symbol">:id</span><span class="token punctuation">,</span> <span class="token constant">Serial</span>
-  property <span class="token symbol">:address</span><span class="token punctuation">,</span> <span class="token constant">Geo</span>
+  property <span class="token symbol">:id</span><span class="token punctuation">,</span> Serial
+  property <span class="token symbol">:address</span><span class="token punctuation">,</span> Geo
 <span class="token keyword">end</span>
 
-profile <span class="token operator">=</span> <span class="token constant">Profile</span><span class="token punctuation">.</span><span class="token keyword">new</span>
-profile<span class="token punctuation">.</span>address <span class="token operator">=</span> <span class="token string">"Brooklyn Bridge"</span>
+profile <span class="token operator">=</span> <span class="token class-name">Profile</span><span class="token punctuation">.</span><span class="token keyword">new</span>
+profile<span class="token punctuation">.</span>address <span class="token operator">=</span> <span class="token string-literal"><span class="token string">"Brooklyn Bridge"</span></span>
 profile<span class="token punctuation">.</span>address<span class="token punctuation">.</span>district <span class="token comment">#=> "Manhattan"</span></code></pre></div>
 <h2>#3 inclusion over inheritance</h2>
 <p>I suppose this one is largely a stylistic preference. I like explicitly saying <code class="language-text">include DataMapper::Resource</code> that way you know where to include your modules. for example:</p>
-<div class="gatsby-highlight" data-language="ruby"><pre class="language-ruby"><code class="language-ruby"><span class="token keyword">module</span> <span class="token constant">DataMapper</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">Resource</span>
-  <span class="token keyword">include</span> <span class="token constant">MyModule</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">InstanceMethods</span>
+<div class="gatsby-highlight" data-language="ruby"><pre class="language-ruby"><code class="language-ruby"><span class="token keyword">module</span> <span class="token class-name">DataMapper</span><span class="token double-colon punctuation">::</span>Resource
+  <span class="token keyword">include</span> MyModule<span class="token double-colon punctuation">::</span>InstanceMethods
 <span class="token keyword">end</span>
 
-<span class="token keyword">module</span> <span class="token constant">DataMapper</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">Model</span>
-  <span class="token keyword">include</span> <span class="token constant">MyModule</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">ClassMethods</span>
+<span class="token keyword">module</span> <span class="token class-name">DataMapper</span><span class="token double-colon punctuation">::</span>Model
+  <span class="token keyword">include</span> MyModule<span class="token double-colon punctuation">::</span>ClassMethods
 <span class="token keyword">end</span></code></pre></div>
 <p>This is about as simple as it gets in my opinion. DataMapper::Resource’s self.included method simple extends the current class with DataMapper::Model and does nothing else. To me this is clean and simple and doesn’t add any fluff on top of what ruby does by default.</p>
 <h2>Rails 3</h2>

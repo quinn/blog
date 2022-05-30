@@ -17,7 +17,7 @@
 <p>As far as code goes, here’s what I got. Still goin’ strong with the ruby.</p>
 <div class="gatsby-highlight" data-language="ruby"><pre class="language-ruby"><code class="language-ruby"><span class="token comment"># frozen_string_literal: true</span>
 
-<span class="token keyword">class</span> <span class="token class-name">ParseError</span> <span class="token operator">&lt;</span> <span class="token constant">StandardError</span><span class="token punctuation">;</span> <span class="token keyword">end</span>
+<span class="token keyword">class</span> <span class="token class-name">ParseError</span> <span class="token operator">&lt;</span> StandardError<span class="token punctuation">;</span> <span class="token keyword">end</span>
 
 <span class="token keyword">class</span> <span class="token class-name">Node</span>
   attr_reader <span class="token symbol">:tokens</span>
@@ -27,53 +27,53 @@
   <span class="token keyword">end</span>
 <span class="token keyword">end</span>
 
-<span class="token keyword">class</span> <span class="token class-name">Program</span> <span class="token operator">&lt;</span> <span class="token constant">Node</span>
+<span class="token keyword">class</span> <span class="token class-name">Program</span> <span class="token operator">&lt;</span> Node
   attr_reader <span class="token symbol">:function</span>
 
   <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">parse</span></span><span class="token operator">!</span>
-    <span class="token variable">@function</span> <span class="token operator">=</span> <span class="token constant">Function</span><span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">(</span>tokens<span class="token punctuation">)</span><span class="token punctuation">.</span>parse<span class="token operator">!</span>
+    <span class="token variable">@function</span> <span class="token operator">=</span> <span class="token class-name">Function</span><span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">(</span>tokens<span class="token punctuation">)</span><span class="token punctuation">.</span>parse<span class="token operator">!</span>
 
-    <span class="token keyword">raise</span> <span class="token constant">ParseError</span><span class="token punctuation">,</span> format<span class="token punctuation">(</span><span class="token string">'root function must be called main, found %s'</span><span class="token punctuation">,</span> <span class="token variable">@function</span><span class="token punctuation">.</span>id<span class="token punctuation">)</span> <span class="token keyword">if</span> <span class="token variable">@function</span><span class="token punctuation">.</span>id <span class="token operator">!=</span> <span class="token string">'main'</span>
+    <span class="token keyword">raise</span> ParseError<span class="token punctuation">,</span> format<span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'root function must be called main, found %s'</span></span><span class="token punctuation">,</span> <span class="token variable">@function</span><span class="token punctuation">.</span>id<span class="token punctuation">)</span> <span class="token keyword">if</span> <span class="token variable">@function</span><span class="token punctuation">.</span>id <span class="token operator">!=</span> <span class="token string-literal"><span class="token string">'main'</span></span>
 
     <span class="token keyword">self</span>
   <span class="token keyword">end</span>
 <span class="token keyword">end</span>
 
-<span class="token keyword">class</span> <span class="token class-name">Statement</span> <span class="token operator">&lt;</span> <span class="token constant">Node</span>
+<span class="token keyword">class</span> <span class="token class-name">Statement</span> <span class="token operator">&lt;</span> Node
   attr_reader <span class="token symbol">:is_return</span><span class="token punctuation">,</span> <span class="token symbol">:expression</span>
 
   <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">parse</span></span><span class="token operator">!</span>
     token <span class="token operator">=</span> tokens<span class="token punctuation">.</span>shift
 
-    <span class="token keyword">if</span> token<span class="token punctuation">.</span>type <span class="token operator">==</span> <span class="token constant">Token</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">KEYWORD</span> <span class="token operator">&amp;&amp;</span> token<span class="token punctuation">.</span>value <span class="token operator">==</span> <span class="token string">'return'</span>
+    <span class="token keyword">if</span> token<span class="token punctuation">.</span>type <span class="token operator">==</span> Token<span class="token double-colon punctuation">::</span><span class="token constant">KEYWORD</span> <span class="token operator">&amp;&amp;</span> token<span class="token punctuation">.</span>value <span class="token operator">==</span> <span class="token string-literal"><span class="token string">'return'</span></span>
       <span class="token variable">@is_return</span> <span class="token operator">=</span> <span class="token boolean">true</span>
     <span class="token keyword">else</span>
       tokens<span class="token punctuation">.</span>unshift<span class="token punctuation">(</span>token<span class="token punctuation">)</span>
     <span class="token keyword">end</span>
 
-    <span class="token variable">@expression</span> <span class="token operator">=</span> <span class="token constant">Expression</span><span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">(</span>tokens<span class="token punctuation">)</span><span class="token punctuation">.</span>parse<span class="token operator">!</span>
+    <span class="token variable">@expression</span> <span class="token operator">=</span> <span class="token class-name">Expression</span><span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">(</span>tokens<span class="token punctuation">)</span><span class="token punctuation">.</span>parse<span class="token operator">!</span>
 
     <span class="token keyword">self</span>
   <span class="token keyword">end</span>
 <span class="token keyword">end</span>
 
-<span class="token keyword">class</span> <span class="token class-name">Expression</span> <span class="token operator">&lt;</span> <span class="token constant">Node</span>
+<span class="token keyword">class</span> <span class="token class-name">Expression</span> <span class="token operator">&lt;</span> Node
   attr_reader <span class="token symbol">:constant_value</span>
 
   <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">parse</span></span><span class="token operator">!</span>
     token <span class="token operator">=</span> tokens<span class="token punctuation">.</span>shift
-    <span class="token keyword">raise</span> <span class="token constant">ParseError</span><span class="token punctuation">,</span> format<span class="token punctuation">(</span><span class="token string">'unexepected, got %&lt;type>s : %&lt;value>s'</span><span class="token punctuation">,</span> <span class="token operator">*</span><span class="token operator">*</span>token<span class="token punctuation">)</span> <span class="token keyword">unless</span> token<span class="token punctuation">.</span>type <span class="token operator">==</span> <span class="token constant">Token</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">CONST</span>
+    <span class="token keyword">raise</span> ParseError<span class="token punctuation">,</span> format<span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'unexepected, got %&lt;type>s : %&lt;value>s'</span></span><span class="token punctuation">,</span> <span class="token operator">**</span>token<span class="token punctuation">)</span> <span class="token keyword">unless</span> token<span class="token punctuation">.</span>type <span class="token operator">==</span> Token<span class="token double-colon punctuation">::</span><span class="token constant">CONST</span>
 
     <span class="token variable">@constant_value</span> <span class="token operator">=</span> token<span class="token punctuation">.</span>value
 
     token <span class="token operator">=</span> tokens<span class="token punctuation">.</span>shift
-    <span class="token keyword">raise</span> <span class="token constant">ParseError</span><span class="token punctuation">,</span> format<span class="token punctuation">(</span><span class="token string">'expected terminator, got %&lt;type>s : %&lt;value>s'</span><span class="token punctuation">,</span> <span class="token operator">*</span><span class="token operator">*</span>token<span class="token punctuation">)</span> <span class="token keyword">unless</span> token<span class="token punctuation">.</span>type <span class="token operator">==</span> <span class="token constant">Token</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">TERM</span>
+    <span class="token keyword">raise</span> ParseError<span class="token punctuation">,</span> format<span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'expected terminator, got %&lt;type>s : %&lt;value>s'</span></span><span class="token punctuation">,</span> <span class="token operator">**</span>token<span class="token punctuation">)</span> <span class="token keyword">unless</span> token<span class="token punctuation">.</span>type <span class="token operator">==</span> Token<span class="token double-colon punctuation">::</span><span class="token constant">TERM</span>
 
     <span class="token keyword">self</span>
   <span class="token keyword">end</span>
 <span class="token keyword">end</span>
 
-<span class="token keyword">class</span> <span class="token class-name">Function</span> <span class="token operator">&lt;</span> <span class="token constant">Node</span>
+<span class="token keyword">class</span> <span class="token class-name">Function</span> <span class="token operator">&lt;</span> Node
   attr_reader <span class="token symbol">:return_type</span><span class="token punctuation">,</span> <span class="token symbol">:id</span><span class="token punctuation">,</span> <span class="token symbol">:statements</span>
 
   <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">parse</span></span><span class="token operator">!</span>
@@ -81,38 +81,38 @@
 
     token <span class="token operator">=</span> tokens<span class="token punctuation">.</span>shift
 
-    <span class="token keyword">unless</span> token<span class="token punctuation">.</span>type <span class="token operator">==</span> <span class="token constant">Token</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">KEYWORD</span> <span class="token operator">&amp;&amp;</span> return_types<span class="token punctuation">.</span><span class="token keyword">include</span><span class="token operator">?</span><span class="token punctuation">(</span>token<span class="token punctuation">.</span>value<span class="token punctuation">)</span>
-      <span class="token keyword">raise</span> <span class="token constant">ParseError</span><span class="token punctuation">,</span> format<span class="token punctuation">(</span><span class="token string">'invalid function return type %&lt;type>s : %&lt;value>s'</span><span class="token punctuation">,</span> <span class="token operator">*</span><span class="token operator">*</span>token<span class="token punctuation">)</span>
+    <span class="token keyword">unless</span> token<span class="token punctuation">.</span>type <span class="token operator">==</span> Token<span class="token double-colon punctuation">::</span><span class="token constant">KEYWORD</span> <span class="token operator">&amp;&amp;</span> return_types<span class="token punctuation">.</span><span class="token keyword">include</span><span class="token operator">?</span><span class="token punctuation">(</span>token<span class="token punctuation">.</span>value<span class="token punctuation">)</span>
+      <span class="token keyword">raise</span> ParseError<span class="token punctuation">,</span> format<span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'invalid function return type %&lt;type>s : %&lt;value>s'</span></span><span class="token punctuation">,</span> <span class="token operator">**</span>token<span class="token punctuation">)</span>
     <span class="token keyword">end</span>
 
     <span class="token variable">@return_type</span> <span class="token operator">=</span> token<span class="token punctuation">.</span>value
 
     token <span class="token operator">=</span> tokens<span class="token punctuation">.</span>shift
-    <span class="token keyword">raise</span> <span class="token constant">ParseError</span><span class="token punctuation">,</span> format<span class="token punctuation">(</span><span class="token string">'expected function name, got %&lt;type>s : %&lt;value>s'</span><span class="token punctuation">,</span> <span class="token operator">*</span><span class="token operator">*</span>token<span class="token punctuation">)</span> <span class="token keyword">unless</span> token<span class="token punctuation">.</span>type <span class="token operator">==</span> <span class="token constant">Token</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">ID</span>
+    <span class="token keyword">raise</span> ParseError<span class="token punctuation">,</span> format<span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'expected function name, got %&lt;type>s : %&lt;value>s'</span></span><span class="token punctuation">,</span> <span class="token operator">**</span>token<span class="token punctuation">)</span> <span class="token keyword">unless</span> token<span class="token punctuation">.</span>type <span class="token operator">==</span> Token<span class="token double-colon punctuation">::</span><span class="token constant">ID</span>
 
     <span class="token variable">@id</span> <span class="token operator">=</span> token<span class="token punctuation">.</span>value
 
     token <span class="token operator">=</span> tokens<span class="token punctuation">.</span>shift
-    <span class="token keyword">raise</span> <span class="token constant">ParseError</span><span class="token punctuation">,</span> format<span class="token punctuation">(</span><span class="token string">'expected args, got %&lt;type>s : %&lt;value>s'</span><span class="token punctuation">,</span> <span class="token operator">*</span><span class="token operator">*</span>token<span class="token punctuation">)</span> <span class="token keyword">unless</span> token<span class="token punctuation">.</span>type <span class="token operator">==</span> <span class="token constant">Token</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">PAREN</span>
+    <span class="token keyword">raise</span> ParseError<span class="token punctuation">,</span> format<span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'expected args, got %&lt;type>s : %&lt;value>s'</span></span><span class="token punctuation">,</span> <span class="token operator">**</span>token<span class="token punctuation">)</span> <span class="token keyword">unless</span> token<span class="token punctuation">.</span>type <span class="token operator">==</span> Token<span class="token double-colon punctuation">::</span><span class="token constant">PAREN</span>
 
     token <span class="token operator">=</span> tokens<span class="token punctuation">.</span>shift
-    <span class="token keyword">raise</span> <span class="token constant">ParseError</span><span class="token punctuation">,</span> format<span class="token punctuation">(</span><span class="token string">'expected args, got %&lt;type>s : %&lt;value>s'</span><span class="token punctuation">,</span> <span class="token operator">*</span><span class="token operator">*</span>token<span class="token punctuation">)</span> <span class="token keyword">unless</span> token<span class="token punctuation">.</span>type <span class="token operator">==</span> <span class="token constant">Token</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">END_PAREN</span>
+    <span class="token keyword">raise</span> ParseError<span class="token punctuation">,</span> format<span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'expected args, got %&lt;type>s : %&lt;value>s'</span></span><span class="token punctuation">,</span> <span class="token operator">**</span>token<span class="token punctuation">)</span> <span class="token keyword">unless</span> token<span class="token punctuation">.</span>type <span class="token operator">==</span> Token<span class="token double-colon punctuation">::</span><span class="token constant">END_PAREN</span>
 
     token <span class="token operator">=</span> tokens<span class="token punctuation">.</span>shift
-    <span class="token keyword">raise</span> <span class="token constant">ParseError</span><span class="token punctuation">,</span> format<span class="token punctuation">(</span><span class="token string">'expected args, got %&lt;type>s : %&lt;value>s'</span><span class="token punctuation">,</span> <span class="token operator">*</span><span class="token operator">*</span>token<span class="token punctuation">)</span> <span class="token keyword">unless</span> token<span class="token punctuation">.</span>type <span class="token operator">==</span> <span class="token constant">Token</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">BLOCK</span>
+    <span class="token keyword">raise</span> ParseError<span class="token punctuation">,</span> format<span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'expected args, got %&lt;type>s : %&lt;value>s'</span></span><span class="token punctuation">,</span> <span class="token operator">**</span>token<span class="token punctuation">)</span> <span class="token keyword">unless</span> token<span class="token punctuation">.</span>type <span class="token operator">==</span> Token<span class="token double-colon punctuation">::</span><span class="token constant">BLOCK</span>
 
     loop <span class="token keyword">do</span>
-      <span class="token keyword">if</span> token<span class="token punctuation">.</span>type <span class="token operator">==</span> <span class="token constant">Token</span><span class="token punctuation">:</span><span class="token punctuation">:</span><span class="token constant">END_BLOCK</span>
-        <span class="token keyword">raise</span> <span class="token constant">ParseError</span><span class="token punctuation">,</span> format<span class="token punctuation">(</span><span class="token string">'missing return'</span><span class="token punctuation">)</span> <span class="token keyword">if</span> <span class="token variable">@statements</span><span class="token punctuation">.</span>empty<span class="token operator">?</span>
+      <span class="token keyword">if</span> token<span class="token punctuation">.</span>type <span class="token operator">==</span> Token<span class="token double-colon punctuation">::</span><span class="token constant">END_BLOCK</span>
+        <span class="token keyword">raise</span> ParseError<span class="token punctuation">,</span> format<span class="token punctuation">(</span><span class="token string-literal"><span class="token string">'missing return'</span></span><span class="token punctuation">)</span> <span class="token keyword">if</span> <span class="token variable">@statements</span><span class="token punctuation">.</span>empty<span class="token operator">?</span>
 
         <span class="token keyword">break</span>
       <span class="token keyword">end</span>
 
-      <span class="token keyword">raise</span> <span class="token constant">ParseError</span><span class="token punctuation">,</span> <span class="token string">'unexpected end of function'</span> <span class="token keyword">if</span> tokens<span class="token punctuation">.</span>empty<span class="token operator">?</span>
+      <span class="token keyword">raise</span> ParseError<span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">'unexpected end of function'</span></span> <span class="token keyword">if</span> tokens<span class="token punctuation">.</span>empty<span class="token operator">?</span>
 
-      <span class="token variable">@statements</span> <span class="token operator">&lt;</span><span class="token operator">&lt;</span> <span class="token constant">Statement</span><span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">(</span>tokens<span class="token punctuation">)</span><span class="token punctuation">.</span>parse<span class="token operator">!</span>
+      <span class="token variable">@statements</span> <span class="token operator">&lt;&lt;</span> <span class="token class-name">Statement</span><span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">(</span>tokens<span class="token punctuation">)</span><span class="token punctuation">.</span>parse<span class="token operator">!</span>
 
-      <span class="token keyword">raise</span> <span class="token constant">ParseError</span><span class="token punctuation">,</span> <span class="token string">'unexpected end of function'</span> <span class="token keyword">if</span> tokens<span class="token punctuation">.</span>empty<span class="token operator">?</span>
+      <span class="token keyword">raise</span> ParseError<span class="token punctuation">,</span> <span class="token string-literal"><span class="token string">'unexpected end of function'</span></span> <span class="token keyword">if</span> tokens<span class="token punctuation">.</span>empty<span class="token operator">?</span>
 
       token <span class="token operator">=</span> tokens<span class="token punctuation">.</span>shift
     <span class="token keyword">end</span>
@@ -121,7 +121,7 @@
   <span class="token keyword">end</span>
 
   <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">return_types</span></span>
-    <span class="token punctuation">[</span><span class="token string">'int'</span><span class="token punctuation">]</span>
+    <span class="token punctuation">[</span><span class="token string-literal"><span class="token string">'int'</span></span><span class="token punctuation">]</span>
   <span class="token keyword">end</span>
 <span class="token keyword">end</span>
 
@@ -131,7 +131,7 @@
 
   <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">initialize</span></span><span class="token punctuation">(</span>compiler<span class="token punctuation">)</span>
     <span class="token variable">@compiler</span> <span class="token operator">=</span> compiler
-    <span class="token variable">@ast</span> <span class="token operator">=</span> <span class="token constant">Program</span><span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">(</span>compiler<span class="token punctuation">.</span>tokens<span class="token punctuation">)</span>
+    <span class="token variable">@ast</span> <span class="token operator">=</span> <span class="token class-name">Program</span><span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">(</span>compiler<span class="token punctuation">.</span>tokens<span class="token punctuation">)</span>
     <span class="token variable">@curnode</span> <span class="token operator">=</span> <span class="token variable">@ast</span>
   <span class="token keyword">end</span>
 
@@ -144,28 +144,28 @@
 
 <span class="token keyword">class</span> <span class="token class-name">Function</span>
   <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">compile</span></span><span class="token operator">!</span>
-    <span class="token string heredoc-string"><span class="token delimiter symbol"><span class="token punctuation">&lt;&lt;~</span>ASM</span>
-      .globl <span class="token interpolation"><span class="token delimiter tag">#{</span>id<span class="token delimiter tag">}</span></span>
-      <span class="token interpolation"><span class="token delimiter tag">#{</span>id<span class="token delimiter tag">}</span></span>:
-      <span class="token interpolation"><span class="token delimiter tag">#{</span>statements<span class="token punctuation">.</span>map<span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token symbol">:compile!</span><span class="token punctuation">)</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token string">"\n"</span><span class="token punctuation">)</span><span class="token delimiter tag">}</span></span>
-    <span class="token delimiter symbol">ASM</span></span>
+    <span class="token string-literal heredoc-string"><span class="token delimiter"><span class="token punctuation">&lt;&lt;~</span><span class="token symbol">ASM</span></span><span class="token string">
+      .globl </span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content">id</span><span class="token delimiter punctuation">}</span></span><span class="token string">
+      </span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content">id</span><span class="token delimiter punctuation">}</span></span><span class="token string">:
+      </span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content">statements<span class="token punctuation">.</span>map<span class="token punctuation">(</span><span class="token operator">&amp;</span><span class="token symbol">:compile!</span><span class="token punctuation">)</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span><span class="token string-literal"><span class="token string">"\n"</span></span><span class="token punctuation">)</span></span><span class="token delimiter punctuation">}</span></span><span class="token string">
+    </span><span class="token delimiter"><span class="token symbol">ASM</span></span></span>
   <span class="token keyword">end</span>
 <span class="token keyword">end</span>
 
 <span class="token keyword">class</span> <span class="token class-name">Statement</span>
   <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">compile</span></span><span class="token operator">!</span>
-    <span class="token string heredoc-string"><span class="token delimiter symbol"><span class="token punctuation">&lt;&lt;~</span>ASM</span>
-      <span class="token interpolation"><span class="token delimiter tag">#{</span>expression<span class="token punctuation">.</span>compile<span class="token operator">!</span><span class="token delimiter tag">}</span></span>
-      <span class="token interpolation"><span class="token delimiter tag">#{</span>is_return <span class="token operator">?</span> <span class="token string">'ret'</span> <span class="token punctuation">:</span> <span class="token string">''</span><span class="token delimiter tag">}</span></span>
-    <span class="token delimiter symbol">ASM</span></span>
+    <span class="token string-literal heredoc-string"><span class="token delimiter"><span class="token punctuation">&lt;&lt;~</span><span class="token symbol">ASM</span></span><span class="token string">
+      </span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content">expression<span class="token punctuation">.</span>compile<span class="token operator">!</span></span><span class="token delimiter punctuation">}</span></span><span class="token string">
+      </span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content">is_return <span class="token operator">?</span> <span class="token string-literal"><span class="token string">'ret'</span></span> <span class="token operator">:</span> <span class="token string-literal"><span class="token string">''</span></span></span><span class="token delimiter punctuation">}</span></span><span class="token string">
+    </span><span class="token delimiter"><span class="token symbol">ASM</span></span></span>
   <span class="token keyword">end</span>
 <span class="token keyword">end</span>
 
 <span class="token keyword">class</span> <span class="token class-name">Expression</span>
   <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">compile</span></span><span class="token operator">!</span>
-    <span class="token string heredoc-string"><span class="token delimiter symbol"><span class="token punctuation">&lt;&lt;~</span>ASM</span>
-      movl    $<span class="token interpolation"><span class="token delimiter tag">#{</span>constant_value<span class="token delimiter tag">}</span></span>, %eax
-    <span class="token delimiter symbol">ASM</span></span>
+    <span class="token string-literal heredoc-string"><span class="token delimiter"><span class="token punctuation">&lt;&lt;~</span><span class="token symbol">ASM</span></span><span class="token string">
+      movl    $</span><span class="token interpolation"><span class="token delimiter punctuation">#{</span><span class="token content">constant_value</span><span class="token delimiter punctuation">}</span></span><span class="token string">, %eax
+    </span><span class="token delimiter"><span class="token symbol">ASM</span></span></span>
   <span class="token keyword">end</span>
 <span class="token keyword">end</span>
 
@@ -174,7 +174,7 @@
 
   <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">initialize</span></span><span class="token punctuation">(</span>compiler<span class="token punctuation">)</span>
     <span class="token variable">@compiler</span> <span class="token operator">=</span> compiler
-    <span class="token variable">@buf</span> <span class="token operator">=</span> <span class="token string">''</span>
+    <span class="token variable">@buf</span> <span class="token operator">=</span> <span class="token string-literal"><span class="token string">''</span></span>
   <span class="token keyword">end</span>
 
   <span class="token keyword">def</span> <span class="token method-definition"><span class="token function">compile</span></span><span class="token operator">!</span>

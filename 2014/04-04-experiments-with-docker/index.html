@@ -57,7 +57,7 @@ container’s contents will always be exactly as they are in the container’s
 image, and it is not possible to run a command on an existing container
 (running <code class="language-text">docker run ubuntu touch file_in_container</code> would create a new
 container to run the command). Try running something more substantial:</p>
-<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">docker run ubuntu <span class="token function">apt-get</span> -y <span class="token function">install</span> build-essential</code></pre></div>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token function">docker</span> run ubuntu <span class="token function">apt-get</span> -y <span class="token function">install</span> build-essential</code></pre></div>
 <p>If you decided that having build tools installed was a good starting point,
 you could save this container’s state as an image. Let’s find our container by
 running <code class="language-text">docker ps -a</code>:</p>
@@ -65,14 +65,14 @@ running <code class="language-text">docker ps -a</code>:</p>
 305883092cfd        ubuntu:latest           apt-get -y install b   5 minutes ago       Exit 0
 3088358bd9c5        ubuntu:latest           touch file_in_contai   5 minutes ago       Exit 0</code></pre></div>
 <p>It looks like “305883092cfd” is the one we want. Try saving it:</p>
-<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">docker commit <span class="token number">305</span> buildtools</code></pre></div>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token function">docker</span> commit <span class="token number">305</span> buildtools</code></pre></div>
 <p>Now run <code class="language-text">docker images</code>:</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">REPOSITORY          TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
 buildtools          latest              d036e72d2e40        2 minutes ago       320.5 MB
 ubuntu              latest              9cd978db300e        10 minutes ago      204.4 MB</code></pre></div>
 <p>As you can see, you have now prepared for yourself an image with build tools
 preinstalled. Try running:</p>
-<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash">docker run buildtools <span class="token function">make</span></code></pre></div>
+<div class="gatsby-highlight" data-language="bash"><pre class="language-bash"><code class="language-bash"><span class="token function">docker</span> run buildtools <span class="token function">make</span></code></pre></div>
 <p>As you can see, the <code class="language-text">docker</code> command provides some great high-level tools for
 learning about Docker. For anything serious though, you’ll probably want to
 use the API. I’ll be writing a follow-up on that soon. Stay tuned!</p></section><hr style="margin-bottom:1.45rem"/><footer><p><a href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fquinn.io%2F2014%2F04-04-experiments-with-docker%2F" target="_blank" rel="noopener noreferrer">Discuss on Twitter</a> • <a href="https://github.com/quinn/blog/tree/master/content/blog//2014/04-04-experiments-with-docker//index.md" target="_blank" rel="noopener noreferrer">View on GitHub</a></p><hr style="margin-bottom:1.45rem"/><div style="display:flex;margin-bottom:3.625rem"><div class=" gatsby-image-wrapper" style="position:relative;overflow:hidden;display:inline-block;width:50px;height:50px;margin-right:0.725rem;margin-bottom:0;min-width:50px;border-radius:100%"><img aria-hidden="true" src="data:image/jpeg;base64,/9j/2wBDABALDA4MChAODQ4SERATGCgaGBYWGDEjJR0oOjM9PDkzODdASFxOQERXRTc4UG1RV19iZ2hnPk1xeXBkeFxlZ2P/2wBDARESEhgVGC8aGi9jQjhCY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2NjY2P/wgARCAAUABQDASIAAhEBAxEB/8QAGAABAAMBAAAAAAAAAAAAAAAAAAECBQP/xAAXAQEBAQEAAAAAAAAAAAAAAAACAAED/9oADAMBAAIQAxAAAAEyuBWsLJkHWgj/AP/EABsQAAIDAAMAAAAAAAAAAAAAAAECAAMREiEx/9oACAEBAAEFArnZAG2cRLrWYliSluJPY/Z//8QAFhEBAQEAAAAAAAAAAAAAAAAAEQAQ/9oACAEDAQE/AWN//8QAFhEBAQEAAAAAAAAAAAAAAAAAEQAQ/9oACAECAQE/ASd//8QAHBAAAgICAwAAAAAAAAAAAAAAAREAEBIhMUFR/9oACAEBAAY/AhiV1BNgxcDyhk3WwK//xAAcEAADAAIDAQAAAAAAAAAAAAAAAREhMVFhcbH/2gAIAQEAAT8ha9rdMxD+iY3l0olRpihWPGQKrHA96V8FNw10YF4P/9oADAMBAAIAAwAAABDQwD//xAAZEQADAAMAAAAAAAAAAAAAAAAAAREQMVH/2gAIAQMBAT8QhVE8w9n/xAAYEQACAwAAAAAAAAAAAAAAAAAAARAhMf/aAAgBAgEBPxC0lh//xAAdEAEAAgICAwAAAAAAAAAAAAABABEhMUFRYZGh/9oACAEBAAE/EGr0YdiPqLaiuRyXsiyizS1AuH3sdszibwm4mwCvfzGIV7VaFm0sYU3CJGcfrP/Z" alt="Quinn Shanahan" style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:1;transition-delay:500ms;border-radius:50%"/><noscript><picture><source srcset="/static/23971e2c7e6e460d7ec2556a73d79eec/93bd4/profile-pic.jpg 1x,
